@@ -11,8 +11,8 @@
         </div>
           <div class="is-dark navbar-menu " id="navbar-menu" v-bind:class="{'is-active': showMobileMenu}">
              <div class="navbar-end">
-                <router-link to="/tv-shows/" class="navbar-item">Tv-shows</router-link>
-                <router-link to="/movies/" class="navbar-item">Movies</router-link>
+                <router-link to="/tv-shows/" class="is-active navbar-item">Tv-shows</router-link>
+                <router-link to="/movies/" class="is-active navbar-item">Movies</router-link>
                  <div class="navbar-start">
                  <div class="navbar-item">
                     <form method="get" action="/search">

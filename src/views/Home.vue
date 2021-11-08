@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-      <h3 class="is-bold is-size-3 mb-4">Latest Movies/</h3>
+    <div class="card-content is-flex is-align-items-center is-justify-content-space-between">
+      <h3 class="is-bold is-size-3 mb-4">Latest: </h3>
+      <button class="is-dark button">Movies</button>
+      <button class="button is-success">Tv-shows</button>
+    </div>
    
     <div class="columns is-multiline">
      <div class="column is-3">
