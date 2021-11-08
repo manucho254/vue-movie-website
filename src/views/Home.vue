@@ -9,7 +9,7 @@
     <div class="columns is-multiline">
      <div class="column is-3">
      <router-link to="/about">  
-      <div class="card">
+      <div class="card box">
        <div class="card-image">
          <figure class="image is-4by8 is-grey">
            <h3 class="is-size-6 is-bold m-2">Movie</h3>
