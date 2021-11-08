@@ -7,14 +7,14 @@
      <router-link to="/about">  
       <div class="card">
        <div class="card-image">
-         <figure class="image is-4by8">
-           <h3 class="is-dark m-2 is-success">Movie</h3>
+         <figure class="image is-4by8 is-grey">
+           <h3 class="is-size-6 is-bold m-2">Movie</h3>
           <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
          </figure>
        </div>
        <div class="card-content is-flex is-justify-content-space-between">
          <h3 class="is-dark">cool</h3>
-          <h3 class="is-dark">7.8</h3>
+         <h3 class="is-green">7.8</h3>
       </div>
       </div>
      </router-link>  
