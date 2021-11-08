@@ -1,15 +1,15 @@
 <template>
   <div class="home">
-    <div class="card-content is-flex is-align-items-center is-justify-content-space-between">
+    <div class="card-content is-flex is-align-items-center is-justify-content-space-between box">
       <h3 class="is-bold is-size-3 mb-4">Latest: </h3>
-      <button class="is-dark button">Movies</button>
-      <button class="button is-success">Tv-shows</button>
+      <button class="is-dark button"><i class="fa fa-play"></i> Movies</button>
+      <button class="button is-success"><i class="fa fa-bars"></i> Tv-shows</button>
     </div>
    
     <div class="columns is-multiline">
      <div class="column is-3">
      <router-link to="/about">  
-      <div class="card box">
+      <div class="card ">
        <div class="card-image">
          <figure class="image is-4by8 is-grey">
            <h3 class="is-size-6 is-bold m-2">Movie</h3>
