@@ -18,7 +18,7 @@
                     <form method="get" action="/search">
                       <div class="field has-addons">
                          <div class="contol">
-                           <input type="text" class="input border-none" placeholder="what are you looking for?" name="query">
+                           <input type="text" class="input border-none is-rounded" placeholder="what are you looking for?" name="query">
                          </div>
                         <div class="control">
                           <button class="button is-active is-dark">
