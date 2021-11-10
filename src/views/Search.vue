@@ -6,39 +6,37 @@
 
 <script>
 
-import { ref } from 'vue'
 import axios from "axios"
 import env from '@/env.js'
 import Trending from "@/components/Trending.vue"
 
 export default {
- name: "search",
- components: {
-     Trending
-   },
-   setup() {
-     const search = ref("");
-     const movies = ref([]);
-
-     const SearchMovies = () => {
-       if (search.value != ""){
-         axios
-         .get(`
-         https://api.themoviedb.org/3/search/multi?api_key=${env.apikey}&language=en-US&query=${search.value}&include_adult=false`)
-         .then(response => {
-           movies.value = response.data.results
-           search.value = ""
-           })
-        .catch(error => {
-             console.log(error)})
-        }
-     }
-     return {
-       search,
-       movies,
-       SearchMovies
-     }
-     
-   }
+    name: "search",
+    data () {
+        return
+         movies: []
+        },
+        components: {
+            Trending
+            },
+            mounted () {
+                let uri = window.location.search.substring(1)
+                let params = new URLSearchParams(uri)
+                
+                if (params.get('query')) {
+                    this.query = params.get('query')
+                    this.performSearch()
+                    }
+                    console.log(this.query)
+            },
+            performSearch() {
+                axios.get(`
+                https://api.themoviedb.org/3/search/multi?api_key=${env.apikey}
+                &language=en-US&page=1&query=${this.query}&include_adult=false
+                `).then(response => {
+                    this.movies = response.data
+                    console.log(this.movies)
+            })
+        }          
 }
 </script>
