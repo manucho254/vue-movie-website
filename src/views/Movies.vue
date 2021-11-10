@@ -1,29 +1,35 @@
 <template>
-  <div class="home">
+  <div class="Movies">
+
     <div class="columns is-multiline">
-         <Trending v-for="movie in movies" :key="movie.id" :movie="movie"/>
+         <AllMovies v-for="movie in movies" :key="movie.id" :movie="movie"/>
    </div>
+
   </div>
 </template>
 
 <script>
-import Trending from '@/components/Trending.vue'
+
+import AllMovies from '@/components/AllMovies.vue'
 import axios from 'axios'
 import env from "@/env.js"
 
 export default {
-  name: "Home",
+  name: "Movies",
+  
   components: {
-    Trending
+    AllMovies
   },
   data() {
     return {
-      movies: []
+      movies: [],
+      page: 1
     }
   },
   created() {
-    document.title = "Home/"
-    axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=${env.apikey}&language=en-US`)
+
+    document.title = "Movies/"
+    axios.get(`https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${env.apikey}&page=1`)
     .then(response => {
       this.movies = response.data.results
     })

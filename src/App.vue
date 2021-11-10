@@ -11,19 +11,19 @@
         </div>
           <div class="is-dark navbar-menu " id="navbar-menu" v-bind:class="{'is-active': showMobileMenu}">
              <div class="navbar-end">
-                <router-link to="/tv-shows/" class="is-active navbar-item">Tv-shows</router-link>
-                <router-link to="/movies/" class="is-active navbar-item">Movies</router-link>
+                <router-link to="/" class="navbar-item">Home</router-link>
+                <router-link to="/tv-shows/" class="navbar-item">Tv-shows</router-link>
+                <router-link to="/movies/" class="navbar-item">Movies</router-link>
                  <div class="navbar-start">
                  <div class="navbar-item">
-                    <form method="get" action="/search">
+                    <form method="get" action="/search/">
                       <div class="field has-addons">
                          <div class="contol">
-                           <input type="text" class="input border-none is-rounded" placeholder="what are you looking for?" name="query">
+                           <input type="text" class="input border-none is-rounded" 
+                              placeholder="what are you looking for?" name="query" v-model="search">
                          </div>
                         <div class="control">
-                          <button class="button is-active is-dark">
-                              <i class="fas fa-search"> Search</i>
-                          </button>
+                          <input class="button is-active is-dark" type="submit" value="search">
                         </div>
                       </div>
                     </form>
@@ -32,10 +32,24 @@
               </div>
           </div>
       </nav>
+
     <section class="section">
+      <div class="card-content is-flex is-align-items-center is-justify-content-space-between box">
+        <h3 class="is-bold is-size-3 mb-4">Popular: </h3>
+        <router-link to="/movies/" class="is-dark button"> Movies</router-link>
+        <router-link to="/tv-shows/" class="button is-success"> Tv-shows</router-link>
+      </div>
        <router-view/>
     </section>
+    <nav class="pagination is-centered p-2" role="navigation" aria-label="pagination">
+      <ul class="pagination-list">
 
+        <li><a class="pagination-previous">Previous</a></li>
+        <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+        <li><a class="pagination-link" aria-label="Goto page 86">2</a></li>
+        <li><a class="pagination-next">Next page</a></li>
+      </ul>
+    </nav>
    <footer class="footer has-text-centered">
       <h3 class="is-size-5 mb-5 bg-dark has">This 
         free movies streaming, watch movies online, watch tv-series, 
@@ -50,6 +64,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
      return {
