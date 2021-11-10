@@ -4,7 +4,7 @@
        <div class="card">
           <div class="card-image"> 
             <figure class="image is-4by8 is-grey">
-              <h3 class="is-capitalized has-text-weight-bold m-2">{{ movie.media_type }}</h3>
+              <h3 class="is-capitalized is-black has-text-weight-bold m-2">{{ movie.media_type }}</h3>
               <img :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path" alt="movie image">
             </figure>
           </div>
