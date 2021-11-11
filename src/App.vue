@@ -106,8 +106,13 @@ input{
 }
 
 .imageSize {
-  width: 200px;
+  width: 400px;
   height: 300px
+}
+
+.trailer_btn {
+  color: white;
+  background-color: rgb(219, 90, 13);
 }
 
 </style>

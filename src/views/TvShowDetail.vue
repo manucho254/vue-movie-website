@@ -1,24 +1,25 @@
 <template>
   <div class="series-detail">
    <div class="container">
-   
-     <figure class="image is-16by9">
-       <iframe class="has-ratio" width="640" height="360"  
-         :src='"https://www.2embed.ru/embed/tmdb/tv?id=" + $route.params.id + "&s=1&e=1"'
-        frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
-      </iframe>
-     </figure>
-    <div class="is-flex is-inline-flex">
-      <figure class=" container image is-4by8 is-grey">
+    <div class="iframeSizing">
+     <h1 class="has-text-weight-bold has-text-dark is-size-5 mb-3"> {{ movie.name }}</h1>
+       <!-- <figure class="image is-16by9">
+          <iframe class="has-ratio" width="640" height="100"  
+            :src='"https://www.2embed.ru/embed/tmdb/movie?id=" + $route.params.id + "&s=1&e=1"'
+            frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
+          </iframe>
+       </figure> -->
+     </div>
+  <div class="box">
+    <div class="is-flex is-flex is-justify-content-center is-align-items-center p-4">
         <div v-if="movie.poster_path != null">
-          <img :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
+          <img class="imageSize is-hidden-touch" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
         </div>
          <div v-else>
            <img src="@/assets/no-image.jpg" alt="black image">
          </div>
-        </figure>
         <!--  -->
-       <div class="ml-5 has-text-grey is-flex-desktop-only">
+       <div class="ml-5 has-text-grey is-justify-content-space-evenly  is-align-items-center p-4">
          <h1 class="has-text-weight-bold has-text-dark is-size-3"> {{ movie.name }}</h1>
            <span class="is-size-5">Rating<i class="fa fa-star star"></i>
                 {{ movie.vote_average }}| Released: {{ movie.first_air_date }} | 
@@ -54,12 +55,13 @@
                     <button class="modal-close is-large" aria-label="close" @click="close"></button>
                   </div>
               <div>
-              <button class="button has-background-black has-text-light my-3" @click="showModal">
-                <i class="fa fa-play-circle">  </i>Play Trailer
+              <button class="button trailer_btn has-text-light my-3" @click="showModal">
+                <i class="fa fa-play-circle ">  </i>Play Trailer
             </button>
           </div>
        </div>
       </div>
+     </div>
     </div>
   </div>
   

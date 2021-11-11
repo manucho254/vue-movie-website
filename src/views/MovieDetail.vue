@@ -3,21 +3,22 @@
    <div class="container">
     <div class="iframeSizing">
      <h1 class="has-text-weight-bold has-text-dark is-size-5 mb-3"> {{ movie.title }}</h1>
-       <figure class="image is-16by9">
-        <iframe class="has-ratio" width="640" height="100"  
-          :src='"https://www.2embed.ru/embed/tmdb/movie?id=" + $route.params.id + "&s=1&e=1"'
-          frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
-        </iframe>
-       </figure>
+       <!-- <figure class="image is-16by9">
+          <iframe class="has-ratio" width="640" height="100"  
+            :src='"https://www.2embed.ru/embed/tmdb/movie?id=" + $route.params.id + "&s=1&e=1"'
+            frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
+          </iframe>
+       </figure> -->
      </div>
-    <div class="is-flex is-inline-flex">
+   <div class="box">
+    <div class="is-flex is-justify-content-center is-align-items-center p-4">
         <div v-if="movie.poster_path != null">
-          <img class="imageSize" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
+          <img class="imageSize is-hidden-touch" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
         </div>
          <div v-else>
            <img src="@/assets/no-image.jpg" alt="black image">
          </div>
-       <div class="ml-5 has-text-grey is-flex-desktop-only">
+       <div class="ml-5 has-text-grey">
            <span class="is-size-5"><i class="fa fa-star star">
            {{ movie.vote_average }} </i>  |  Released: {{ movie.release_date }}  |  
                 <span v-for="genre in movie.genres" :key="genre.id" :genre="genre">
@@ -59,6 +60,7 @@
           </div>
        </div>
       </div>
+     </div>
     </div>
   </div>
 
@@ -120,9 +122,5 @@ export default {
 <style scoped>
 .star {
   color: rgb(219, 90, 13);
-}
-.trailer_btn {
-  color: white;
-  background-color: rgb(219, 90, 13);
 }
 </style>
