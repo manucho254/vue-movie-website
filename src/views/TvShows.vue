@@ -1,10 +1,11 @@
 <template>
   <div class="Tv-shows">
-   
-    <div class="columns is-multiline">
-         <AllTvShows v-for="movie in movies" :key="movie.id" :movie="movie"/>
-   </div>
-
+   <div class="container">
+      <span class="is-uppercase mb-5 is-size-4 has-text-warning has-text-weight-bold">Popular TVSHOWS</span>
+     <div class="columns is-multiline mt-2">
+        <AllTvShows v-for="movie in movies" :key="movie.id" :movie="movie"/>
+     </div>
+    </div>
   </div>
 </template>
 

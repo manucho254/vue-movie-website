@@ -1,6 +1,7 @@
 <template>
   <div class="movie-detail">
-   {{ $route.params.movie.id }}
+   {{ $route.params.id }}
+   <div class="container">
     <div class="modal">
        <div class="modal-background"></div>
          <div class="modal-content">
@@ -13,6 +14,7 @@
         </div>
        <button class="modal-close is-large" aria-label="close">click</button>
    </div>
+  </div>
 </div>
 
 </template>
@@ -29,13 +31,14 @@ export default {
       trailers: [],
       movies: [],
     }
+
   },created() {
-    axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${env.apikey}`)
+    axios.get(`https://api.themoviedb.org/tv/2778?api_key=${env.apikey}`)
     .then(response => {
       this.movies = response.data.results
       console.log(this.movies)
     })
-    axios.get(`https://api.themoviedb.org/3/tv/21/videos?api_key=${env.apikey}`)
+    axios.get(`https://api.themoviedb.org/3/tv/3762/videos?api_key=${env.apikey}`)
     .then(response => {
       this.trailers = response.data
     })

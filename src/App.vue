@@ -34,11 +34,11 @@
       </nav>
 
     <section class="section">
-      <div class="card-content is-flex is-align-items-center is-justify-content-space-between box">
+      <!-- <div class="card-content is-flex is-align-items-center is-justify-content-space-between box">
         <h3 class="is-bold is-size-3 mb-4">Popular: </h3>
         <router-link to="/movies/" class="is-dark button"> Movies</router-link>
         <router-link to="/tv-shows/" class="button is-success"> Tv-shows</router-link>
-      </div>
+      </div> -->
        <router-view/>
     </section>
     <nav class="pagination is-centered p-2" role="navigation" aria-label="pagination">

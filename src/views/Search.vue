@@ -1,6 +1,9 @@
 <template>
-    <div class="columns is-multiline">
-        <Search v-for="movie in movies" :key="movie.id" :movie="movie"/>
+    <div class="container">
+       <span class="is-uppercase mb-5 is-size-4 has-text-warning has-text-weight-bold">Results for {{ query }}</span>
+        <div class="columns is-multiline mt-2">
+            <Search v-for="movie in movies" :key="movie.id" :movie="movie"/>
+        </div>
     </div>
 </template>
 
@@ -8,7 +11,7 @@
 
 import axios from "axios"
 import env from '@/env.js'
-import Search from "@/components/Search.vue"
+import Search from "@/components/SearchAll.vue"
 
 export default {
     name: "search",
