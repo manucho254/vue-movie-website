@@ -13,7 +13,8 @@
   <div class="box">
     <div class="is-flex is-flex is-justify-content-center is-align-items-center p-4">
         <div v-if="movie.poster_path != null">
-          <img class="imageSize is-hidden-touch" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
+          <img class="imageSize is-hidden-touch" 
+            :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
         </div>
          <div v-else>
            <img src="@/assets/no-image.jpg" alt="black image">
@@ -21,12 +22,14 @@
         <!--  -->
        <div class="ml-5 has-text-grey is-justify-content-space-evenly  is-align-items-center p-4">
          <h1 class="has-text-weight-bold has-text-dark is-size-3"> {{ movie.name }}</h1>
-           <span class="is-size-5">Rating<i class="fa fa-star star"></i>
+          
+           <span class="has-text-dark is-size-5">Rating<i class="fa fa-star star"></i>
                 {{ movie.vote_average }}| Released: {{ movie.first_air_date }} | 
                 <span v-for="genre in movie.genres" :key="genre.id" :genre="genre">
                       {{  "," + genre.name }} 
                 </span>
             </span>
+             
             <p class="mt-5 is-size-5">
               {{ movie.overview }}
             </p>
