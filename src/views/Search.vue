@@ -34,8 +34,11 @@ export default {
                     console.log(this.query)
             },
             methods: {
-                performSearch() {
-                    axios
+
+                async performSearch() {
+                     
+                    this.$store.commit('setIsLoading', true)
+                    await axios
                     .get(`https://api.themoviedb.org/3/search/multi?api_key=${env.apikey}&language=en-US&page=1&query=${this.query}&include_adult=false`)
                     .then(response => {
                         this.movies = response.data.results
@@ -43,6 +46,7 @@ export default {
                     .catch(error => {
                             console.log(error)
                              })
+                    this.$store.commit('setIsLoading', false)
                              }         
                     } 
 }

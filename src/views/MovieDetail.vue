@@ -22,7 +22,7 @@
        <div class="ml-5 has-text-grey">
 
          <h1 class="has-text-weight-bold has-text-dark is-size-3"> {{ movie.name }}</h1>
-         
+
            <span class="is-size-5"><i class="fa fa-star star">
             {{ movie.vote_average }} </i>  |  Released: {{ movie.release_date }}  |  
                 <span v-for="genre in movie.genres" :key="genre.id" :genre="genre">
@@ -90,21 +90,23 @@ export default {
     this.getMovieTrailer(this.$route.params.id)
   },
   methods: {
-    fetchMovie(movieID) {
+    async fetchMovie(movieID) {
      document.title = `Movie | ${this.movie.title}`
-     axios
-     .get
-     (`https://api.themoviedb.org/3/movie/${movieID}?api_key=${env.apikey}`)
-     .then
-     (response => {
+     this.$store.commit('setIsLoading', true)
+
+    await 
+    axios.get(`https://api.themoviedb.org/3/movie/${movieID}?api_key=${env.apikey}`)
+    .then(response => {
       this.movie = response.data
       console.log(this.movie)
      })
      .catch(error => {
       console.log(error)})
+      this.$store.commit('setIsLoading', false)
      },
-     getMovieTrailer(movieID) {
-       axios
+     async getMovieTrailer(movieID) {
+       this.$store.commit('setIsLoading', true)
+       await axios
        .get(`https://api.themoviedb.org/3/movie/${movieID}/videos?api_key=${env.apikey}`)
        .then(response => {
          this.trailers = response.data.results
@@ -112,6 +114,7 @@ export default {
          })
         .catch(error => {
           console.log(error)})
+        this.$store.commit('setIsLoading', false)
      },
      showModal() {
       this.showModalflag = true;

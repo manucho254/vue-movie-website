@@ -89,8 +89,10 @@ export default {
     this.getSeriesTrailer(this.$route.params.id)
   },
   methods: {
-    fetchMovie(seriesID) {
+    async fetchMovie(seriesID) {
      document.title = `Movie | ${this.$route.params.id}`
+     this.$store.commit('setIsLoading', true)
+
      axios.get(`https://api.themoviedb.org/3/tv/${seriesID}?api_key=${env.apikey}`)
      .then(response => {
       this.movie = response.data
@@ -98,9 +100,11 @@ export default {
      })
      .catch(error => {
       console.log(error)})
+      this.$store.commit('setIsLoading', false)
      },
-     getSeriesTrailer(seriesID) {
-       axios
+      async getSeriesTrailer(seriesID) {
+         this.$store.commit('setIsLoading', true)
+       await axios
        .get(`https://api.themoviedb.org/3/tv/${seriesID}/videos?api_key=${env.apikey}`)
        .then(response => {
          this.trailers = response.data.results
@@ -108,6 +112,7 @@ export default {
          })
         .catch(error => {
           console.log(error)})
+         this.$store.commit('setIsLoading', false)
      },
      showModal() {
       this.showModalflag = true;
