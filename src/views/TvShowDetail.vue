@@ -1,6 +1,12 @@
 <template>
   <div class="series-detail">
    <div class="container">
+     <figure class="image is-16by9">
+       <iframe class="has-ratio" width="640" height="360"  
+         :src='"https://www.2embed.ru/embed/tmdb/tv?id=" + $route.params.id + "&s=1&e=1"'
+        frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
+      </iframe>
+     </figure>
     <div class="is-flex is-inline-flex">
       <figure class=" container image is-4by8 is-grey">
         <div v-if="movie.poster_path != null">
@@ -10,6 +16,7 @@
            <img src="@/assets/no-image.jpg" alt="black image">
          </div>
         </figure>
+        <!--  -->
        <div class="ml-5 has-text-grey is-flex-desktop-only">
          <h1 class="has-text-weight-bold has-text-dark is-size-3"> {{ movie.name }}</h1>
            <span class="is-size-5">Rating<i class="fa fa-star star"></i>
@@ -35,8 +42,9 @@
             <div class="modal" :class="{'is-active': showModalflag}">
                 <div class="modal-background"></div>
                     <div class="modal-content">
-                        <figure class="image is-16by9" v-for="trailer in trailers" :key="trailer.id" :trailer="trailer">
+                        <figure class="image is-16by9">
                             <iframe class="has-ratio" width="640" height="360" 
+                             v-for="trailer in trailers" :key="trailer.id" :trailer="trailer"
                               :src='"https://www.youtube.com/embed/" +  trailer.key '
                               frameborder="0" allowfullscreen>
                             </iframe>
@@ -76,7 +84,7 @@ export default {
   },
   methods: {
     fetchMovie(seriesID) {
-     document.title = `Movie | ${this.id}`
+     document.title = `Movie | ${this.$route.params.id}`
      axios.get(`https://api.themoviedb.org/3/tv/${seriesID}?api_key=${env.apikey}`)
      .then(response => {
       this.movie = response.data

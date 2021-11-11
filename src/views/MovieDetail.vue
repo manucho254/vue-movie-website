@@ -1,6 +1,15 @@
 <template>
   <div class="movie-detail">
    <div class="container">
+    <div class="">
+     <h1 class="has-text-weight-bold has-text-dark is-size-5 mb-3"> {{ movie.title }}</h1>
+       <figure class="image is-16by9">
+        <iframe class="has-ratio" width="640" height="100"  
+          :src='"https://www.2embed.ru/embed/tmdb/movie?id=" + $route.params.id + "&s=1&e=1"'
+          frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
+        </iframe>
+       </figure>
+     </div>
     <div class="is-flex is-inline-flex">
         <div v-if="movie.poster_path != null">
           <img :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
@@ -9,7 +18,6 @@
            <img src="@/assets/no-image.jpg" alt="black image">
          </div>
        <div class="ml-5 has-text-grey is-flex-desktop-only">
-         <h1 class="has-text-weight-bold has-text-dark is-size-3"> {{ movie.title }}</h1>
            <span class="is-size-5"><i class="fa fa-star star">
            {{ movie.vote_average }} </i>  |  Released: {{ movie.release_date }}  |  
                 <span v-for="genre in movie.genres" :key="genre.id" :genre="genre">
@@ -29,13 +37,14 @@
               <h1>Scott Silver</h1>
               <p>writer</p>
            </div>
+             
         </div>
             <div class="modal" :class="{'is-active': showModalflag}">
                 <div class="modal-background"></div>
                     <div class="modal-content">
-                        <figure class="image is-16by9" v-for="trailer in trailers" 
-                            :key="trailer.id" :trailer="trailer">
+                        <figure class="image is-16by9">
                             <iframe class="has-ratio" width="640" height="360" 
+                              v-for="trailer in trailers" :key="trailer.id" :trailer="trailer" 
                               :src='"https://www.youtube.com/embed/" +  trailer.key '
                               frameborder="0" allowfullscreen>
                             </iframe>
@@ -52,6 +61,7 @@
       </div>
     </div>
   </div>
+
   
 </template>
 
@@ -75,7 +85,7 @@ export default {
   },
   methods: {
     fetchMovie(movieID) {
-     document.title = `Movie | ${this.id}`
+     document.title = `Movie | ${this.movie.title}`
      axios
      .get
      (`https://api.themoviedb.org/3/movie/${movieID}?api_key=${env.apikey}`)

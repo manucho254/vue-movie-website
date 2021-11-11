@@ -5,6 +5,15 @@
      <div class="columns is-multiline mt-2">
         <AllTvShows v-for="movie in movies" :key="movie.id" :movie="movie"/>
      </div>
+     <nav class="pagination is-centered p-2" role="navigation" aria-label="pagination">
+      <ul class="pagination-list">
+
+        <li><a class="pagination-previous">Previous</a></li>
+        <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+        <li><a class="pagination-link" aria-label="Goto page 86">2</a></li>
+        <li><a class="pagination-next">Next page</a></li>
+      </ul>
+    </nav>
     </div>
   </div>
 </template>

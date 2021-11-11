@@ -41,21 +41,12 @@
       </div> -->
        <router-view/>
     </section>
-    <nav class="pagination is-centered p-2" role="navigation" aria-label="pagination">
-      <ul class="pagination-list">
-
-        <li><a class="pagination-previous">Previous</a></li>
-        <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-        <li><a class="pagination-link" aria-label="Goto page 86">2</a></li>
-        <li><a class="pagination-next">Next page</a></li>
-      </ul>
-    </nav>
    <footer class="footer has-text-centered">
-      <h3 class="is-size-5 mb-5 bg-dark has">This 
-        free movies streaming, watch movies online, watch tv-series, 
-        full hd movies online, free tv-series online, watch hd movies
-        free, watch series online, watch the walking dead online, 
-        watch prison break online, watch family guy online
+      <h3 class="is-size-5 mb-5 bg-dark has">
+      This free movies streaming, watch movies online, watch tv-series, 
+      full hd movies online, free tv-series online, watch hd movies
+      free, watch series online, watch the walking dead online, 
+      watch prison break online, watch family guy online
       </h3>
      <p class=" mb-1">Copyright (c) 2021 </p>
    </footer>
