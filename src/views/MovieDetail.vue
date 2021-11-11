@@ -10,7 +10,11 @@
          </div>
        <div class="ml-5 has-text-grey is-flex-desktop-only">
          <h1 class="has-text-weight-bold has-text-dark is-size-3"> {{ movie.title }}</h1>
-           <span class="is-size-5"><i class="fa fa-star star"></i> | {{ movie.release_date }} | {{ movie.genres.name }}</span>
+           <span class="is-size-5"><i class="fa fa-star star"></i> | {{ movie.release_date }} | 
+                <span v-for="genre in movie.genres" :key="genre.id" :genre="genre">
+                      {{  "," + genre.name }} 
+                </span>
+            </span>
             <p>
               {{ movie.overview }}
             </p>
@@ -28,12 +32,12 @@
             <div class="modal" :class="{'is-active': showModalflag}">
                 <div class="modal-background"></div>
                     <div class="modal-content">
-                        <figure class="image is-16by9">
-                            <iframe class="has-ratio" width="640" height="360" 
-                              src="https://www.youtube.com/embed/fYlZDTru55g" 
-                              frameborder="0" allowfullscreen>
-                            </iframe>
-                        </figure>
+                      <figure class="image is-16by9" v-for="trailer in trailers" :key="trailer.id" :trailer="trailer">
+                          <iframe class="has-ratio" width="640" height="360" 
+                            :src='"https://www.youtube.com/embed/" +  trailer.key '
+                            frameborder="0" allowfullscreen>
+                          </iframe>
+                      </figure>
                       </div>
                     <button class="modal-close is-large" aria-label="close" @click="close"></button>
                   </div>
@@ -60,6 +64,7 @@ export default {
     return {
       showModalflag : false,
       movie: [],
+      trailers: []
     }
   },
   mounted () {
@@ -78,6 +83,16 @@ export default {
      })
      .catch(error => {
       console.log(error)})
+     },
+     getMovieTrailer(movieID) {
+       axios
+       .get(`https://api.themoviedb.org/3/movie/${movieID}/videos?api_key=&language=en-US`)
+       .then(response => {
+         this.trailers = response.data
+         console.log(this.trailer)
+         })
+        .catch(error => {
+          console.log(error)})
      },
      showModal() {
       this.showModalflag = true;
