@@ -33,12 +33,11 @@
           </div>
       </nav>
 
+    <div class="is-loading-bar has-text-centered" v-bind:class="{'is-loading': $store.state.isLoading}">
+       <div class="lds-dual-ring"></div>
+    </div>
+
     <section class="section">
-      <!-- <div class="card-content is-flex is-align-items-center is-justify-content-space-between box">
-        <h3 class="is-bold is-size-3 mb-4">Popular: </h3>
-        <router-link to="/movies/" class="is-dark button"> Movies</router-link>
-        <router-link to="/tv-shows/" class="button is-success"> Tv-shows</router-link>
-      </div> -->
        <router-view/>
     </section>
    <footer class="footer has-text-centered">
@@ -114,5 +113,43 @@ input{
   color: white;
   background-color: rgb(219, 90, 13);
 }
+
+.lds-dual-ring {
+   display: inline-block;
+   width: 80px;
+   height: 80px;
+ }
+ .lds-dual-ring:after {
+   content: "";
+   display: block;
+   width: 64px;
+   height: 64px;
+   margin: 8px;
+   border-radius: 50%;
+   border: 6px solid #ccc;
+   border-color: #ccc transparent #ccc transparent;
+   animation: lds-dual-ring 1.2s linear infinite;
+ }
+
+ @keyframes lds-dual-ring {
+   0% {
+     transform: rotate(0deg);
+   }
+   100% {
+     transform: rotate(360deg);
+   }
+ }
+
+ .is-loading-bar {
+   height: 0;
+   overflow: hidden;
+
+   -webkit-transition: all 0.3s;
+   transition: all 0.3s;
+
+   &.is-loading {
+     height: 80px;
+   }
+ }
 
 </style>

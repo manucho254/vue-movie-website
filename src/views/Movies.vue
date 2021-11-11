@@ -36,15 +36,19 @@ export default {
       genres: []
     }
   },
-  created() {
+  async created() {
     document.title = "Tv-Shows/"
-    axios.get(`https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${env.apikey}`)
+    this.$store.commit('setIsLoading', true)
+
+    await axios.get(`https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${env.apikey}`)
     .then(response => {
       this.movies = response.data.results
     })
     .catch(error => {
-      console.log(error)})
-      },
+      console.log(error)
+    }) 
+    this.$store.commit('setIsLoading', false)
+    },
   mounted () {
     this.fetchGenres()
   },

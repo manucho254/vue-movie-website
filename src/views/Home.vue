@@ -24,15 +24,18 @@ export default {
       movies: []
     }
   },
-  created() {
+  async created() {
     document.title = "Home/"
-    axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=${env.apikey}&language=en-US`)
+    this.$store.commit('setIsLoading', true)
+    await axios
+    .get(`https://api.themoviedb.org/3/trending/all/day?api_key=${env.apikey}&language=en-US`)
     .then(response => {
       this.movies = response.data.results
       console.log(this.movies)
     })
     .catch(error => {
       console.log(error)})
+    this.$store.commit('setIsLoading', false)
   }
 }
 </script>

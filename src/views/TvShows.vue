@@ -1,7 +1,7 @@
 <template>
   <div class="Tv-shows">
    <div class="container">
-      <span class="is-uppercase mb-5 is-size-4 has-text-warning has-text-weight-bold">Popular TVSHOWS</span>
+      <span class="is-uppercase mb-5 is-size-4 has-text-warning has-text-weight-bold">Popular Tv-shows</span>
      <div class="columns is-multiline mt-2">
         <AllTvShows v-for="movie in movies" :key="movie.id" :movie="movie"/>
      </div>
@@ -34,14 +34,18 @@ export default {
       movies: []
     }
   },
-  created() {
+  async created() {
     document.title = "Tv-Shows/"
-    axios.get(`https://api.themoviedb.org/3/discover/tv?sort_by=popularity.desc&api_key=${env.apikey}`)
+    this.$store.commit('setIsLoading', true)
+
+    await axios.get(`https://api.themoviedb.org/3/discover/tv?sort_by=popularity.desc&api_key=${env.apikey}`)
     .then(response => {
       this.movies = response.data.results
     })
     .catch(error => {
-      console.log(error)})
+      console.log(error)
+    })
+    this.$store.commit('setIsLoading', false)
   }
 }
 </script>
