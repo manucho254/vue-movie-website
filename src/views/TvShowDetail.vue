@@ -2,12 +2,14 @@
   <div class="series-detail">
    <div class="container">
     <div class="is-flex is-inline-flex">
+      <figure class=" container image is-4by8 is-grey">
         <div v-if="movie.poster_path != null">
           <img :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
         </div>
          <div v-else>
            <img src="@/assets/no-image.jpg" alt="black image">
          </div>
+        </figure>
        <div class="ml-5 has-text-grey is-flex-desktop-only">
          <h1 class="has-text-weight-bold has-text-dark is-size-3"> {{ movie.name }}</h1>
            <span class="is-size-5">Rating<i class="fa fa-star star"></i>
@@ -20,14 +22,14 @@
               {{ movie.overview }}
             </p>
            <h1 class="has-text-weight-bold has-text-dark mt-3">Featured Cast</h1>
-          <div class="is-flex mt-3">
-            <div class="mr-5">
-              <h1>Scott Silver</h1>
-                <p>writer</p>
-            </div>
-            <div>
-              <h1>Scott Silver</h1>
-              <p>writer</p>
+              <div class="is-flex mt-3">
+                <div class="mr-5">
+                  <h1>Scott Silver</h1>
+                     <p>writer</p>
+              </div>
+             <div>
+               <h1>Scott Silver</h1>
+             <p>writer</p>
            </div>
         </div>
             <div class="modal" :class="{'is-active': showModalflag}">
@@ -70,7 +72,7 @@ export default {
   },
   mounted () {
     this.fetchMovie(this.$route.params.id),
-    this.getMovieTrailer(this.$route.params.id)
+    this.getSeriesTrailer(this.$route.params.id)
   },
   methods: {
     fetchMovie(seriesID) {
@@ -83,7 +85,7 @@ export default {
      .catch(error => {
       console.log(error)})
      },
-     getMovieTrailer(seriesID) {
+     getSeriesTrailer(seriesID) {
        axios
        .get(`https://api.themoviedb.org/3/tv/${seriesID}/videos?api_key=${env.apikey}`)
        .then(response => {

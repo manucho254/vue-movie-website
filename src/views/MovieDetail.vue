@@ -10,12 +10,13 @@
          </div>
        <div class="ml-5 has-text-grey is-flex-desktop-only">
          <h1 class="has-text-weight-bold has-text-dark is-size-3"> {{ movie.title }}</h1>
-           <span class="is-size-5"><i class="fa fa-star star"></i> | {{ movie.release_date }} | 
+           <span class="is-size-5"><i class="fa fa-star star">
+           {{ movie.vote_average }} </i>  |  Released: {{ movie.release_date }}  |  
                 <span v-for="genre in movie.genres" :key="genre.id" :genre="genre">
                       {{  "," + genre.name }} 
                 </span>
             </span>
-            <p>
+            <p class="mt-5 is-size-5">
               {{ movie.overview }}
             </p>
            <h1 class="has-text-weight-bold has-text-dark mt-3">Featured Cast</h1>
@@ -32,17 +33,18 @@
             <div class="modal" :class="{'is-active': showModalflag}">
                 <div class="modal-background"></div>
                     <div class="modal-content">
-                      <figure class="image is-16by9" v-for="trailer in trailers" :key="trailer.id" :trailer="trailer">
-                          <iframe class="has-ratio" width="640" height="360" 
-                            :src='"https://www.youtube.com/embed/" +  trailer.key '
-                            frameborder="0" allowfullscreen>
-                          </iframe>
-                      </figure>
+                        <figure class="image is-16by9" v-for="trailer in trailers" 
+                            :key="trailer.id" :trailer="trailer">
+                            <iframe class="has-ratio" width="640" height="360" 
+                              :src='"https://www.youtube.com/embed/" +  trailer.key '
+                              frameborder="0" allowfullscreen>
+                            </iframe>
+                        </figure>
                       </div>
                     <button class="modal-close is-large" aria-label="close" @click="close"></button>
                   </div>
               <div>
-              <button class="button has-background-black has-text-light my-3" @click="showModal">
+              <button class="button trailer_btn my-3" @click="showModal">
                 <i class="fa fa-play-circle">  </i>Play Trailer
             </button>
           </div>
@@ -68,7 +70,8 @@ export default {
     }
   },
   mounted () {
-    this.fetchMovie(this.$route.params.id)
+    this.fetchMovie(this.$route.params.id),
+    this.getMovieTrailer(this.$route.params.id)
   },
   methods: {
     fetchMovie(movieID) {
@@ -86,10 +89,10 @@ export default {
      },
      getMovieTrailer(movieID) {
        axios
-       .get(`https://api.themoviedb.org/3/movie/${movieID}/videos?api_key=&language=en-US`)
+       .get(`https://api.themoviedb.org/3/movie/${movieID}/videos?api_key=${env.apikey}`)
        .then(response => {
-         this.trailers = response.data
-         console.log(this.trailer)
+         this.trailers = response.data.results
+         console.log(this.trailers)
          })
         .catch(error => {
           console.log(error)})
@@ -106,6 +109,10 @@ export default {
 
 <style scoped>
 .star {
-  color: rgb(219, 192, 18);
+  color: rgb(219, 90, 13);
+}
+.trailer_btn {
+  color: white;
+  background-color: rgb(219, 90, 13);
 }
 </style>

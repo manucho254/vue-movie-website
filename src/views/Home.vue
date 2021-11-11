@@ -29,6 +29,7 @@ export default {
     axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=${env.apikey}&language=en-US`)
     .then(response => {
       this.movies = response.data.results
+      console.log(this.movies)
     })
     .catch(error => {
       console.log(error)})
