@@ -90,5 +90,24 @@ input{
    background-color: rgb(44, 43, 43);
    color: rgb(195, 224, 195);
 }
+.iframeSizing {
+    position: relative;
+    width: 100%;
+    height: 200px;
+}
+.iframeSizing iframe{ 
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.imageSize {
+  width: 200px;
+  height: 300px
+}
 
 </style>

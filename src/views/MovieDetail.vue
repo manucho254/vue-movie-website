@@ -1,7 +1,7 @@
 <template>
   <div class="movie-detail">
    <div class="container">
-    <div class="">
+    <div class="iframeSizing">
      <h1 class="has-text-weight-bold has-text-dark is-size-5 mb-3"> {{ movie.title }}</h1>
        <figure class="image is-16by9">
         <iframe class="has-ratio" width="640" height="100"  
@@ -12,7 +12,7 @@
      </div>
     <div class="is-flex is-inline-flex">
         <div v-if="movie.poster_path != null">
-          <img :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
+          <img class="imageSize" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
         </div>
          <div v-else>
            <img src="@/assets/no-image.jpg" alt="black image">

@@ -1,6 +1,7 @@
 <template>
   <div class="series-detail">
    <div class="container">
+   
      <figure class="image is-16by9">
        <iframe class="has-ratio" width="640" height="360"  
          :src='"https://www.2embed.ru/embed/tmdb/tv?id=" + $route.params.id + "&s=1&e=1"'
