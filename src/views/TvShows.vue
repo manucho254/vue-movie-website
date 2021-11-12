@@ -7,11 +7,9 @@
         </div>
         <nav class="pagination is-centered p-2" role="navigation" aria-label="pagination">
             <ul class="pagination-list">
-
-                <li><a class="pagination-previous">Previous</a></li>
-                <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-                <li><a class="pagination-link" aria-label="Goto page 86">2</a></li>
-                <li><a class="pagination-next">Next page</a></li>
+                <li><a class="pagination-previous" v-on:click="getPreviousPage()">Previous</a></li>
+                <li><a class="pagination-link" aria-label="Goto page 1">{{ currentPage }}</a></li>
+                <li><a class="pagination-next" v-on:click="getNextPage()">Next page</a></li>
             </ul>
         </nav>
     </div>
@@ -30,18 +28,22 @@ export default {
     },
     data() {
         return {
-            movies: []
+            movies: [],
+            currentPage: 1,
         }
     },
     mounted() {
-      this.getSeries()
+        this.getSeries()
+        this.getNextPage()
+        this.getPreviousPage()
+        this.scrollUp()
     },
     methods: {
         async getSeries() {
             document.title = "Tv-Shows/"
             this.$store.commit('setIsLoading', true)
 
-            await axios.get(`/discover/tv?sort_by=popularity.desc&api_key=${env.apikey}`)
+            await axios.get(`/discover/tv?sort_by=popularity.desc&api_key=${env.apikey}&page=` + this.currentPage)
                 .then(response => {
                     this.movies = response.data.results
                 })
@@ -49,7 +51,24 @@ export default {
                     console.log(error)
                 })
             this.$store.commit('setIsLoading', false)
-        }
+        },
+        scrollUp() {
+            window.scrollTo(0, 0);
+        },
+        getNextPage() {
+            this.currentPage += 1
+            this.getSeries()
+            this.scrollUp()
+        },
+        getPreviousPage() {
+            if (this.currentPage > 1) {
+                this.currentPage -= 1
+                this.getSeries()
+                this.scrollUp()
+            } else {
+                return
+            }
+        },
     }
 }
 </script>

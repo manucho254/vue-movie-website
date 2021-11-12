@@ -13,14 +13,15 @@
         <div class="box">
             <div class="is-flex is-justify-content-center is-align-items-center p-4">
                 <div v-if="movie.poster_path != null">
-                    <img class="imageSize is-hidden-touch" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
+                    <img class="imageSize is-hidden-touch" 
+                       :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
                 </div>
                 <div v-else>
-                    <img src="@/assets/no-image.jpg" alt="black image">
+                    <img class="imageSize" src="@/assets/no-image.jpg" alt="black image">
                 </div>
-                <div class="ml-5 has-text-grey">
+                <div class="ml-5 has-text-black-bis">
 
-                    <h1 class="has-text-weight-bold has-text-dark is-size-3"> {{ movie.name }}</h1>
+                    <h1 class="has-text-weight-bold  is-size-3"> {{ movie.title }}</h1>
 
                     <span class="is-size-5"><i class="fa fa-star star">
                             {{ movie.vote_average }} </i> | Released: {{ movie.release_date }} |
@@ -28,7 +29,7 @@
                             {{ "," + genre.name }}
                         </span>
                     </span>
-                    <p class="mt-5 is-size-5">
+                    <p class="mt-5 is-size-5 has-text-grey">
                         {{ movie.overview }}
                     </p>
                     <h1 class="has-text-weight-bold has-text-dark mt-3">Featured Cast</h1>

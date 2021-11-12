@@ -95,8 +95,8 @@ input {
 }
 
 .imageSize {
-    width: 400px;
-    height: 300px
+    width: 500px;
+    height: 300px; 
 }
 
 .trailer_btn {

@@ -16,10 +16,10 @@
                     <img class="imageSize is-hidden-touch" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
                 </div>
                 <div v-else>
-                    <img src="@/assets/no-image.jpg" alt="black image">
+                    <img class="imageSize" src="@/assets/no-image.jpg" alt="black image">
                 </div>
                 <!--  -->
-                <div class="ml-5 has-text-grey is-justify-content-space-evenly  is-align-items-center p-4">
+                <div class="ml-5 has-text-black-bis is-justify-content-space-evenly  is-align-items-center p-4">
                     <h1 class="has-text-weight-bold has-text-dark is-size-3"> {{ movie.name }}</h1>
 
                     <span class="has-text-dark is-size-5">Rating<i class="fa fa-star star"></i>
@@ -29,7 +29,7 @@
                         </span>
                     </span>
 
-                    <p class="mt-5 is-size-5">
+                    <p class="mt-5 is-size-5 has-text-grey">
                         {{ movie.overview }}
                     </p>
                     <h1 class="has-text-weight-bold has-text-dark mt-3">Featured Cast</h1>

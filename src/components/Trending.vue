@@ -5,13 +5,20 @@
             <div class="card">
                 <div class="card-image">
                     <figure class="image is-4by8 is-grey">
-                        <h3 class="is-capitalized is-black has-text-weight-bold m-2">{{ movie.media_type }}</h3>
+                        <div class="is-flex is-justify-content-space-between">
+                            <h3 class="is-capitalized is-black has-text-weight-bold m-2">
+                                {{ movie.media_type }}
+                            </h3>
+                            <h3 class="is-capitalized is-black m-2">
+                                {{ movie.first_air_date }} {{ movie.release_date }}
+                            </h3>
+                        </div>
                         <img :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path" alt="movie image">
                     </figure>
                 </div>
                 <div class="card-content overflow is-flex is-justify-content-space-between">
-                    <h5 class="is-dark has-text-start">{{ movie.title }}{{ movie.name }}</h5>
-                    <h5 class="is-green">{{ movie.vote_average }}</h5>
+                    <h5 class="has-text-black-bis">{{ movie.title }}{{ movie.name }}</h5>
+                    <h5 class="has-text-weight-bold">{{ movie.vote_average }}</h5>
                 </div>
             </div>
         </router-link>
@@ -26,8 +33,8 @@
                     </figure>
                 </div>
                 <div class="card-content overflow is-flex is-justify-content-space-between">
-                    <h5 class="is-dark has-text-start">{{ movie.title }}{{ movie.name }}</h5>
-                    <h5 class="is-green">{{ movie.vote_average }}</h5>
+                    <h3 class="is-dark has-text-black-bis">{{ movie.title }}{{ movie.name }}</h3>
+                    <h3 class="has-text-weight-bold">★{{ movie.vote_average }}</h3>
                 </div>
             </div>
         </router-link>

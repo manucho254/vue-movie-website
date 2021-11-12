@@ -8,10 +8,9 @@
         <nav class="pagination is-centered p-2" role="navigation" aria-label="pagination">
             <ul class="pagination-list">
 
-                <li><a class="pagination-previous">Previous</a></li>
-                <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-                <li><a class="pagination-link" aria-label="Goto page 86" @click="nextPage()">2</a></li>
-                <li><a class="pagination-next">Next page</a></li>
+                <li><a class="pagination-previous" v-on:click="getPreviousPage()">Previous</a></li>
+                <li><a class="pagination-link" aria-label="Goto page 1">{{ currentPage }}</a></li>
+                <li><a class="pagination-next" v-on:click="getNextPage()">Next page</a></li>
             </ul>
         </nav>
     </div>
@@ -23,7 +22,6 @@ import AllMovies from '@/components/AllMovies.vue'
 import axios from 'axios'
 import env from "@/env.js"
 
-let currentPage = 1;
 export default {
     name: "Movies",
     components: {
@@ -32,13 +30,16 @@ export default {
     data() {
         return {
             movies: [],
-            page: 1,
-            genres: []
+            genres: [],
+            currentPage: 1,
         }
     },
     mounted() {
         this.fetchGenres()
         this.getMovies()
+        this.getNextPage()
+        this.getPreviousPage()
+        this.scrollUp()
     },
     methods: {
         async fetchGenres() {
@@ -54,15 +55,33 @@ export default {
             document.title = "Movies/"
             this.$store.commit('setIsLoading', true)
 
-            await axios.get(`/discover/movie?sort_by=popularity.desc&api_key=${env.apikey}&page=` + currentPage)
+            await axios.get(`/discover/movie?sort_by=popularity.desc&api_key=${env.apikey}&page=` + this.currentPage)
                 .then(response => {
                     this.movies = response.data.results
+                    console.log(this.movies)
                 })
                 .catch(error => {
                     console.log(error)
                 })
             this.$store.commit('setIsLoading', false)
-        }
+        },
+        scrollUp() {
+            window.scrollTo(0, 0);
+        },
+        getNextPage() {
+            this.currentPage += 1
+            this.getMovies()
+            this.scrollUp()
+        },
+        getPreviousPage() {
+            if (this.currentPage > 1) {
+                this.currentPage -= 1
+                this.getMovies()
+                this.scrollUp()
+            } else {
+                return
+            }
+        },
     },
 }
 </script>
