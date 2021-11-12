@@ -4,9 +4,14 @@
       <h1 class="has-text-weight-bold has-text-dark is-size-5 mb-3"> {{ movie.name }}</h1>
         <div class="box">
             <figure class="image is-16by9">
-                <iframe class="has-ratio" width="640" height="100"  
+                <!-- <iframe class="has-ratio" width="640" height="100"  
                   :src='"https://www.2embed.ru/embed/tmdb/tv?id=" + $route.params.id + "&s=1&e=1"'
-                  frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
+                  frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin"
+                  referrerpolicy="same-origin">
+                </iframe> -->
+                <iframe class="has-ratio" width="640" height="360" 
+                      v-for="trailer in trailers" :key="trailer.id" :trailer="trailer" 
+                      :src='"https://www.youtube.com/embed/" +  trailer.key ' frameborder="0" allowfullscreen>
                 </iframe>
             </figure>
         </div>
@@ -47,7 +52,9 @@
                         <div class="modal-background"></div>
                         <div class="modal-content">
                             <figure class="image is-16by9">
-                                <iframe class="has-ratio" width="640" height="360" v-for="trailer in trailers" :key="trailer.id" :trailer="trailer" :src='"https://www.youtube.com/embed/" +  trailer.key ' frameborder="0" allowfullscreen>
+                                <iframe class="has-ratio" width="640" height="360" 
+                                v-for="trailer in trailers" :key="trailer.id" :trailer="trailer" 
+                                :src='"https://www.youtube.com/embed/" +  trailer.key ' frameborder="0" allowfullscreen>
                                 </iframe>
                             </figure>
                         </div>

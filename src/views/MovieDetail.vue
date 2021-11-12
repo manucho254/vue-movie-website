@@ -4,7 +4,13 @@
         <h1 class="has-text-weight-bold has-text-dark is-size-3 mb-3"> {{ movie.title }}</h1>
         <div class="box">
             <figure class="image is-16by9">
-                <iframe class="has-ratio" width="640" height="100" :src='"https://www.2embed.ru/embed/tmdb/movie?id=" + $route.params.id' frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
+                <!-- <iframe class="has-ratio" width="640" height="100" 
+                :src='"https://www.2embed.ru/embed/tmdb/movie?id=" + $route.params.id' 
+                frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
+                </iframe> -->
+                <iframe class="has-ratio" width="640" height="360" 
+                    v-for="trailer in trailers" :key="trailer.id" :trailer="trailer" 
+                    :src='"https://www.youtube.com/embed/" +  trailer.key ' frameborder="0" allowfullscreen>
                 </iframe>
             </figure>
         </div>
