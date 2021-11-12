@@ -1,25 +1,22 @@
 <template>
 <div class="movie-detail">
     <div class="container">
-        <div class="iframeSizing">
-            <h1 class="has-text-weight-bold has-text-dark is-size-5 mb-3"> {{ movie.title }}</h1>
-            <!-- <figure class="image is-16by9">
-          <iframe class="has-ratio" width="640" height="100"  
-            :src='"https://www.2embed.ru/embed/tmdb/movie?id=" + $route.params.id + "&s=1&e=1"'
-            frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
-          </iframe>
-       </figure> -->
-        </div>
+        <h1 class="has-text-weight-bold has-text-dark is-size-3 mb-3"> {{ movie.title }}</h1>
         <div class="box">
+            <figure class="image is-16by9">
+                <iframe class="has-ratio" width="640" height="100" :src='"https://www.2embed.ru/embed/tmdb/movie?id=" + $route.params.id' frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
+                </iframe>
+            </figure>
+        </div>
+        <div class="box has-background-dark">
             <div class="is-flex is-justify-content-center is-align-items-center p-4">
                 <div v-if="movie.poster_path != null">
-                    <img class="imageSize is-hidden-touch" 
-                       :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
+                    <img class="imageSize is-hidden-touch" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
                 </div>
                 <div v-else>
                     <img class="imageSize" src="@/assets/no-image.jpg" alt="black image">
                 </div>
-                <div class="ml-5 has-text-black-bis">
+                <div class="ml-5 has-text-light">
 
                     <h1 class="has-text-weight-bold  is-size-3"> {{ movie.title }}</h1>
 
@@ -29,7 +26,7 @@
                             {{ "," + genre.name }}
                         </span>
                     </span>
-                    <p class="mt-5 is-size-5 has-text-grey">
+                    <p class="mt-5 is-size-5 has-text-light-grey">
                         {{ movie.overview }}
                     </p>
                     <h1 class="has-text-weight-bold has-text-dark mt-3">Featured Cast</h1>
