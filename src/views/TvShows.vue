@@ -33,18 +33,23 @@ export default {
             movies: []
         }
     },
-    async created() {
-        document.title = "Tv-Shows/"
-        this.$store.commit('setIsLoading', true)
+    mounted() {
+      this.getSeries()
+    },
+    methods: {
+        async getSeries() {
+            document.title = "Tv-Shows/"
+            this.$store.commit('setIsLoading', true)
 
-        await axios.get(`https://api.themoviedb.org/3/discover/tv?sort_by=popularity.desc&api_key=${env.apikey}`)
-            .then(response => {
-                this.movies = response.data.results
-            })
-            .catch(error => {
-                console.log(error)
-            })
-        this.$store.commit('setIsLoading', false)
+            await axios.get(`/discover/tv?sort_by=popularity.desc&api_key=${env.apikey}`)
+                .then(response => {
+                    this.movies = response.data.results
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+            this.$store.commit('setIsLoading', false)
+        }
     }
 }
 </script>
