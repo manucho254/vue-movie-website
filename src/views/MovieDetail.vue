@@ -88,7 +88,8 @@ export default {
     },
     methods: {
         async fetchMovie(movieID) {
-            document.title = `Movie | ${this.movie.title}`
+            document.title = `Movie |`
+
             this.$store.commit('setIsLoading', true)
 
             await

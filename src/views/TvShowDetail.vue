@@ -91,7 +91,7 @@ export default {
     },
     methods: {
         async fetchMovie(seriesID) {
-            document.title = `Movie | ${this.$route.params.id}`
+            document.title = `Movie |`
             this.$store.commit('setIsLoading', true)
 
             axios.get(`/tv/${seriesID}?api_key=${env.apikey}`)
