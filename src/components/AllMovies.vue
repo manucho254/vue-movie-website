@@ -24,8 +24,8 @@
                 <h3 class="is-dark has-text-black-bis">{{ movie.title }}</h3>
                 <h3 class="has-text-weight-bold">★{{ movie.vote_average }}</h3>
             </div>
-            <span :key="genre.id" v-for="genre in movie.genre_ids">
-                <!-- {{  genreTypeName(genre, index) }} -->
+            <span :key="genre.id" v-for="(genre, index) in movie.genre_ids">
+                {{  genreTypeName(genre, index) }}
             </span>
         </div>
     </router-link>
@@ -37,6 +37,9 @@ export default {
     props: {
         movie: Object,
         genres: Object
+    },
+    mounted () {
+        this.genreTypeName()
     },
     methods: {
         genreTypeName(genreId, index) {

@@ -104,6 +104,16 @@ input {
     background-color: rgb(219, 90, 13);
 }
 
+.green{
+    color: greenyellow;
+}
+.orange{
+    color: orange;
+}
+.red {
+    color: red;
+}
+
 .lds-dual-ring {
     display: inline-block;
     width: 80px;
