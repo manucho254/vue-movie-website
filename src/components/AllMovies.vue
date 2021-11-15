@@ -22,7 +22,7 @@
             </div>
             <div class="card-content overflow is-flex is-justify-content-space-between">
                 <h3 class="is-dark has-text-black-bis">{{ movie.title }}</h3>
-                <h3 class="has-text-weight-bold">★{{ movie.vote_average }}</h3>
+                <h3 class="has-text-weight-bold" :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</h3>
             </div>
             <span :key="genre.id" v-for="(genre, index) in movie.genre_ids">
                 {{  genreTypeName(genre, index) }}
@@ -36,16 +36,29 @@
 export default {
     props: {
         movie: Object,
-        genres: Object
+        genres: {
+            required: true
+        }
     },
     mounted () {
         this.genreTypeName()
     },
     methods: {
+        changeRatingColor(vote) {
+            if (vote >= 8) {
+                return 'green';
+            } else if (vote >= 5) {
+                return 'orange';
+            } else {
+                return 'red';
+            }
+        },
         genreTypeName(genreId, index) {
-            for (const item of this.genres) {
+            let item = 0
+            for (item = 0;  item < this.genres ; item++) {
                 if (item.id == genreId) {
                     if (this.movie.genre_ids.length - 1 == index) {
+                        console.log(item.name)
                         return item.name
                     } else {
                         return item.name + ","
