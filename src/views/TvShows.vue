@@ -59,7 +59,7 @@ export default {
             await axios
                 .get(`/genre/tv/list?api_key=${env.apikey}`)
                 .then(response => {
-                    this.genres = response.data.genres
+                    this.genres = response.data
                     console.log(this.genres)
                 })
                 .catch(error => {

@@ -24,9 +24,11 @@
                 <h3 class="is-dark has-text-black-bis">{{ movie.title }}</h3>
                 <h3 class="has-text-weight-bold" :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</h3>
             </div>
-            <span :key="genre.id" v-for="(genre, index) in movie.genre_ids">
-                {{  genreTypeName(genre, index) }}
-            </span>
+            <footer class="card-footer p-2">
+                <span :key="genre.id" v-for="(genre, index) in movie.genre_ids">
+                    {{  genreTypeName(genre, index) }}
+                </span>
+            </footer>
         </div>
     </router-link>
 </div>
@@ -60,7 +62,7 @@ export default {
                         console.log(item.name)
                         return item.name;
                     } else {
-                        return item.name + ","
+                        return item.name + " , "
                     }
                 }
             }

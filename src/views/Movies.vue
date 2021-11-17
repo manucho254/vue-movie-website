@@ -35,14 +35,14 @@ export default {
         }
     },
     mounted() {
-        this.fetchGenres()
+        this.getMoviesGenres()
         this.getMovies()
         this.getNextPage()
         this.getPreviousPage()
         this.scrollUp()
     },
     methods: {
-        async fetchGenres() {
+        async getMoviesGenres() {
             await axios.get(`/genre/movie/list?api_key=${env.apikey}`)
                 .then(response => {
                     this.genres = response.data.genres

@@ -26,6 +26,11 @@
                    :class='changeRatingColor(movie.vote_average)'>★ {{ movie.vote_average }}
                 </h3>
             </div>
+            <footer class="card-footer p-2">
+                <span :key="genre.id" v-for="(genre, index) in movie.genre_ids">
+                    {{  genreTypeName(genre, index) }}
+                </span>
+            </footer>
         </div>
     </router-link>
 </div>
