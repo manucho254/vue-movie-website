@@ -45,7 +45,7 @@ export default {
         async fetchGenres() {
             await axios.get(`/genre/movie/list?api_key=${env.apikey}`)
                 .then(response => {
-                    this.genres = response.data
+                    this.genres = response.data.genres
                 })
                 .catch(error => {
                     console.log(error)
@@ -58,7 +58,6 @@ export default {
             await axios.get(`/discover/movie?sort_by=popularity.desc&api_key=${env.apikey}&page=` + this.currentPage)
                 .then(response => {
                     this.movies = response.data.results
-                    console.log(this.movies)
                 })
                 .catch(error => {
                     console.log(error)

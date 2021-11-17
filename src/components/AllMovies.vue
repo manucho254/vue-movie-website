@@ -35,13 +35,12 @@
 <script>
 export default {
     props: {
-        movie: Object,
+        movie: {
+            required: true,
+        },
         genres: {
-            required: true
+            required: true,
         }
-    },
-    mounted () {
-        this.genreTypeName()
     },
     methods: {
         changeRatingColor(vote) {
@@ -54,12 +53,12 @@ export default {
             }
         },
         genreTypeName(genreId, index) {
-            let item = 0
-            for (item = 0;  item < this.genres ; item++) {
+            for (const item of this.genres) {
                 if (item.id == genreId) {
+                    console.log(item)
                     if (this.movie.genre_ids.length - 1 == index) {
                         console.log(item.name)
-                        return item.name
+                        return item.name;
                     } else {
                         return item.name + ","
                     }

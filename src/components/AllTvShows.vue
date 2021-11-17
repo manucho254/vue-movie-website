@@ -34,7 +34,12 @@
 <script>
 export default {
     props: {
-        movie: Object
+        movie: {
+            required: true
+        },
+        genres: {
+            required: true
+        }
     },
     mounted() {
         this.changeRatingColor()
@@ -48,7 +53,19 @@ export default {
             } else {
                 return 'red';
             }
+        },
+        genreTypeName(genreId, index) {
+            for (const item of this.genres) {
+                if (item.id == genreId) {
+                    if (this.movie.genre_ids.length - 1 == index) {
+                        return item.name;
+                    } else {
+                        return item.name + ","
+                    }
+                }
+            }
         }
+
     }
 }
 </script>
