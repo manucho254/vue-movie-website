@@ -8,9 +8,7 @@
                 :src='"https://www.2embed.ru/embed/tmdb/movie?id=" + $route.params.id' 
                 frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
                 </iframe> -->
-                <iframe class="has-ratio" width="640" height="360" 
-                    v-for="trailer in trailers" :key="trailer.id" :trailer="trailer" 
-                    :src='"https://www.youtube.com/embed/" +  trailer.key ' frameborder="0" allowfullscreen>
+                <iframe class="has-ratio" width="640" height="360" v-for="trailer in trailers" :key="trailer.id" :trailer="trailer" :src='"https://www.youtube.com/embed/" +  trailer.key ' frameborder="0" allowfullscreen>
                 </iframe>
             </figure>
         </div>
@@ -79,13 +77,14 @@ export default {
         return {
             showModalflag: false,
             movie: [],
-            trailers: []
+            trailers: [],
         }
     },
     mounted() {
-        this.fetchMovie(this.$route.params.id),
-            this.getMovieTrailer(this.$route.params.id)
+        this.fetchMovie(this.$route.params.id)
+        this.getMovieTrailer(this.$route.params.id)
     },
+
     methods: {
         async fetchMovie(movieID) {
             document.title = `Movie |`

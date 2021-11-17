@@ -29,6 +29,7 @@ export default {
     data() {
         return {
             movies: [],
+            genres: [],
             currentPage: 1,
         }
     },
@@ -37,6 +38,7 @@ export default {
         this.getNextPage()
         this.getPreviousPage()
         this.scrollUp()
+        this.getSeriesGenres()
     },
     methods: {
         async getSeries() {
@@ -46,6 +48,19 @@ export default {
             await axios.get(`/discover/tv?sort_by=popularity.desc&api_key=${env.apikey}&page=` + this.currentPage)
                 .then(response => {
                     this.movies = response.data.results
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+            this.$store.commit('setIsLoading', false)
+        },
+        async getSeriesGenres() {
+            this.$store.commit('setIsLoading', true)
+            await axios
+                .get(`/genre/tv/list?api_key=${env.apikey}`)
+                .then(response => {
+                    this.genres = response.data.results
+                    console.log(this.genres)
                 })
                 .catch(error => {
                     console.log(error)
