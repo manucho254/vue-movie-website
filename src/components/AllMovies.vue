@@ -1,7 +1,7 @@
 <template>
 <div class="column is-3">
     <router-link :to="'/movie/' + movie.id">
-        <div class="card">
+        <div class="box">
             <div class="card-image">
                 <figure class="image is-4by8 is-grey">
                     <div class="is-flex is-justify-content-space-between">
@@ -25,7 +25,7 @@
                 <h3 class="has-text-weight-bold" :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</h3>
             </div>
             <footer class="card-footer p-2">
-                <span :key="genre.id" v-for="(genre, index) in movie.genre_ids">
+                <span class="has-text-black-bis" :key="genre.id" v-for="(genre, index) in movie.genre_ids">
                     {{  genreTypeName(genre, index) }}
                 </span>
             </footer>
@@ -57,9 +57,7 @@ export default {
         genreTypeName(genreId, index) {
             for (const item of this.genres) {
                 if (item.id == genreId) {
-                    console.log(item)
                     if (this.movie.genre_ids.length - 1 == index) {
-                        console.log(item.name)
                         return item.name;
                     } else {
                         return item.name + " , "

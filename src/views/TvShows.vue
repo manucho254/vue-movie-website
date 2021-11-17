@@ -55,17 +55,14 @@ export default {
             this.$store.commit('setIsLoading', false)
         },
         async getSeriesGenres() {
-            this.$store.commit('setIsLoading', true)
             await axios
                 .get(`/genre/tv/list?api_key=${env.apikey}`)
                 .then(response => {
                     this.genres = response.data
-                    console.log(this.genres)
                 })
                 .catch(error => {
                     console.log(error)
                 })
-            this.$store.commit('setIsLoading', false)
         },
         scrollUp() {
             window.scrollTo(0, 0);

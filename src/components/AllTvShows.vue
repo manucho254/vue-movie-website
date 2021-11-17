@@ -26,11 +26,11 @@
                    :class='changeRatingColor(movie.vote_average)'>★ {{ movie.vote_average }}
                 </h3>
             </div>
-            <footer class="card-footer p-2">
+            <!-- <footer class="card-footer p-2">
                 <span :key="genre.id" v-for="(genre, index) in movie.genre_ids">
                     {{  genreTypeName(genre, index) }}
                 </span>
-            </footer>
+            </footer> -->
         </div>
     </router-link>
 </div>
@@ -65,7 +65,7 @@ export default {
                     if (this.movie.genre_ids.length - 1 == index) {
                         return item.name;
                     } else {
-                        return item.name + ","
+                        return item.name + " , "
                     }
                 }
             }
