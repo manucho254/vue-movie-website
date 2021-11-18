@@ -15,6 +15,40 @@
                 </iframe>
             </figure>
         </div>
+        <div class="dropdown is-rounded mb-4 mr-5" :class="{'is-active':  showdropdownflag}">
+            <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu"  @click="showDropdown">
+                <span>Season</span>
+                <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+                </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+                <a href="#" class="dropdown-item" :key="season.id" v-for="season in movie.number_of_seasons" :season="season">
+                    {{ season }}
+                </a>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown is-rounded  mb-4 ml-5" :class="{'is-active':  showdropdownflag2}">
+            <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu"  @click="showDropdown2">
+                <span>Episodes</span>
+                <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+                </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+                <a href="#" class="dropdown-item" :key="episode.id" v-for="episode in movie.number_of_episodes" :episode="episode">
+                    {{ episode }}
+                </a>
+                </div>
+            </div>
+        </div>
         <div class="box has-background-dark">
             <div class="is-flex is-flex is-justify-content-center is-align-items-center p-4">
                 <div v-if="movie.poster_path != null">
@@ -81,16 +115,20 @@ export default {
     data() {
         return {
             showModalflag: false,
+            showdropdownflag: false,
+            showdropdownflag2: false,
             movie: [],
-            trailers: []
+            trailers: [],
+            SeasonAndepisodes: []
         }
     },
     mounted() {
-        this.fetchMovie(this.$route.params.id),
-            this.getSeriesTrailer(this.$route.params.id)
+        this.fetchSeries(this.$route.params.id)
+        this.getSeriesTrailer(this.$route.params.id)
+        this.getSeasonEpisodes(this.$route.params.id, 1)
     },
     methods: {
-        async fetchMovie(seriesID) {
+        async fetchSeries(seriesID) {
             document.title = `Movie |`
             this.$store.commit('setIsLoading', true)
 
@@ -110,15 +148,40 @@ export default {
                 .get(`/tv/${seriesID}/videos?api_key=${env.apikey}`)
                 .then(response => {
                     this.trailers = response.data.results
-                    console.log(this.trailer)
+                    console.log(this.trailers)
                 })
                 .catch(error => {
                     console.log(error)
                 })
             this.$store.commit('setIsLoading', false)
         },
+        async getSeasonEpisodes(seriesID, seasonId) {
+            await axios
+                .get(`/tv/${seriesID}/season/${seasonId}?api_key=${env.apikey}`)
+                .then(response => {
+                    this.SeasonAndepisodes = response.data
+                    console.log(this.SeasonAndepisodes)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
         showModal() {
             this.showModalflag = true;
+        },
+        showDropdown() {
+            if (this.showdropdownflag == false) {
+                this.showdropdownflag = true;
+            }else {
+                this.showdropdownflag = false;
+            }
+        },
+        showDropdown2() {
+            if (this.showdropdownflag2 == false) {
+                this.showdropdownflag2 = true;
+            }else {
+                this.showdropdownflag2 = false;
+            }
         },
         close() {
             this.showModalflag = false
