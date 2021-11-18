@@ -33,15 +33,6 @@
                     <p class="mt-5 is-size-5 has-text-light-grey">
                         {{ movie.overview }}
                     </p>
-                    <h1 class="has-text-weight-bold has-text-dark mt-3">Featured Cast</h1>
-                    <div class="is-flex mt-3">
-                        <div class="mr-5">
-                            <h1 :key="creator.id" v-for="creator in movie.created_by"> 
-                                {{ creator.name  }}
-                            </h1>
-                        </div>
-
-                    </div>
                     <div class="modal" :class="{'is-active': showModalflag}">
                         <div class="modal-background"></div>
                         <div class="modal-content">
@@ -60,6 +51,24 @@
                 </div>
             </div>
         </div>
+        <div class="box has-background-dark has-text-light is-hidden-touch">
+          <h1 class="has-text-weight-bold mt-3 is-size-3"> Cast</h1>
+            <hr>
+                <div class="columns is-multiline mt-3"> 
+                    <div class="column is-1" :key="cast.id" v-for="cast in credits">
+                      <figure class="image is-12by5">
+                        <div v-if="cast.profile_path!= null">
+                            <img class="is-mobile" 
+                            :src="'https://image.tmdb.org/t/p/w1280' + cast.profile_path" alt="movie image">
+                        </div>
+                        <div v-else>
+                           <img class="is-hidden-touch" src="@/assets/no-image.jpg" alt="black image">
+                        </div>
+                      </figure>
+                        <p> {{ cast.name + "," }} </p>
+                    </div>
+                </div>
+         </div>
     </div>
 </div>
 </template>
@@ -75,11 +84,13 @@ export default {
             showModalflag: false,
             movie: [],
             trailers: [],
+            credits: []
         }
     },
     mounted() {
         this.fetchMovie(this.$route.params.id)
         this.getMovieTrailer(this.$route.params.id)
+        this.getCredits(this.$route.params.id)
     },
 
     methods: {
@@ -111,6 +122,17 @@ export default {
                     console.log(error)
                 })
             this.$store.commit('setIsLoading', false)
+        },
+        async getCredits(movieID) {
+            await axios
+                .get(`/movie/${movieID}/credits?api_key=${env.apikey}`)
+                .then(response => {
+                    this.credits = response.data.cast
+                    console.log(this.credits)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
         },
         showModal() {
             this.showModalflag = true;
