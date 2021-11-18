@@ -43,8 +43,8 @@
             </div>
             <div class="dropdown-menu" id="dropdown-menu" role="menu">
                 <div class="dropdown-content">
-                <a href="#" class="dropdown-item" :key="episode.id" v-for="episode in movie.number_of_episodes" :episode="episode">
-                    {{ episode }}
+                <a href="#" class="dropdown-item" :key="episode.id" v-for="episode in seasonAndepisodes" :episode="episode">
+                    {{ episode.episode_number }}
                 </a>
                 </div>
             </div>
@@ -71,15 +71,14 @@
                     <p class="mt-5 is-size-5 has-text-light-grey">
                         {{ movie.overview }}
                     </p>
-                    <h1 class="has-text-weight-bold has-text-dark mt-3">Featured Cast</h1>
+                     <hr>
+                    <h1 class="has-text-weight-bold has-text- mt-3 is-size-5">Creators</h1>
+
                     <div class="is-flex mt-3">
                         <div class="mr-5">
-                            <h1>Scott Silver</h1>
-                            <p>writer</p>
-                        </div>
-                        <div>
-                            <h1>Scott Silver</h1>
-                            <p>writer</p>
+                            <h1 class="d-flex" :key="creator.id" v-for="creator in movie.created_by"> 
+                                {{ creator.name  }}
+                            </h1>
                         </div>
                     </div>
                     <div class="modal" :class="{'is-active': showModalflag}">
@@ -119,13 +118,14 @@ export default {
             showdropdownflag2: false,
             movie: [],
             trailers: [],
-            SeasonAndepisodes: []
+            seasonAndepisodes: [],
+            season: 1
         }
     },
     mounted() {
         this.fetchSeries(this.$route.params.id)
         this.getSeriesTrailer(this.$route.params.id)
-        this.getSeasonEpisodes(this.$route.params.id, 1)
+        this.getSeasonEpisodes(this.$route.params.id, this.season)
     },
     methods: {
         async fetchSeries(seriesID) {
@@ -159,8 +159,8 @@ export default {
             await axios
                 .get(`/tv/${seriesID}/season/${seasonId}?api_key=${env.apikey}`)
                 .then(response => {
-                    this.SeasonAndepisodes = response.data
-                    console.log(this.SeasonAndepisodes)
+                    this.seasonAndepisodes = response.data.episodes
+                    console.log(this.seasonAndepisodes)
                 })
                 .catch(error => {
                     console.log(error)
