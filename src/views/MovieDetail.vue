@@ -36,12 +36,9 @@
                     <h1 class="has-text-weight-bold has-text-dark mt-3">Featured Cast</h1>
                     <div class="is-flex mt-3">
                         <div class="mr-5">
-                            <h1>Scott Silver</h1>
-                            <p>writer</p>
-                        </div>
-                        <div>
-                            <h1>Scott Silver</h1>
-                            <p>writer</p>
+                            <h1 :key="creator.id" v-for="creator in movie.created_by"> 
+                                {{ creator.name  }}
+                            </h1>
                         </div>
 
                     </div>

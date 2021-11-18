@@ -76,11 +76,12 @@
 
                     <div class="is-flex mt-3">
                         <div class="mr-5">
-                            <h1 class="d-flex" :key="creator.id" v-for="creator in movie.created_by"> 
+                            <h1 :key="creator.id" v-for="creator in movie.created_by"> 
                                 {{ creator.name  }}
                             </h1>
                         </div>
                     </div>
+
                     <div class="modal" :class="{'is-active': showModalflag}">
                         <div class="modal-background"></div>
                         <div class="modal-content">
