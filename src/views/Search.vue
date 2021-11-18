@@ -38,7 +38,7 @@ export default {
 
             this.$store.commit('setIsLoading', true)
             await axios
-                .get(`/search/multi?api_key=${env.apikey}&language=en-US&page=1&query=${this.query}&include_adult=false`)
+                .get(`/search/multi?api_key=${env.apikey}&page=1&query=${this.query}&include_adult=false`)
                 .then(response => {
                     this.movies = response.data.results
                 })

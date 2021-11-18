@@ -99,6 +99,24 @@
                 </div>
             </div>
         </div>
+        <div class="box has-background-dark has-text-light is-hidden-touch">
+          <h1 class="has-text-weight-bold mt-3 is-size-3"> Cast</h1>
+            <hr>
+                <div class="columns is-multiline mt-3"> 
+                    <div class="column is-1" :key="cast.id" v-for="cast in credits">
+                      <figure class="image is-12by5">
+                        <div v-if="cast.profile_path != null">
+                            <img class="is-mobile" 
+                            :src="'https://image.tmdb.org/t/p/w1280' + cast.profile_path" alt="movie image">
+                        </div>
+                        <div v-else>
+                           <img class="is-hidden-touch" src="@/assets/no-image.jpg" alt="black image">
+                        </div>
+                      </figure>
+                        <p> {{ cast.name + "," }} </p>
+                    </div>
+                </div>
+         </div>
     </div>
 </div>
 </template>
@@ -171,7 +189,7 @@ export default {
             await axios
                 .get(`/tv/${seriesID}/credits?api_key=${env.apikey}`)
                 .then(response => {
-                    this.credits = response.data
+                    this.credits = response.data.cast
                     console.log(this.credits)
                 })
                 .catch(error => {
@@ -179,14 +197,7 @@ export default {
                 })
         },
         alert() {
-            const anchor = document.querySelectorAll("option")
-            console.log(anchor)
-            for(let i=1;  i <= anchor.length; i++) {
-                if (i != anchor.value) {
-                    console.log(i)
-                }
-            }
-            this.getSeasonEpisodes(this.$route.params.id, this.season)
+            
         },
         showModal() {
             this.showModalflag = true;
