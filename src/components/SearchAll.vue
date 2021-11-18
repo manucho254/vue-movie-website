@@ -1,6 +1,6 @@
 <template>
 <div class="column is-3">
-    <div v-if="movie.media_type != 'movies'">
+    <div v-if="movie.media_type == 'movie'">
         <router-link :to="'/movie/' + movie.id">
             <div class="card">
                 <div class="card-image">

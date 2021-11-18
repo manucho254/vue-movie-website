@@ -103,7 +103,6 @@ export default {
             axios.get(`/movie/${movieID}?api_key=${env.apikey}`)
                 .then(response => {
                     this.movie = response.data
-                    console.log(this.movie)
                 })
                 .catch(error => {
                     console.log(error)
@@ -116,7 +115,6 @@ export default {
                 .get(`/movie/${movieID}/videos?api_key=${env.apikey}`)
                 .then(response => {
                     this.trailers = response.data.results
-                    console.log(this.trailers)
                 })
                 .catch(error => {
                     console.log(error)
@@ -128,7 +126,6 @@ export default {
                 .get(`/movie/${movieID}/credits?api_key=${env.apikey}`)
                 .then(response => {
                     this.credits = response.data.cast
-                    console.log(this.credits)
                 })
                 .catch(error => {
                     console.log(error)

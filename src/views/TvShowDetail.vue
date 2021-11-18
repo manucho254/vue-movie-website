@@ -137,7 +137,6 @@ export default {
             seasonAndepisodes: [],
             season: 1,
             credits: [],
-            selected: ''
         }
     },
     mounted() {
@@ -154,7 +153,6 @@ export default {
             axios.get(`/tv/${seriesID}?api_key=${env.apikey}`)
                 .then(response => {
                     this.series = response.data
-                    console.log(this.series)
                 })
                 .catch(error => {
                     console.log(error)
@@ -167,7 +165,6 @@ export default {
                 .get(`/tv/${seriesID}/videos?api_key=${env.apikey}`)
                 .then(response => {
                     this.trailers = response.data.results
-                    console.log(this.trailers)
                 })
                 .catch(error => {
                     console.log(error)
@@ -179,7 +176,6 @@ export default {
                 .get(`/tv/${seriesID}/season/${seasonId}?api_key=${env.apikey}`)
                 .then(response => {
                     this.seasonAndepisodes = response.data.episodes
-                    console.log(this.seasonAndepisodes)
                 })
                 .catch(error => {
                     console.log(error)
@@ -190,7 +186,6 @@ export default {
                 .get(`/tv/${seriesID}/credits?api_key=${env.apikey}`)
                 .then(response => {
                     this.credits = response.data.cast
-                    console.log(this.credits)
                 })
                 .catch(error => {
                     console.log(error)

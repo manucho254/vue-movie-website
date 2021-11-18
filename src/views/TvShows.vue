@@ -1,9 +1,9 @@
 <template>
 <div class="Tv-shows">
     <div class="container">
-        <span class="is-uppercase mb-5 is-size-4 has-text-warning has-text-weight-bold">Popular Tv-shows</span>
+        <span class="is-uppercase mb-5 is-size-4 has-text-black-bis has-text-weight-bold">Popular Tv-shows</span>
         <div class="columns is-multiline mt-2">
-            <AllTvShows v-for="movie in movies" :key="movie.id" :movie="movie" />
+            <AllTvShows v-for="series in series" :key="series.id" :series="series" />
         </div>
         <nav class="pagination is-centered p-2" role="navigation" aria-label="pagination">
             <ul class="pagination-list">
@@ -28,7 +28,7 @@ export default {
     },
     data() {
         return {
-            movies: [],
+            series: [],
             genres: [],
             currentPage: 1,
         }
@@ -47,7 +47,7 @@ export default {
 
             await axios.get(`/discover/tv?sort_by=popularity.desc&api_key=${env.apikey}&page=` + this.currentPage)
                 .then(response => {
-                    this.movies = response.data.results
+                    this.series = response.data.results
                 })
                 .catch(error => {
                     console.log(error)

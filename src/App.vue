@@ -1,6 +1,6 @@
 <template>
 <div id="wrapper">
-    <nav class="navbar is-dark p-3">
+    <nav class="navbar is-dark p-5">
         <div class="navbar-brand">
             <router-link to="/" class="navbar-item hero">
                 <h2 class="h2 is-success"><span>Movie</span>Time</h2>
