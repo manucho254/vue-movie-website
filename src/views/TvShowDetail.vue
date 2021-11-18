@@ -148,7 +148,7 @@ export default {
     },
     methods: {
         async fetchSeries(seriesID) {
-            document.title = `Movie |`
+            document.title = `Tv-series | `
             this.$store.commit('setIsLoading', true)
 
             axios.get(`/tv/${seriesID}?api_key=${env.apikey}`)
