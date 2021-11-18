@@ -21,11 +21,11 @@
                 </figure>
             </div>
             <div class="card-content overflow is-flex is-justify-content-space-between">
-                <h3 class="is-dark has-text-black-bis">{{ movie.title }}</h3>
+                <h3 class="is-dark ">{{ movie.title }}</h3>
                 <h3 class="has-text-weight-bold" :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</h3>
             </div>
             <footer class="card-footer p-2">
-                <span class="has-text-black-bis" :key="genre.id" v-for="(genre, index) in movie.genre_ids">
+                <span :key="genre.id" v-for="(genre, index) in movie.genre_ids">
                     {{  genreTypeName(genre, index) }}
                 </span>
             </footer>

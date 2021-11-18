@@ -23,9 +23,10 @@
                 </button>
             </div>
             <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                <div class="dropdown-content">
-                    <a href="#" class="dropdown-item" :key="season.id" v-for="season in series.number_of_seasons" :season="season">
-                        {{ season }}
+                <div class="dropdown-content"  id="season">
+                    <a  class="dropdown-item" :v-model="selected"
+                     :key="season.id" v-for="season in series.number_of_seasons">
+                     <option v-on:click="alert()" :value="season">{{ season }}</option>
                     </a>
                 </div>
             </div>
@@ -117,7 +118,8 @@ export default {
             trailers: [],
             seasonAndepisodes: [],
             season: 1,
-            credits: []
+            credits: [],
+            selected: ''
         }
     },
     mounted() {
@@ -175,6 +177,16 @@ export default {
                 .catch(error => {
                     console.log(error)
                 })
+        },
+        alert() {
+            const anchor = document.querySelectorAll("option")
+            console.log(anchor)
+            for(let i=1;  i <= anchor.length; i++) {
+                if (i != anchor.value) {
+                    console.log(i)
+                }
+            }
+            this.getSeasonEpisodes(this.$route.params.id, this.season)
         },
         showModal() {
             this.showModalflag = true;
