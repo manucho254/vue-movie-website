@@ -8,7 +8,7 @@
                         <h3 class="is-capitalized is-black has-text-weight-bold m-2">
                             Tv-Show
                         </h3>
-                        <h3 class="is-capitalized is-black m-2">
+                        <h3 class="is-capitalized has-text-weight-bold m-2">
                             {{ series.first_air_date }}
                         </h3>
                     </div>
@@ -21,7 +21,7 @@
                 </figure>
             </div>
             <div class="card-content is-flex is-justify-content-space-between">
-                <h3 class="has-text-black-bis">{{ series.name }}</h3>
+                <h3 class="has-text-black-bis has-text-weight-bold">{{ series.name }}</h3>
                 <h3 class="has-text-weight-bold " 
                    :class='changeRatingColor(series.vote_average)'>★ {{ series.vote_average }}
                 </h3>
