@@ -125,7 +125,7 @@ input {
     }
 
     .input-size {
-        width: 300px;
+        width: 200px;
     }
 
     router-link:hover {
