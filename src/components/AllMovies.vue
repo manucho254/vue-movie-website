@@ -1,7 +1,7 @@
 <template>
 <div class="column is-3 is-mobile">
     <router-link :to="'/movie/' + movie.id">
-        <div class="card has-text-centered card-c">
+        <div class="card has-text-centered">
             <div class="card-image">
                 <figure class="image is-4by8 is-grey">
                     <div class="is-flex is-justify-content-space-between">
