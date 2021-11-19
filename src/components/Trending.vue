@@ -25,7 +25,7 @@
     </div>
     <div v-else>
         <router-link :to="'/tv-show/' + movie.id">
-            <div class="card card-c">
+            <div class="card">
                 <div class="card-image">
                     <figure class="image is-4by8 is-grey">
                         <h3 class="is-capitalized is-black has-text-weight-bold m-2">{{ movie.media_type }}</h3>
