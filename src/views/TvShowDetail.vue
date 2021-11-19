@@ -30,7 +30,7 @@
                     <h1 class="has-text-weight-bold is-size-3"> {{ series.name }}</h1>
 
                     <span class="is-size-6 has-text-weight-bold"><i class="fa fa-star star"></i>
-                         {{ series.vote_average }} | Released: {{ series.first_air_date }} 
+                        {{ series.vote_average }} | Released: {{ series.first_air_date }}
                         <span v-for="genre in series.genres" :key="genre.id" :genre="genre">
                             {{ " | " + genre.name }}
                         </span>
@@ -68,7 +68,7 @@
                 </div>
             </div>
         </div>
-            <h1 class="has-text-weight-bold is-size-3 is-hidden-touch"> Cast : </h1>
+        <h1 class="has-text-weight-bold is-size-3 is-hidden-touch"> Cast : </h1>
         <div class="box is-flex has-background-dark has-text-light is-hidden-touch">
             <div class="columns is-multiline mt-3">
                 <hr>
@@ -166,7 +166,7 @@ export default {
                 this.seasons = 1
                 this.episodes = 1
                 this.link = `https://www.2embed.ru/embed/tmdb/tv?id=${this.$route.params.id}&s=${this.seasons}&e=${this.episodes}`
-            }else {
+            } else {
                 this.link = `https://www.2embed.ru/embed/tmdb/tv?id=${this.$route.params.id}&s=${this.seasons}&e=${this.episodes}`
             }
         },

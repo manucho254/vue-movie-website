@@ -77,7 +77,7 @@ export default {
                 this.currentPage -= 1
                 this.getMovies()
                 this.scrollUp()
-            } else if(this.currentPage === 1) {
+            } else if (this.currentPage === 1) {
                 return null
             }
         },

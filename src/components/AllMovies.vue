@@ -20,7 +20,7 @@
                     </div>
                 </figure>
             </div>
-           
+
             <div class="card-content is-flex is-justify-content-space-between">
                 <h3 class="is-dark has-text-weight-bold">{{ movie.title }}</h3>
                 <h3 class="has-text-weight-bold" :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</h3>

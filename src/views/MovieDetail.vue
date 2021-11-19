@@ -4,10 +4,8 @@
         <h1 class="has-text-weight-bold has-text-dark is-size-3 mb-3"> {{ movie.title }}</h1>
         <div class="card mb-5">
             <figure class="image is-16by9">
-                <iframe class="has-ratio" width="640" height="100" 
-                :src='"https://www.2embed.ru/embed/tmdb/movie?id=" + $route.params.id' 
-                frameborder="0" allowfullscreen>
-                <!--sandbox="allow-scripts allow-same-origin"-->
+                <iframe class="has-ratio" width="640" height="100" :src='"https://www.2embed.ru/embed/tmdb/movie?id=" + $route.params.id' frameborder="0" allowfullscreen>
+                    <!--sandbox="allow-scripts allow-same-origin"-->
                 </iframe>
             </figure>
         </div>
@@ -24,7 +22,7 @@
                     <h1 class="has-text-weight-bold  is-size-4"> {{ movie.title }}</h1>
 
                     <span class="is-size-6 has-text-weight-bold"><i class="fa fa-star star"></i>
-                            {{ movie.vote_average }} | Released: {{ movie.release_date }}
+                        {{ movie.vote_average }} | Released: {{ movie.release_date }}
                         <span v-for="genre in movie.genres" :key="genre.id" :genre="genre">
                             {{ " | " + genre.name }}
                         </span>
@@ -54,21 +52,20 @@
         <h1 class="has-text-weight-bold is-size-3 is-hidden-touch"> Cast : </h1>
         <div class="box has-background-dark has-text-light is-hidden-touch">
 
-                <div class="columns is-multiline mt-3"> 
-                    <div class="column is-1" :key="cast.id" v-for="cast in credits">
-                      <figure class="image is-12by5">
+            <div class="columns is-multiline mt-3">
+                <div class="column is-1" :key="cast.id" v-for="cast in credits">
+                    <figure class="image is-12by5">
                         <div v-if="cast.profile_path!= null">
-                            <img class="is-mobile cast-images" 
-                            :src="'https://image.tmdb.org/t/p/w1280' + cast.profile_path" alt="movie image">
+                            <img class="is-mobile cast-images" :src="'https://image.tmdb.org/t/p/w1280' + cast.profile_path" alt="movie image">
                         </div>
                         <div v-else>
-                           <img class="is-hidden-touch cast-images" src="@/assets/no-image.jpg" alt="black image">
+                            <img class="is-hidden-touch cast-images" src="@/assets/no-image.jpg" alt="black image">
                         </div>
-                      </figure>
-                        <p class="has-text-weight-bold has-text-centered"> {{ cast.name }} </p>
-                    </div>
+                    </figure>
+                    <p class="has-text-weight-bold has-text-centered"> {{ cast.name }} </p>
                 </div>
-         </div>
+            </div>
+        </div>
     </div>
 </div>
 </template>

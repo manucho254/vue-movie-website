@@ -23,7 +23,7 @@
                 </div>
                 <div class="card-content overflow is-flex is-justify-content-space-between">
                     <h5 class="has-text-black-bis has-text-weight-bold">{{ movie.title }}{{ movie.name }}</h5>
-                   <h3 class="has-text-weight-bold" :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</h3>
+                    <h3 class="has-text-weight-bold" :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</h3>
                 </div>
             </div>
         </router-link>
@@ -50,7 +50,7 @@
         </router-link>
     </div>
     <div v-else>
-        
+
     </div>
 </div>
 </template>

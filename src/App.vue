@@ -96,9 +96,10 @@ input {
 
 .imageSize {
     width: 500px;
-    height: 300px; 
+    height: 300px;
     object-fit: fill;
 }
+
 .cast-images {
     border-radius: 50%;
 }
@@ -108,30 +109,39 @@ input {
     height: 550px;
 }
 
-@media (max-width: 768px){
-  .card-c {
-    width: 180px;
-    height: 480px;
-  }
-  .columns {
-      display: flex;
-      flex-wrap: wrap;
-  }
-   .input-size {
-     width: 300px;
-    }
-  router-link:hover {
-      background-color: black;
-      color: black;
-  }
+.input-size {
+    width: 300px;
 }
 
-.green{
+@media (max-width: 768px) {
+    .card-c {
+        width: 180px;
+        height: 480px;
+    }
+
+    .columns {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .input-size {
+        width: 300px;
+    }
+
+    router-link:hover {
+        background-color: black;
+        color: black;
+    }
+}
+
+.green {
     color: rgb(10, 219, 45);
 }
-.orange{
+
+.orange {
     color: orange;
 }
+
 .red {
     color: red;
 }

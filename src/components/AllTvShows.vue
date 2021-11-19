@@ -22,8 +22,7 @@
             </div>
             <div class="card-content is-flex is-justify-content-space-between">
                 <h3 class="has-text-black-bis has-text-weight-bold">{{ series.name }}</h3>
-                <h3 class="has-text-weight-bold " 
-                   :class='changeRatingColor(series.vote_average)'>★ {{ series.vote_average }}
+                <h3 class="has-text-weight-bold " :class='changeRatingColor(series.vote_average)'>★ {{ series.vote_average }}
                 </h3>
             </div>
             <!-- <footer class="card-footer p-2">
