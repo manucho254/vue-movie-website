@@ -45,7 +45,7 @@ export default {
             document.title = "Tv-Shows/"
             this.$store.commit('setIsLoading', true)
 
-            await axios.get(`/discover/tv?sort_by=popularity.desc&api_key=${env.apikey}&page=` + this.currentPage)
+            await axios.get(`/discover/tv?api_key=${env.apikey}&page=` + this.currentPage)
                 .then(response => {
                     this.series = response.data.results
                 })

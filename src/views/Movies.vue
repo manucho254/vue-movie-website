@@ -55,7 +55,7 @@ export default {
             document.title = "Movies/"
             this.$store.commit('setIsLoading', true)
 
-            await axios.get(`/discover/movie?sort_by=popularity.desc&api_key=${env.apikey}&include_adult=false&page=` + this.currentPage)
+            await axios.get(`/discover/movie?api_key=${env.apikey}&include_adult=false&page=` + this.currentPage)
                 .then(response => {
                     this.movies = response.data.results
                 })

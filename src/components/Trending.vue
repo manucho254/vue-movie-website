@@ -2,7 +2,7 @@
 <div class="column is-3">
     <div v-if="movie.media_type == 'movie'">
         <router-link :to="'/movie/' + movie.id">
-            <div class="card card-c">
+            <div class="card ">
                 <div class="card-image">
                     <figure class="image is-4by8 is-grey">
                         <div class="is-flex is-justify-content-space-between">
@@ -40,12 +40,15 @@
         </router-link>
     </div>
 </div>
+
 </template>
 
 <script>
 export default {
     props: {
-        movie: Object
+        movie: Object,
+        popularMovies: Object,
+        popularTvShows: Object,
     },
     mounted() {
         this.changeRatingColor()
@@ -63,3 +66,4 @@ export default {
     }
 }
 </script>
+

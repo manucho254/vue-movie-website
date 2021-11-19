@@ -123,7 +123,7 @@ input {
 }
 
 .green{
-    color: greenyellow;
+    color: rgb(10, 219, 45);
 }
 .orange{
     color: orange;
