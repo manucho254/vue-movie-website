@@ -56,11 +56,11 @@
                     <div class="column is-1" :key="cast.id" v-for="cast in credits">
                       <figure class="image is-12by5">
                         <div v-if="cast.profile_path!= null">
-                            <img class="is-mobile" 
+                            <img class="is-mobile cast-images" 
                             :src="'https://image.tmdb.org/t/p/w1280' + cast.profile_path" alt="movie image">
                         </div>
                         <div v-else>
-                           <img class="is-hidden-touch" src="@/assets/no-image.jpg" alt="black image">
+                           <img class="is-hidden-touch cast-images" src="@/assets/no-image.jpg" alt="black image">
                         </div>
                       </figure>
                         <p> {{ cast.name + "," }} </p>

@@ -97,7 +97,10 @@ input {
 .imageSize {
     width: 500px;
     height: 300px; 
-    object-fit: cover;
+    object-fit: fill;
+}
+.cast-images {
+    border-radius: 50%;
 }
 
 .card-c {
