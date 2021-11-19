@@ -95,8 +95,9 @@ input {
 }
 
 .imageSize {
-    width: 300px;
+    width: 500px;
     height: 300px; 
+    object-fit: cover;
 }
 
 .card-c {
