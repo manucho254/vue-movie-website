@@ -13,51 +13,24 @@
                 </iframe>
             </figure>
         </div>
-        <div class="dropdown is-rounded mb-4 mr-5" :class="{'is-active':  showdropdownflag}">
-            <div class="dropdown-trigger">
-                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" @click="showDropdown">
-                    <span>Season</span>
-                    <span class="icon is-small">
-                        <i class="fas fa-angle-down" aria-hidden="true"></i>
-                    </span>
-                </button>
-            </div>
-            <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                <div class="dropdown-content"  id="season">
-                    <a  class="dropdown-item" :v-model="selected"
-                     :key="season.id" v-for="season in series.number_of_seasons">
-                     <option v-on:click="alert()" :value="season">{{ season }}</option>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="dropdown is-rounded  mb-4 ml-5" :class="{'is-active':  showdropdownflag2}">
-            <div class="dropdown-trigger">
-                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" @click="showDropdown2">
-                    <span>Episodes</span>
-                    <span class="icon is-small">
-                        <i class="fas fa-angle-down" aria-hidden="true"></i>
-                    </span>
-                </button>
-            </div>
-            <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                <div class="dropdown-content">
-                    <a href="#" class="dropdown-item" :key="episode.id" v-for="episode in seasonAndepisodes" :episode="episode">
-                        {{ episode.episode_number }}
-                    </a>
-                </div>
-            </div>
-        </div>
+        <select class="dropdown" v-model="seasons">
+            <option  id="seasons" :key="season.id" v-for="season in series.number_of_seasons" :value="season" v-on:click="alert()">Season {{ season }}</option>
+        </select>
+
+         <select class="dropdown" v-model="episodes">
+            <option :key="episode.id" v-for="episode in seasonAndepisodes" :episode="episode" :value="episode.episode_number">Episode {{ episode.episode_number }}</option>
+        </select>
+
         <div class="box has-background-dark">
-            <div class="is-flex is-flex is-justify-content-center is-align-items-center p-4">
+            <div class="is-flex is-flex is-justify-content-center is-align-items-center p-4 is-mobile">
                 <div v-if="series.poster_path != null">
-                    <img class="imageSize is-hidden-touch" :src="'https://image.tmdb.org/t/p/w1280' + series.poster_path " alt="movie image">
+                    <img class="imageSize " :src="'https://image.tmdb.org/t/p/w1280' + series.poster_path " alt="movie image">
                 </div>
                 <div v-else>
                     <img class="imageSize" src="@/assets/no-image.jpg" alt="black image">
                 </div>
                 <!--  -->
-                <div class="ml-5 has-text-light is-justify-content-space-evenly  is-align-items-center p-4">
+                <div class="ml-5 has-text-light p-4">
                     <h1 class="has-text-weight-bold is-size-3"> {{ series.name }}</h1>
 
                     <span class="is-size-5">Rating<i class="fa fa-star star"></i>
@@ -67,7 +40,7 @@
                         </span>
                     </span>
 
-                    <p class="mt-5 is-size-5 has-text-light-grey">
+                    <p class="mt-5 is-size-5 has-text-light-grey has-text-centered">
                         {{ series.overview }}
                     </p>
                     <hr>
@@ -113,7 +86,7 @@
                            <img class="is-hidden-touch" src="@/assets/no-image.jpg" alt="black image">
                         </div>
                       </figure>
-                        <p> {{ cast.name + "," }} </p>
+                        <p> {{ cast.name + "|" }} </p>
                     </div>
                 </div>
          </div>
@@ -130,13 +103,13 @@ export default {
     data() {
         return {
             showModalflag: false,
-            showdropdownflag: false,
-            showdropdownflag2: false,
             series: [],
             trailers: [],
             seasonAndepisodes: [],
             season: 1,
             credits: [],
+            seasons: null,
+            episodes: null
         }
     },
     mounted() {
@@ -192,24 +165,11 @@ export default {
                 })
         },
         alert() {
-            
+            console.log(this.seasons)
+            console.log(this.episodes)
         },
         showModal() {
             this.showModalflag = true;
-        },
-        showDropdown() {
-            if (this.showdropdownflag == false) {
-                this.showdropdownflag = true;
-            } else {
-                this.showdropdownflag = false;
-            }
-        },
-        showDropdown2() {
-            if (this.showdropdownflag2 == false) {
-                this.showdropdownflag2 = true;
-            } else {
-                this.showdropdownflag2 = false;
-            }
         },
         close() {
             this.showModalflag = false
@@ -222,4 +182,20 @@ export default {
 .star {
     color: rgb(219, 192, 18);
 }
+
+.dropdown {
+    position: relative;
+    width: 150px;
+    height: 30px;
+    background-color: black;
+    color: white;
+    border: hidden;
+    border-radius: 20px;
+    font-family: inherit;
+    font-weight: bold;
+    font-weight: 15px;
+    margin: 1rem;
+    text-align: center;
+}
+
 </style>
