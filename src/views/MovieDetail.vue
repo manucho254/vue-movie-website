@@ -11,19 +11,19 @@
             </figure>
         </div>
         <div class="box has-background-dark">
-            <div class="is-flex is-justify-content-center is-align-items-center p-4">
+            <div class="is-flex  p-4">
                 <div v-if="movie.poster_path != null">
                     <img class="imageSize is-hidden-touch" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
                 </div>
                 <div v-else>
                     <img class="imageSize" src="@/assets/no-image.jpg" alt="black image">
                 </div>
-                <div class="ml-5 has-text-light">
+                <div class="ml-5 has-text-light ">
 
-                    <h1 class="has-text-weight-bold  is-size-3"> {{ movie.title }}</h1>
+                    <h1 class="has-text-weight-bold  is-size-4"> {{ movie.title }}</h1>
 
-                    <span><i class="fa fa-star star is-size-6">
-                            {{ movie.vote_average }} </i> | Released: {{ movie.release_date }} |
+                    <span class="is-size-6 has-text-weight-bold"><i class="fa fa-star star"></i>
+                            {{ movie.vote_average }} | Released: {{ movie.release_date }}
                         <span v-for="genre in movie.genres" :key="genre.id" :genre="genre">
                             {{ " | " + genre.name }}
                         </span>
@@ -42,7 +42,7 @@
                         <button class="modal-close is-large" aria-label="close" @click="close"></button>
                     </div>
                     <div>
-                        <button class="button has-background-black-bis has-text-light my-3" @click="showModal">
+                        <button class="button has-background-black-bis has-text-light my-5" @click="showModal">
                             <i class="fa fa-play-circle"> Trailer</i>
                         </button>
                     </div>

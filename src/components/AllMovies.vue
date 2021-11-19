@@ -1,7 +1,7 @@
 <template>
 <div class="column is-3 is-mobile">
     <router-link :to="'/movie/' + movie.id">
-        <div class="card has-text-centered">
+        <div class="card has-text-centered card-c">
             <div class="card-image">
                 <figure class="image is-4by8 is-grey">
                     <div class="is-flex is-justify-content-space-between">
@@ -20,15 +20,16 @@
                     </div>
                 </figure>
             </div>
+           
             <div class="card-content is-flex is-justify-content-space-between">
                 <h3 class="is-dark has-text-weight-bold">{{ movie.title }}</h3>
                 <h3 class="has-text-weight-bold" :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</h3>
             </div>
-            <footer class="card-footer p-1 has-text-weight-bold">
+            <!-- <footer class="card-footer p-1 has-text-weight-bold">
                 <h5 :key="genre.id" v-for="(genre, index) in movie.genre_ids">
                     {{ genreTypeName(genre, index) }}
                 </h5>
-            </footer>
+            </footer> -->
         </div>
     </router-link>
 </div>

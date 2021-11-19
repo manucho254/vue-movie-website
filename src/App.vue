@@ -11,20 +11,20 @@
                 <span aria-hidden="true"></span>
             </a>
         </div>
-        <div class="is-dark navbar-menu " id="navbar-menu" v-bind:class="{'is-active': showMobileMenu}">
+        <div class="navbar-menu has-background-dark" id="navbar-menu" v-bind:class="{'is-active': showMobileMenu}">
             <div class="navbar-end">
-                <router-link to="/" class="navbar-item">Home</router-link>
-                <router-link to="/tv-shows/" class="navbar-item">Tv-shows</router-link>
-                <router-link to="/movies/" class="navbar-item">Movies</router-link>
+                <router-link to="/" class="navbar-item has-text-light">Home</router-link>
+                <router-link to="/tv-shows/" class="navbar-item has-text-light">Tv-shows</router-link>
+                <router-link to="/movies/" class="navbar-item has-text-light">Movies</router-link>
                 <div class="navbar-start">
                     <div class="navbar-item">
                         <form method="get" action="/search/">
                             <div class="field has-addons">
                                 <div class="contol">
-                                    <input type="text" class="input border-none is-rounded" placeholder="what are you looking for?" name="query" v-model="search">
+                                    <input type="text" class="input border-none is-rounded input-size" placeholder="what are you looking for?" name="query" v-model="search">
                                 </div>
                                 <div class="control">
-                                    <input class="button is-active is-dark" type="submit" value="search">
+                                    <input class="button is-active is-dark" type="submit" value="Search">
                                 </div>
                             </div>
                         </form>
@@ -99,9 +99,27 @@ input {
     height: 300px; 
 }
 
-.trailer_btn {
-    color: white;
-    background-color: rgb(219, 90, 13);
+.card-c {
+    width: 400px;
+    height: 550px;
+}
+
+@media (max-width: 768px){
+  .card-c {
+    width: 180px;
+    height: 480px;
+  }
+  .columns {
+      display: flex;
+      flex-wrap: wrap;
+  }
+   .input-size {
+     width: 300px;
+    }
+  router-link:hover {
+      background-color: black;
+      color: black;
+  }
 }
 
 .green{

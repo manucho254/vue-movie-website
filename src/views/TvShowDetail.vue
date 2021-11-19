@@ -17,9 +17,9 @@
         </select>
 
         <div class="box has-background-dark">
-            <div class="is-flex is-flex is-justify-content-center is-align-items-center p-4 is-mobile">
+            <div class="is-flex p-4 is-mobile">
                 <div v-if="series.poster_path != null">
-                    <img class="imageSize " :src="'https://image.tmdb.org/t/p/w1280' + series.poster_path " alt="movie image">
+                    <img class="imageSize is-hidden-touch" :src="'https://image.tmdb.org/t/p/w1280' + series.poster_path " alt="movie image">
                 </div>
                 <div v-else>
                     <img class="imageSize" src="@/assets/no-image.jpg" alt="black image">
@@ -28,10 +28,10 @@
                 <div class="ml-5 has-text-light p-4">
                     <h1 class="has-text-weight-bold is-size-3"> {{ series.name }}</h1>
 
-                    <span>Rating<i class="fa fa-star star is-size-6">
-                         {{ series.vote_average }}</i>| Released: {{ series.first_air_date }} |
+                    <span class="is-size-6 has-text-weight-bold"><i class="fa fa-star star"></i>
+                         {{ series.vote_average }} | Released: {{ series.first_air_date }} 
                         <span v-for="genre in series.genres" :key="genre.id" :genre="genre">
-                            {{ "|" + genre.name }}
+                            {{ " | " + genre.name }}
                         </span>
                     </span>
 
@@ -60,7 +60,7 @@
                         <button class="modal-close is-large" aria-label="close" @click="close"></button>
                     </div>
                     <div>
-                        <button class="button has-background-black-bis has-text-light my-3" @click="showModal">
+                        <button class="button has-background-black-bis has-text-light my-5" @click="showModal">
                             <i class="fa fa-play-circle "> Trailer</i>
                         </button>
                     </div>
@@ -181,7 +181,7 @@ export default {
 
 <style scoped>
 .star {
-    color: rgb(218, 171, 42);
+    color: rgb(77, 180, 36);
 }
 
 .dropdown {
