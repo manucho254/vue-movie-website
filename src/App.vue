@@ -113,6 +113,21 @@ input {
     width: 300px;
 }
 
+.dropdown {
+    position: relative;
+    width: 150px;
+    height: 30px;
+    background-color: black;
+    color: white;
+    border: hidden;
+    border-radius: 20px;
+    font-family: inherit;
+    font-weight: bold;
+    font-weight: 15px;
+    margin: 1rem;
+    text-align: center;
+}
+
 @media (max-width: 768px) {
     .card-c {
         width: 180px;
@@ -131,6 +146,9 @@ input {
     router-link:hover {
         background-color: black;
         color: black;
+    }
+    .dropdown {
+        width: 100px;
     }
 }
 

@@ -184,19 +184,4 @@ export default {
 .star {
     color: rgb(77, 180, 36);
 }
-
-.dropdown {
-    position: relative;
-    width: 150px;
-    height: 30px;
-    background-color: black;
-    color: white;
-    border: hidden;
-    border-radius: 20px;
-    font-family: inherit;
-    font-weight: bold;
-    font-weight: 15px;
-    margin: 1rem;
-    text-align: center;
-}
 </style>
