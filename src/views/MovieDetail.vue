@@ -50,8 +50,7 @@
             </div>
         </div>
         <div class="box has-background-dark has-text-light is-hidden-touch">
-          <h1 class="has-text-weight-bold mt-3 is-size-3"> Cast</h1>
-            <hr>
+          <h1 class="has-text-weight-bold mt-3 is-size-3"> Cast : </h1>
                 <div class="columns is-multiline mt-3"> 
                     <div class="column is-1" :key="cast.id" v-for="cast in credits">
                       <figure class="image is-12by5">
