@@ -2,13 +2,11 @@
 <div class="movie-detail">
     <div class="container">
         <h1 class="has-text-weight-bold has-text-dark is-size-3 mb-3"> {{ movie.title }}</h1>
-        <div class="box">
+        <div class="card mb-5">
             <figure class="image is-16by9">
-                <!-- <iframe class="has-ratio" width="640" height="100" 
+                <iframe class="has-ratio" width="640" height="100" 
                 :src='"https://www.2embed.ru/embed/tmdb/movie?id=" + $route.params.id' 
                 frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
-                </iframe> -->
-                <iframe class="has-ratio" width="640" height="360" v-for="trailer in trailers" :key="trailer.id" :trailer="trailer" :src='"https://www.youtube.com/embed/" +  trailer.key ' frameborder="0" allowfullscreen>
                 </iframe>
             </figure>
         </div>
@@ -24,10 +22,10 @@
 
                     <h1 class="has-text-weight-bold  is-size-3"> {{ movie.title }}</h1>
 
-                    <span class="is-size-5"><i class="fa fa-star star">
+                    <span><i class="fa fa-star star is-size-6">
                             {{ movie.vote_average }} </i> | Released: {{ movie.release_date }} |
                         <span v-for="genre in movie.genres" :key="genre.id" :genre="genre">
-                            {{ "," + genre.name }}
+                            {{ " | " + genre.name }}
                         </span>
                     </span>
                     <p class="mt-5 is-size-5 has-text-light-grey">
@@ -44,8 +42,8 @@
                         <button class="modal-close is-large" aria-label="close" @click="close"></button>
                     </div>
                     <div>
-                        <button class="button trailer_btn my-3" @click="showModal">
-                            <i class="fa fa-play-circle"> </i>Play Trailer
+                        <button class="button has-background-black-bis has-text-light my-3" @click="showModal">
+                            <i class="fa fa-play-circle"> Trailer</i>
                         </button>
                     </div>
                 </div>

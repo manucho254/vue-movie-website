@@ -95,7 +95,7 @@ input {
 }
 
 .imageSize {
-    width: 600px;
+    width: 300px;
     height: 300px; 
 }
 

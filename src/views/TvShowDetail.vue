@@ -2,23 +2,18 @@
 <div class="series-detail">
     <div class="container">
         <h1 class="has-text-weight-bold has-text-dark is-size-5 mb-3"> {{ series.name }}</h1>
-        <div class="box">
+        <div class="card">
             <figure class="image is-16by9">
-                <!-- <iframe class="has-ratio" width="640" height="100"  
-                  :src='"https://www.2embed.ru/embed/tmdb/tv?id=" + $route.params.id + "&s=1&e=1"'
-                  frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin"
-                  referrerpolicy="same-origin">
-                </iframe> -->
-                <iframe class="has-ratio" width="640" height="360" v-for="trailer in trailers" :key="trailer.id" :trailer="trailer" :src='"https://www.youtube.com/embed/" +  trailer.key ' frameborder="0" allowfullscreen>
+                <iframe class="has-ratio" width="640" height="100" :src='link' frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
                 </iframe>
             </figure>
         </div>
         <select class="dropdown" v-model="seasons">
-            <option  id="seasons" :key="season.id" v-for="season in series.number_of_seasons" :value="season" v-on:click="alert()">Season {{ season }}</option>
+            <option selected id="seasons" :key="season.id" v-for="season in series.number_of_seasons" :value="season" v-on:click="getEmbed()">Season {{ season }}</option>
         </select>
 
-         <select class="dropdown" v-model="episodes">
-            <option :key="episode.id" v-for="episode in seasonAndepisodes" :episode="episode" :value="episode.episode_number">Episode {{ episode.episode_number }}</option>
+        <select class="dropdown" v-model="episodes">
+            <option :key="episode.id" v-for="episode in seasonAndepisodes" :episode="episode" :value="episode.episode_number" v-on:click="getEmbed()">Episode {{ episode.episode_number }}</option>
         </select>
 
         <div class="box has-background-dark">
@@ -33,10 +28,10 @@
                 <div class="ml-5 has-text-light p-4">
                     <h1 class="has-text-weight-bold is-size-3"> {{ series.name }}</h1>
 
-                    <span class="is-size-5">Rating<i class="fa fa-star star"></i>
-                        {{ series.vote_average }}| Released: {{ series.first_air_date }} |
+                    <span>Rating<i class="fa fa-star star is-size-6">
+                         {{ series.vote_average }}</i>| Released: {{ series.first_air_date }} |
                         <span v-for="genre in series.genres" :key="genre.id" :genre="genre">
-                            {{ "," + genre.name }}
+                            {{ "|" + genre.name }}
                         </span>
                     </span>
 
@@ -65,31 +60,30 @@
                         <button class="modal-close is-large" aria-label="close" @click="close"></button>
                     </div>
                     <div>
-                        <button class="button trailer_btn has-text-light my-3" @click="showModal">
-                            <i class="fa fa-play-circle "> </i>Play Trailer
+                        <button class="button has-background-black-bis has-text-light my-3" @click="showModal">
+                            <i class="fa fa-play-circle "> Trailer</i>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="box has-background-dark has-text-light is-hidden-touch">
-          <h1 class="has-text-weight-bold mt-3 is-size-3"> Cast</h1>
+            <h1 class="has-text-weight-bold mt-3 is-size-3"> Cast</h1>
             <hr>
-                <div class="columns is-multiline mt-3"> 
-                    <div class="column is-1" :key="cast.id" v-for="cast in credits">
-                      <figure class="image is-12by5">
+            <div class="columns is-multiline mt-3">
+                <div class="column is-1" :key="cast.id" v-for="cast in credits">
+                    <figure class="image is-12by5">
                         <div v-if="cast.profile_path != null">
-                            <img class="is-mobile" 
-                            :src="'https://image.tmdb.org/t/p/w1280' + cast.profile_path" alt="movie image">
+                            <img class="is-mobile" :src="'https://image.tmdb.org/t/p/w1280' + cast.profile_path" alt="movie image">
                         </div>
                         <div v-else>
-                           <img class="is-hidden-touch" src="@/assets/no-image.jpg" alt="black image">
+                            <img class="is-hidden-touch" src="@/assets/no-image.jpg" alt="black image">
                         </div>
-                      </figure>
-                        <p> {{ cast.name + "|" }} </p>
-                    </div>
+                    </figure>
+                    <p> {{ cast.name + "|" }} </p>
                 </div>
-         </div>
+            </div>
+        </div>
     </div>
 </div>
 </template>
@@ -109,7 +103,8 @@ export default {
             season: 1,
             credits: [],
             seasons: null,
-            episodes: null
+            episodes: null,
+            link: ''
         }
     },
     mounted() {
@@ -117,6 +112,7 @@ export default {
         this.getSeriesTrailer(this.$route.params.id)
         this.getSeasonEpisodes(this.$route.params.id, this.season)
         this.getCredits(this.$route.params.id)
+        this.getEmbed()
     },
     methods: {
         async fetchSeries(seriesID) {
@@ -164,9 +160,14 @@ export default {
                     console.log(error)
                 })
         },
-        alert() {
-            console.log(this.seasons)
-            console.log(this.episodes)
+        getEmbed() {
+            if (this.seasons === null && this.episodes === null) {
+                this.seasons = 1
+                this.episodes = 1
+                this.link = `https://www.2embed.ru/embed/tmdb/tv?id=${this.$route.params.id}&s=${this.seasons}&e=${this.episodes}`
+            }else {
+                this.link = `https://www.2embed.ru/embed/tmdb/tv?id=${this.$route.params.id}&s=${this.seasons}&e=${this.episodes}`
+            }
         },
         showModal() {
             this.showModalflag = true;
@@ -180,7 +181,7 @@ export default {
 
 <style scoped>
 .star {
-    color: rgb(219, 192, 18);
+    color: rgb(218, 171, 42);
 }
 
 .dropdown {
@@ -197,5 +198,4 @@ export default {
     margin: 1rem;
     text-align: center;
 }
-
 </style>
