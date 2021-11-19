@@ -10,11 +10,11 @@
             </figure>
         </div>
         <select class="dropdown" v-model="seasons">
-            <option selected id="seasons" :key="season.id" v-for="season in series.number_of_seasons" :value="season" v-on:click="getEmbed()">Season {{ season }}</option>
+            <option selected id="seasons" :key="season.id" v-for="season in series.number_of_seasons" :value="season" v-on:click="getVideoEmbed()">Season {{ season }}</option>
         </select>
 
         <select class="dropdown" v-model="episodes">
-            <option :key="episode.id" v-for="episode in seasonAndepisodes" :episode="episode" :value="episode.episode_number" v-on:click="getEmbed()">Episode {{ episode.episode_number }}</option>
+            <option :key="episode.id" v-for="episode in seasonAndepisodes" :episode="episode" :value="episode.episode_number" v-on:click="getVideoEmbed()">Episode {{ episode.episode_number }}</option>
         </select>
 
         <div class="box has-background-dark">
@@ -113,7 +113,7 @@ export default {
         this.getSeriesTrailer(this.$route.params.id)
         this.getSeasonEpisodes(this.$route.params.id, this.season)
         this.getCredits(this.$route.params.id)
-        this.getEmbed()
+        this.getVideoEmbed()
     },
     methods: {
         async fetchSeries(seriesID) {
@@ -161,7 +161,7 @@ export default {
                     console.log(error)
                 })
         },
-        getEmbed() {
+        getVideoEmbed() {
             if (this.seasons === null && this.episodes === null) {
                 this.seasons = 1
                 this.episodes = 1

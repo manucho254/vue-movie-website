@@ -29,8 +29,6 @@ export default {
     },
     mounted() {
         this.getTrending()
-        this.getPopularMovies()
-        this.getPopularTvShows()
     },
     methods: {
         async getTrending() {
