@@ -6,7 +6,8 @@
             <figure class="image is-16by9">
                 <iframe class="has-ratio" width="640" height="100" 
                 :src='"https://www.2embed.ru/embed/tmdb/movie?id=" + $route.params.id' 
-                frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
+                frameborder="0" allowfullscreen>
+                <!--sandbox="allow-scripts allow-same-origin"-->
                 </iframe>
             </figure>
         </div>
@@ -49,8 +50,10 @@
                 </div>
             </div>
         </div>
+
+        <h1 class="has-text-weight-bold is-size-3 is-hidden-touch"> Cast : </h1>
         <div class="box has-background-dark has-text-light is-hidden-touch">
-          <h1 class="has-text-weight-bold mt-3 is-size-3"> Cast : </h1>
+
                 <div class="columns is-multiline mt-3"> 
                     <div class="column is-1" :key="cast.id" v-for="cast in credits">
                       <figure class="image is-12by5">
@@ -62,7 +65,7 @@
                            <img class="is-hidden-touch cast-images" src="@/assets/no-image.jpg" alt="black image">
                         </div>
                       </figure>
-                        <p> {{ cast.name + "," }} </p>
+                        <p class="has-text-weight-bold has-text-centered"> {{ cast.name }} </p>
                     </div>
                 </div>
          </div>

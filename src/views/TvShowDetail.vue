@@ -4,8 +4,9 @@
         <h1 class="has-text-weight-bold has-text-dark is-size-5 mb-3"> {{ series.name }}</h1>
         <div class="card">
             <figure class="image is-16by9">
-                <iframe class="has-ratio" width="640" height="100" :src='link' frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
+                <iframe class="has-ratio" width="640" height="100" :src='link' frameborder="0" allowfullscreen>
                 </iframe>
+                <!--sandbox="allow-scripts allow-same-origin"-->
             </figure>
         </div>
         <select class="dropdown" v-model="seasons">
@@ -67,8 +68,8 @@
                 </div>
             </div>
         </div>
-        <div class="box has-background-dark has-text-light is-hidden-touch">
-            <h1 class="has-text-weight-bold mt-3 is-size-3"> Cast : </h1>
+            <h1 class="has-text-weight-bold is-size-3 is-hidden-touch"> Cast : </h1>
+        <div class="box is-flex has-background-dark has-text-light is-hidden-touch">
             <div class="columns is-multiline mt-3">
                 <hr>
                 <div class="column is-1" :key="cast.id" v-for="cast in credits">
@@ -80,7 +81,7 @@
                             <img class="is-hidden-touch cast-images" src="@/assets/no-image.jpg" alt="black image">
                         </div>
                     </figure>
-                    <p> {{ cast.name + "|" }} </p>
+                    <p class="has-text-weight-bold has-text-centered"> {{ cast.name }} </p>
                 </div>
             </div>
         </div>
