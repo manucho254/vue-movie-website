@@ -3,17 +3,17 @@
     <nav class="navbar is-dark p-5">
         <div class="navbar-brand">
             <router-link to="/" class="navbar-item hero">
-               <h3 class="h2 is-success"><span>Movie</span>Time</h3>
+                <h3 class="h2 is-success"><span>Movie</span>Time</h3>
             </router-link>
             <a class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu" @click="showMobileMenu = !showMobileMenu">
-              <div v-if="!showMobileMenu">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-              </div>
-              <div class="has-text-centered is-size-4 mt-2" v-else>
-                <i class="fas fa-times"></i>
-              </div>
+                <div v-if="!showMobileMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </div>
+                <div class="has-text-centered is-size-4 mt-2" v-else>
+                    <i class="fas fa-times"></i>
+                </div>
             </a>
         </div>
         <div class="navbar-menu has-background-dark is-hoverable" id="navbar-menu" v-bind:class="{'is-active': showMobileMenu}">
@@ -138,6 +138,7 @@ input {
         width: 180px;
         height: 480px;
     }
+
     .columns {
         display: flex;
         flex-wrap: wrap;
@@ -146,15 +147,17 @@ input {
     .input-size {
         width: 200px;
     }
+
     .dropdown {
         width: 100px;
     }
+
     .resize-card-phone {
         width: 100%;
         padding: 0;
         margin: 0;
     }
-    
+
 }
 
 .green {

@@ -1,7 +1,7 @@
 <template>
 <div class="series-detail">
     <div class="container">
-       <h1 class="has-text-weight-bold has-text-black is-size-4 has-text-centered"> {{ series.name }} </h1>
+        <h1 class="has-text-weight-bold has-text-black is-size-4 has-text-centered"> {{ series.name }} </h1>
         <select class="dropdown" v-model="seasons" @change="seasonSelected($event)">
             <option selected id="seasons" :key="season.id" v-for="season in series.number_of_seasons" :value="season">Season {{ season }} </option>
         </select>
@@ -38,7 +38,7 @@
                     <p class="mt-5 is-size-5 has-text-light-grey is-flex is-justify-content-center">
                         {{ series.overview }}
                     </p>
-                    
+
                     <h1 class="has-text-weight-bold has-text- mt-3 is-size-5">Creators</h1>
 
                     <div class="is-flex mt-3">
@@ -186,5 +186,4 @@ export default {
 .star {
     color: rgb(77, 180, 36);
 }
-
 </style>
