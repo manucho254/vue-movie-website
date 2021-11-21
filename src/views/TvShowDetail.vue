@@ -9,12 +9,15 @@
                 <!--sandbox="allow-scripts allow-same-origin"-->
             </figure>
         </div>
-        <select class="dropdown" v-model="seasons">
-            <option selected id="seasons" :key="season.id" v-for="season in series.number_of_seasons" :value="season" v-on:click="getVideoEmbed()">Season {{ season }}</option>
+        
+        <select class="dropdown" v-model="seasons" @change="seasonSelected($event)">
+            <option selected id="seasons" :key="season.id" v-for="season in series.number_of_seasons" :value="season" >Season {{ season }}</option>
         </select>
 
-        <select class="dropdown" v-model="episodes">
-            <option :key="episode.id" v-for="episode in seasonAndepisodes" :episode="episode" :value="episode.episode_number" v-on:click="getVideoEmbed()">Episode {{ episode.episode_number }}</option>
+        <!-- v-on:click="getVideoEmbed()" -->
+        
+        <select class="dropdown" v-model="episodes" @change="episodeSelected($event)">
+            <option :key="episode.id" v-for="episode in seasonAndepisodes" :episode="episode" :value="episode.episode_number">Episode {{ episode.episode_number }}</option>
         </select>
 
         <div class="box has-background-dark">
@@ -101,17 +104,16 @@ export default {
             series: [],
             trailers: [],
             seasonAndepisodes: [],
-            season: 1,
             credits: [],
-            seasons: null,
-            episodes: null,
-            link: ''
+            seasons: 1,
+            episodes: 1,
+            link: '',
         }
     },
     mounted() {
         this.fetchSeries(this.$route.params.id)
         this.getSeriesTrailer(this.$route.params.id)
-        this.getSeasonEpisodes(this.$route.params.id, this.season)
+        this.getSeasonEpisodes(this.$route.params.id, this.seasons)
         this.getCredits(this.$route.params.id)
         this.getVideoEmbed()
     },
@@ -141,11 +143,12 @@ export default {
                 })
             this.$store.commit('setIsLoading', false)
         },
-        async getSeasonEpisodes(seriesID, seasonId) {
+        async getSeasonEpisodes(seriesID) {
             await axios
-                .get(`/tv/${seriesID}/season/${seasonId}?api_key=${env.apikey}`)
+                .get(`/tv/${seriesID}/season/${this.seasons}?api_key=${env.apikey}`)
                 .then(response => {
                     this.seasonAndepisodes = response.data.episodes
+                    console.log(this.seasonAndepisodes)
                 })
                 .catch(error => {
                     console.log(error)
@@ -162,13 +165,17 @@ export default {
                 })
         },
         getVideoEmbed() {
-            if (this.seasons === null && this.episodes === null) {
-                this.seasons = 1
-                this.episodes = 1
-                this.link = `https://www.2embed.ru/embed/tmdb/tv?id=${this.$route.params.id}&s=${this.seasons}&e=${this.episodes}`
-            } else {
-                this.link = `https://www.2embed.ru/embed/tmdb/tv?id=${this.$route.params.id}&s=${this.seasons}&e=${this.episodes}`
-            }
+            this.link = `https://www.2embed.ru/embed/tmdb/tv?id=${this.$route.params.id}&s=${this.seasons}&e=${this.episodes}`
+        },
+        seasonSelected(event) {
+            this.seasons = event.target.value;
+            this.getSeasonEpisodes(this.$route.params.id, this.seasons)
+            this.episodes = 1
+            this.link = `https://www.2embed.ru/embed/tmdb/tv?id=${this.$route.params.id}&s=${this.seasons}&e=${this.episodes}`
+        },
+        episodeSelected(event) {
+            this.episodes = event.target.value;
+            this.link = `https://www.2embed.ru/embed/tmdb/tv?id=${this.$route.params.id}&s=${this.seasons}&e=${this.episodes}`
         },
         showModal() {
             this.showModalflag = true;
