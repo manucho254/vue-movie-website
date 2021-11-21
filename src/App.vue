@@ -16,20 +16,20 @@
                 </div>
             </a>
         </div>
-        <div class="navbar-menu has-background-dark is-hoverable" id="navbar-menu" v-bind:class="{'is-active': showMobileMenu}">
+        <div class="navbar-menu is-hoverable" id="navbar-menu" v-bind:class="{'is-active': showMobileMenu}">
             <div class="navbar-end">
-                <router-link to="/" class="navbar-item has-text-light">Home</router-link>
-                <router-link to="/tv-shows/" class="navbar-item has-text-light">Tv-shows</router-link>
-                <router-link to="/movies/" class="navbar-item has-text-light">Movies</router-link>
+                <router-link to="/" class="navbar-item">Home</router-link>
+                <router-link to="/tv-shows/" class="navbar-item ">Tv-shows</router-link>
+                <router-link to="/movies/" class="navbar-item">Movies</router-link>
                 <div class="navbar-start">
                     <div class="navbar-item">
                         <form method="get" action="/search/">
                             <div class="field has-addons">
-                                <div class="contol">
-                                    <input type="text" class="input border-none is-rounded input-size" placeholder="what are you looking for?" name="query" v-model="search">
+                                <div class="control">
+                                    <input type="text" class="input border-none is-rounded input-size" placeholder="what do you want to watch?" name="query" v-model="search">
                                 </div>
                                 <div class="control">
-                                    <input class="button is-active is-dark" type="submit" value="Search">
+                                    <input class="button has-background-black is-dark is-rounded" type="submit" value="Search">
                                 </div>
                             </div>
                         </form>
