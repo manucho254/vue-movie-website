@@ -6,9 +6,14 @@
                <h3 class="h2 is-success"><span>Movie</span><i class="fa fa-video-camera has-text-light"></i>Time</h3>
             </router-link>
             <a class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu" @click="showMobileMenu = !showMobileMenu">
+              <div v-if="!showMobileMenu">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
+              </div>
+              <div class="has-text-centered is-size-4 mt-2" v-else>
+                <i class="fas fa-times"></i>
+              </div>
             </a>
         </div>
         <div class="navbar-menu has-background-dark" id="navbar-menu" v-bind:class="{'is-active': showMobileMenu}">
