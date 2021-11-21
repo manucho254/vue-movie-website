@@ -165,7 +165,6 @@ export default {
         seasonSelected(event) {
             this.seasons = event.target.value;
             this.getSeasonEpisodes(this.$route.params.id, this.seasons)
-            this.episodes = 1
             this.link = `https://www.2embed.ru/embed/tmdb/tv?id=${this.$route.params.id}&s=${this.seasons}&e=${this.episodes}`
         },
         episodeSelected(event) {
