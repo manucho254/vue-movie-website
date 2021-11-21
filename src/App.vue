@@ -81,7 +81,7 @@ export default {
     color: rgb(195, 224, 195);
 }
 
-i {
+.i {
     color: rgb(195, 224, 195);
 }
 
@@ -133,7 +133,6 @@ input {
         width: 180px;
         height: 480px;
     }
-
     .columns {
         display: flex;
         flex-wrap: wrap;
@@ -145,6 +144,12 @@ input {
     .dropdown {
         width: 100px;
     }
+    .resize-card-phone {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    
 }
 
 .green {

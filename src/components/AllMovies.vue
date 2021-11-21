@@ -1,5 +1,5 @@
 <template>
-<div class="column is-3 is-mobile">
+<div class="column is-3">
     <router-link :to="'/movie/' + movie.id">
         <div class="card has-text-centered">
             <div class="card-image">

@@ -2,19 +2,16 @@
 <div class="series-detail">
     <div class="container">
         <h1 class="has-text-weight-bold has-text-dark is-size-5 mb-3"> {{ series.name }}</h1>
-        <div class="card">
+        <div class="card resize-card-phone">
             <figure class="image is-16by9">
-                <iframe class="has-ratio" width="640" height="100" :src='link' frameborder="0" allowfullscreen>
+                <iframe class="has-ratio" width="640" height="100" :src='link' frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
                 </iframe>
-                <!--sandbox="allow-scripts allow-same-origin"-->
             </figure>
         </div>
         
         <select class="dropdown" v-model="seasons" @change="seasonSelected($event)">
             <option selected id="seasons" :key="season.id" v-for="season in series.number_of_seasons" :value="season" >Season {{ season }}</option>
         </select>
-
-        <!-- v-on:click="getVideoEmbed()" -->
         
         <select class="dropdown" v-model="episodes" @change="episodeSelected($event)">
             <option :key="episode.id" v-for="episode in seasonAndepisodes" :episode="episode" :value="episode.episode_number">Episode {{ episode.episode_number }}</option>
