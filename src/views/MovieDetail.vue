@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        <h1 class="has-text-weight-bold is-size-3 is-hidden-touch"> Cast : </h1>
+        <h1 class="has-text-weight-bold is-size-4 is-hidden-touch has-text-black mb-2"> Cast : </h1>
         <div class="box has-background-dark has-text-light is-hidden-touch">
 
             <div class="columns is-multiline mt-3">

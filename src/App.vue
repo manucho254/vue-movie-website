@@ -3,7 +3,7 @@
     <nav class="navbar is-dark p-5">
         <div class="navbar-brand">
             <router-link to="/" class="navbar-item hero">
-               <h3 class="h2 is-success"><span>Movie</span><i class="fa fa-video-camera has-text-light"></i>Time</h3>
+               <h3 class="h2 is-success"><span>Movie</span>Time</h3>
             </router-link>
             <a class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu" @click="showMobileMenu = !showMobileMenu">
               <div v-if="!showMobileMenu">
@@ -16,7 +16,7 @@
               </div>
             </a>
         </div>
-        <div class="navbar-menu has-background-dark" id="navbar-menu" v-bind:class="{'is-active': showMobileMenu}">
+        <div class="navbar-menu has-background-dark is-hoverable" id="navbar-menu" v-bind:class="{'is-active': showMobileMenu}">
             <div class="navbar-end">
                 <router-link to="/" class="navbar-item has-text-light">Home</router-link>
                 <router-link to="/tv-shows/" class="navbar-item has-text-light">Tv-shows</router-link>
@@ -120,7 +120,7 @@ input {
 
 .dropdown {
     position: relative;
-    width: 150px;
+    width: 200px;
     height: 30px;
     background-color: black;
     color: white;

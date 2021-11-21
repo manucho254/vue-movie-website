@@ -1,12 +1,11 @@
 <template>
 <div class="series-detail">
     <div class="container">
-        <h1 class="has-text-weight-bold has-text-dark is-size-5 mb-3"> {{ series.name }}</h1>
-
+       <h1 class="has-text-weight-bold has-text-black is-size-4 has-text-centered"> {{ series.name }} </h1>
         <select class="dropdown" v-model="seasons" @change="seasonSelected($event)">
-            <option selected id="seasons" :key="season.id" v-for="season in series.number_of_seasons" :value="season" >Season {{ season }}</option>
+            <option selected id="seasons" :key="season.id" v-for="season in series.number_of_seasons" :value="season">Season {{ season }} </option>
         </select>
-        
+
         <select class="dropdown" v-model="episodes" @change="episodeSelected($event)">
             <option :key="episode.id" v-for="episode in seasonAndepisodes" :episode="episode" :value="episode.episode_number">Episode {{ episode.episode_number }}</option>
         </select>
@@ -36,10 +35,10 @@
                         </span>
                     </span>
 
-                    <p class="mt-5 is-size-5 has-text-light-grey has-text-centered">
+                    <p class="mt-5 is-size-5 has-text-light-grey is-flex is-justify-content-center">
                         {{ series.overview }}
                     </p>
-                    <hr>
+                    
                     <h1 class="has-text-weight-bold has-text- mt-3 is-size-5">Creators</h1>
 
                     <div class="is-flex mt-3">
@@ -68,10 +67,9 @@
                 </div>
             </div>
         </div>
-        <h1 class="has-text-weight-bold is-size-3 is-hidden-touch"> Cast : </h1>
+        <h1 class="has-text-weight-bold is-size-4 mb-2 is-hidden-touch has-text-black"> Cast : </h1>
         <div class="box is-flex has-background-dark has-text-light is-hidden-touch">
             <div class="columns is-multiline mt-3">
-                <hr>
                 <div class="column is-1" :key="cast.id" v-for="cast in credits">
                     <figure class="image is-12by5">
                         <div v-if="cast.profile_path != null">
@@ -188,4 +186,5 @@ export default {
 .star {
     color: rgb(77, 180, 36);
 }
+
 </style>
