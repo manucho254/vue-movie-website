@@ -154,7 +154,7 @@ input {
     }
 
     .dropdown {
-        width: 130px;
+        width: 100px;
         text-align: center;
     }
 
