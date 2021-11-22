@@ -1,8 +1,10 @@
 <template>
-<div class="container">
-    <span class="is-uppercase mb-5 is-size-4 has-text-black-bis has-text-weight-bold">Results for {{ query }}</span>
-    <div class="columns is-multiline mt-2">
-        <Search v-for="movie in movies" :key="movie.id" :movie="movie" />
+<div class="search">
+    <div class="container">
+        <span class="is-uppercase mb-5 is-size-4 has-text-black-bis has-text-weight-bold">Results for {{ query }}</span>
+        <div class="columns is-multiline mt-2">
+            <Search v-for="movie in movies" :key="movie.id" :movie="movie" />
+        </div>
     </div>
 </div>
 </template>
