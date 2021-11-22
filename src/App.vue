@@ -156,6 +156,7 @@ input {
     .dropdown {
         width: 100px;
         text-align: center;
+        margin: 1rem;
     }
 
     .resize-card-phone {
