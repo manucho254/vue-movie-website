@@ -11,7 +11,8 @@
         </select>
         <div class="card resize-card-phone mb-5">
             <figure class="image is-16by9">
-                <iframe class="has-ratio" width="640" height="100" :src='link' frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
+                <!-- sandbox="allow-scripts allow-same-origin" -->
+                <iframe class="has-ratio" width="640" height="100" :src='link' frameborder="0" allowfullscreen>
                 </iframe>
             </figure>
         </div>
