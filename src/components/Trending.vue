@@ -13,7 +13,7 @@
                                 {{ movie.first_air_date }} {{ movie.release_date }}
                             </h3>
                         </div>
-                        <img :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path" alt="movie image">
+                        <img class="img" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path" alt="movie image">
                     </figure>
                 </div>
                 <div class="card-content overflow is-flex is-justify-content-space-between">

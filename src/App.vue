@@ -90,6 +90,11 @@ export default {
     color: rgb(195, 224, 195);
 }
 
+.img {
+    width: 100%;
+    height: 50px;
+}
+
 input {
     background-color: rgb(195, 224, 195);
 }
@@ -122,7 +127,7 @@ input {
     position: relative;
     width: 200px;
     height: 30px;
-    background-color: black;
+    background-color: rgb(58, 61, 58);
     color: white;
     border: hidden;
     border-radius: 20px;
@@ -149,7 +154,8 @@ input {
     }
 
     .dropdown {
-        width: 100px;
+        width: 130px;
+        text-align: center;
     }
 
     .resize-card-phone {
