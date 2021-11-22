@@ -1,13 +1,13 @@
 <template>
 <div class="series-detail">
     <div class="container">
-        <h1 class="has-text-weight-bold has-text-black is-size-3 has-text-centered"> {{ series.name }} </h1>
+        <h1 class="has-text-weight-bold has-text-dark is-size-3 has-text-start"> {{ series.name }} </h1>
         <select class="dropdown" v-model="seasons" @change="seasonSelected($event)">
-            <option selected id="seasons" :key="season.id" v-for="season in series.number_of_seasons" :value="season">Season {{ season }} </option>
+            <option class="dropdown" selected id="seasons" :key="season.id" v-for="season in series.number_of_seasons" :value="season">Season {{ season }} </option>
         </select>
 
         <select class="dropdown" v-model="episodes" @change="episodeSelected($event)">
-            <option :key="episode.id" v-for="episode in seasonAndepisodes" :episode="episode" :value="episode.episode_number">Episode {{ episode.episode_number }}</option>
+            <option class="dropdown" :key="episode.id" v-for="episode in seasonAndepisodes" :episode="episode" :value="episode.episode_number">Episode {{ episode.episode_number }}</option>
         </select>
         <div class="card resize-card-phone mb-5">
             <figure class="image is-16by9">
