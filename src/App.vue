@@ -138,6 +138,10 @@ input {
     text-align: center;
 }
 
+ .resize-card-phone {
+        width: 100%;
+}
+
 @media (max-width: 768px) {
     .card-c {
         width: 180px;
@@ -159,11 +163,7 @@ input {
         margin: 1rem;
     }
 
-    .resize-card-phone {
-        width: 100%;
-        padding: 0;
-        margin: 0;
-    }
+   
 
 }
 
