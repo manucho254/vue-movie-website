@@ -13,10 +13,10 @@
                         </h3>
                     </div>
                     <div v-if="movie.poster_path != null">
-                        <img class="image" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
+                        <img :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
                     </div>
                     <div v-else>
-                        <img  class="image" src="@/assets/no-image.jpg" alt="no image found">
+                        <img src="@/assets/no-image.jpg" alt="no image found">
                     </div>
                 </figure>
             </div>
@@ -30,7 +30,7 @@
                     {{ genreTypeName(genre, index) }}
                 </h5>
             </footer> -->
-        </div>
+      </div>
     </router-link>
 </div>
 </template>
