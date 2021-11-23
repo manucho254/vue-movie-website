@@ -50,7 +50,6 @@ export default {
             await axios.get(`/discover/tv?sort_by=popularity.desc&api_key=${env.apikey}`)
                 .then(response => {
                     this.popularMovies = response.data.results
-                    console.log(this.popularMovies)
                 })
                 .catch(error => {
                     console.log(error)
@@ -60,7 +59,6 @@ export default {
             await axios.get(`/discover/movie?sort_by=popularity.desc&api_key=${env.apikey}`)
                 .then(response => {
                     this.popularTvShows = response.data.results
-                    console.log(this.popularTvShows)
                 })
                 .catch(error => {
                     console.log(error)

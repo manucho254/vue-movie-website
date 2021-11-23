@@ -144,7 +144,6 @@ export default {
                 .get(`/tv/${seriesID}/season/${this.seasons}?api_key=${env.apikey}`)
                 .then(response => {
                     this.seasonAndepisodes = response.data.episodes
-                    console.log(this.seasonAndepisodes)
                 })
                 .catch(error => {
                     console.log(error)
