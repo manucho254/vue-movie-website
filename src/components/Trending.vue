@@ -13,7 +13,7 @@
                                 {{ movie.first_air_date }} {{ movie.release_date }}
                             </h3>
                         </div>
-                        <img class="img" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path" alt="movie image">
+                        <img  class="image" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path" alt="movie image">
                     </figure>
                 </div>
                 <div class="card-content overflow is-flex is-justify-content-space-between">
@@ -29,7 +29,7 @@
                 <div class="card-image">
                     <figure class="image is-4by8 is-grey">
                         <h3 class="is-capitalized is-black has-text-weight-bold m-2">{{ movie.media_type }}</h3>
-                        <img :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path" alt="movie image">
+                        <img  class="image" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path" alt="movie image">
                     </figure>
                 </div>
                 <div class="card-content overflow is-flex is-justify-content-space-between">

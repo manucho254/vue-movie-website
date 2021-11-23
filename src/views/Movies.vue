@@ -2,7 +2,7 @@
 <div class="Movies">
     <div class="container ">
         <span class="is-uppercase mb-5 is-size-4 has-text-black-bis has-text-weight-bold">Popular Movies</span>
-        <div class="columns is-multiline mt-2 is-touch">
+        <div class="columns is-multiline mt-2">
             <AllMovies v-for="movie in movies" :key="movie.id" :movie="movie" :genres="genres" />
         </div>
         <nav class="pagination is-centered p-2" role="navigation" aria-label="pagination">

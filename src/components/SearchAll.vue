@@ -14,10 +14,10 @@
                             </h3>
                         </div>
                         <div v-if="movie.poster_path != null">
-                            <img :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
+                            <img  class="image" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
                         </div>
                         <div v-else>
-                            <img src="@/assets/no-image.jpg" alt="no image found">
+                            <img  class="image" src="@/assets/no-image.jpg" alt="no image found">
                         </div>
                     </figure>
                 </div>
@@ -35,10 +35,10 @@
                     <figure class="image is-4by8 is-grey">
                         <h3 class="is-capitalized is-black has-text-weight-bold m-2">{{ movie.media_type }}</h3>
                         <div v-if="movie.poster_path != null">
-                            <img :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
+                            <img  class="image" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
                         </div>
                         <div v-else>
-                            <img src="@/assets/no-image.jpg" alt="no image found">
+                            <img  class="image" src="@/assets/no-image.jpg" alt="no image found">
                         </div>
                     </figure>
                 </div>
