@@ -3,16 +3,16 @@
     <div class="container ">
         <h1 class="has-text-weight-bold has-text-dark is-size-3 has-text-start"> {{ series.name }} </h1>
         <select class="dropdown" v-model="seasons" @change="seasonSelected($event)">
-            <option class="dropdown" selected id="seasons" :key="season.id" v-for="season in series.number_of_seasons" :value="season">Season {{ season }} </option>
+            <option class="dropdown px-2" selected id="seasons" :key="season.id" v-for="season in series.number_of_seasons" :value="season">Season {{ season }} </option>
         </select>
 
         <select class="dropdown" v-model="episodes" @change="episodeSelected($event)">
-            <option class="dropdown" :key="episode.id" v-for="episode in seasonAndepisodes" :episode="episode" :value="episode.episode_number">Episode {{ episode.episode_number }}</option>
+            <option class="dropdown px-2" :key="episode.id" v-for="episode in seasonAndepisodes" :episode="episode" :value="episode.episode_number">Episode {{ episode.episode_number }}</option>
         </select>
         <div class="card mb-5">
             <figure class="image is-16by9">
                 <!-- sandbox="allow-scripts allow-same-origin" -->
-                <iframe class="has-ratio" width="640" height="100" :src='link' frameborder="0" allowfullscreen>
+                <iframe class="has-ratio" width="640" height="100" sandbox="allow-scripts allow-same-origin" :src='link' frameborder="0" allowfullscreen>
                 </iframe>
             </figure>
         </div>
