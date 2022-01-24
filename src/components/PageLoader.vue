@@ -1,5 +1,5 @@
 <template>
-  <div class="page-loader" v-if="!isloaded">
+  <div class="page-loader" v-if="!pageLoaderIsloaded">
     <div class="cube"></div>
     <div class="cube"></div>
     <div class="cube"></div>
@@ -11,13 +11,13 @@
   export default {
     data: () => {
       return {
-        isloaded: false
+        pageLoaderIsloaded: false,
       }
     },
     mounted() {
       document.onreadystatechange = () => {
         if (document.readyState == "complete") { 
-          this.isloaded = true;
+          this.pageLoaderIsloaded = true;
         } 
       }
     },
