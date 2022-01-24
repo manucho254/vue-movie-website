@@ -25,11 +25,6 @@
                 <h3 class="is-dark has-text-weight-bold">{{ movie.title }}</h3>
                 <h3 class="has-text-weight-bold" :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</h3>
             </div>
-            <!-- <footer class="card-footer p-1 has-text-weight-bold">
-                <h5 :key="genre.id" v-for="(genre, index) in movie.genre_ids">
-                    {{ genreTypeName(genre, index) }}
-                </h5>
-            </footer> -->
       </div>
     </router-link>
 </div>
@@ -55,17 +50,6 @@ export default {
                 return 'red';
             }
         },
-        genreTypeName(genreId, index) {
-            for (const item of this.genres) {
-                if (item.id == genreId) {
-                    if (this.movie.genre_ids.length - 1 == index) {
-                        return item.name;
-                    } else {
-                        return item.name + "|"
-                    }
-                }
-            }
-        }
     }
 
 }

@@ -1,7 +1,7 @@
 <template>
 <div class="movie-detail">
     <div class="container">
-        <h1 class="has-text-weight-bold has-text-dark is-size-3 mb-3"> {{ movie.title }}</h1>
+            <h1 class="has-text-weight-bold has-text-dark is-size-3 mb-3"> {{ movie.title }}</h1>
         <div class="card mb-5">
             <figure class="image is-16by9">
                 <iframe class="has-ratio" width="640" height="100" :src='"https://www.2embed.ru/embed/tmdb/movie?id=" + $route.params.id' frameborder="0" allowfullscreen >

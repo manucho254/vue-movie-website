@@ -25,11 +25,6 @@
                 <h3 class="has-text-weight-bold " :class='changeRatingColor(series.vote_average)'>★ {{ series.vote_average }}
                 </h3>
             </div>
-            <!-- <footer class="card-footer p-2">
-                <span :key="genre.id" v-for="(genre, index) in movie.genre_ids">
-                    {{  genreTypeName(genre, index) }}
-                </span>
-            </footer> -->
         </div>
     </router-link>
 </div>
@@ -58,18 +53,6 @@ export default {
                 return 'red';
             }
         },
-        genreTypeName(genreId, index) {
-            for (const item of this.genres) {
-                if (item.id == genreId) {
-                    if (this.series.genre_ids.length - 1 == index) {
-                        return item.name;
-                    } else {
-                        return item.name + " , "
-                    }
-                }
-            }
-        }
-
     }
 }
 </script>

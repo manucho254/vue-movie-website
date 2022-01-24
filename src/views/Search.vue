@@ -5,8 +5,7 @@
         <div class="columns is-multiline mt-2">
             <Search v-for="movie in movies" :key="movie.id" :movie="movie" />
         </div>
-    </div>
-</div>
+    </div>300</div>
 </template>
 
 <script>

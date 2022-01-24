@@ -1,5 +1,6 @@
 <template>
 <div id="wrapper">
+    <PageLoader />
     <nav class="navbar is-dark p-5">
         <div class="navbar-brand">
             <router-link to="/" class="navbar-item hero">
@@ -58,12 +59,19 @@
 </div>
 </template>
 
+
 <script>
+
+import PageLoader from '@/components/PageLoader'
+
 export default {
     data() {
         return {
             showMobileMenu: false,
         }
+    }, 
+    components: {
+        PageLoader
     }
 }
 </script>
