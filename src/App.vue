@@ -1,43 +1,36 @@
 <template>
 <div id="wrapper">
-    <PageLoader/>
+    <div class="page-loader" v-if="!pageLoaderIsloaded">
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+    </div>
     <nav class="navbar is-dark p-5">
         <div class="navbar-brand">
             <router-link to="/" class="navbar-item hero">
                 <h3 class="h2 is-success"><span>Movie</span>Time</h3>
             </router-link>
-            <!-- <a class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu" @click="showMobileMenu = !showMobileMenu">
-                <div v-if="!showMobileMenu">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </div>
-                <div class="has-text-centered is-size-4 mt-2" v-else>
-                    <i class="fas fa-times"></i>
-                </div>
-            </a> -->
         </div>
-        <!-- <div class="navbar-menu is-hoverable" id="navbar-menu"  v-bind:class="{'is-active': showMobileMenu}">
-            --> <div class="is-flex">
-                    <router-link to="/" class="navbar-item"><h5 class="has-text-light">Home</h5></router-link>
-                    <router-link to="/tv-shows/" class="navbar-item"><h5 class="has-text-light">Tv-shows</h5></router-link>
-                    <router-link to="/movies/" class="navbar-item"><h5 class="has-text-light">Movies</h5></router-link>
-                </div>
-                <div class="navbar-end">
-                    <div class="navbar-item">
-                        <form method="get" action="/search/">
-                            <div class="field has-addons">
-                                <div class="control">
-                                    <input type="text" class="input border-none is-rounded input-size" placeholder="what do you want to watch?" name="query" v-model="search">
-                                </div>
-                                <div class="control">
-                                    <input class="button has-background-black is-dark is-rounded" type="submit" value="Search">
-                                </div>
-                            </div>
-                        </form>
+        <div class="is-flex">
+            <router-link to="/" class="navbar-item"><h5 class="has-text-light">Home</h5></router-link>
+            <router-link to="/tv-shows/" class="navbar-item"><h5 class="has-text-light">Tv-shows</h5></router-link>
+            <router-link to="/movies/" class="navbar-item"><h5 class="has-text-light">Movies</h5></router-link>
+        </div>
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <form method="get" action="/search/">
+                    <div class="field has-addons">
+                        <div class="control">
+                            <input type="text" class="input border-none is-rounded input-size" placeholder="what do you want to watch?" name="query" v-model="search">
+                        </div>
+                        <div class="control">
+                            <input class="button has-background-black is-dark is-rounded" type="submit" value="Search">
+                        </div>
                     </div>
-                </div>
-        <!--</div> -->
+                </form>
+            </div>
+        </div>
     </nav>
 
     <div class="is-loading-bar has-text-centered" v-bind:class="{'is-loading': $store.state.isLoading}">
@@ -62,17 +55,21 @@
 
 <script>
 
-import PageLoader from '@/components/PageLoader'
 
 export default {
     data() {
         return {
             showMobileMenu: false,
+            pageLoaderIsloaded:  false,
         }
-    }, 
-    components: {
-        PageLoader
-    }
+    },
+    mounted() {
+      document.onreadystatechange = () => {
+        if (document.readyState == "complete") { 
+          this.pageLoaderIsloaded = true;
+        } 
+      }
+    },
 }
 </script>
 
@@ -167,9 +164,6 @@ input {
         text-align: center;
         margin: 1rem;
     }
-
-   
-
 }
 
 .green {
@@ -223,4 +217,53 @@ input {
         height: 80px;
     }
 }
+
+$colors: #8CC271, #69BEEB, #F5AA39, #E9643B;
+  // -----------------------------------------------------
+  .page-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #333;
+    z-index: 999;
+  }
+  // -----------------------------------------------------
+  .cube{
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    @for $i from 1 through length($colors) {
+      &:nth-child(#{$i}) {
+        background-color: nth($colors, $i);
+      }
+    }
+    &:first-child {
+      animation: left 1s infinite;
+    }
+    &:last-child {
+      animation: right 1s infinite .5s;
+    }
+  }
+  // -----------------------------------------------------
+  @keyframes left {
+    40% {
+      transform: translateX(-60px);
+    }
+    50% {
+      transform: translateX(0);      
+    }
+  }
+  @keyframes right {
+    40% {
+      transform: translateX(60px);
+    }
+    50% {
+      transform: translateX(0);
+    }
+  }
 </style>
