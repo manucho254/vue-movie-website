@@ -7,7 +7,6 @@
         </div>
         <nav class="pagination p-2 me-4" role="navigation" aria-label="pagination">
             <ul class="pagination-list">
-
                 <li><a class="pagination-previous has-background-black has-text-light" v-on:click="getPreviousPage()">Prev</a></li>
                 <li><a class="pagination-link" aria-label="Goto page 1">{{ currentPage }}</a></li>
                 <li><a class="pagination-next has-background-black has-text-light" v-on:click="getNextPage()">Next</a></li>

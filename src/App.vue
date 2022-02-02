@@ -1,12 +1,12 @@
 <template>
 <div id="wrapper">
-    <PageLoader />
+    <PageLoader/>
     <nav class="navbar is-dark p-5">
         <div class="navbar-brand">
             <router-link to="/" class="navbar-item hero">
                 <h3 class="h2 is-success"><span>Movie</span>Time</h3>
             </router-link>
-            <a class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu" @click="showMobileMenu = !showMobileMenu">
+            <!-- <a class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu" @click="showMobileMenu = !showMobileMenu">
                 <div v-if="!showMobileMenu">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -15,14 +15,15 @@
                 <div class="has-text-centered is-size-4 mt-2" v-else>
                     <i class="fas fa-times"></i>
                 </div>
-            </a>
+            </a> -->
         </div>
-        <div class="navbar-menu is-hoverable" id="navbar-menu" v-bind:class="{'is-active': showMobileMenu}">
-            <div class="navbar-end">
-                <router-link to="/" class="navbar-item">Home</router-link>
-                <router-link to="/tv-shows/" class="navbar-item ">Tv-shows</router-link>
-                <router-link to="/movies/" class="navbar-item">Movies</router-link>
-                <div class="navbar-start">
+        <!-- <div class="navbar-menu is-hoverable" id="navbar-menu"  v-bind:class="{'is-active': showMobileMenu}">
+            --> <div class="is-flex">
+                    <router-link to="/" class="navbar-item"><h5 class="has-text-light">Home</h5></router-link>
+                    <router-link to="/tv-shows/" class="navbar-item"><h5 class="has-text-light">Tv-shows</h5></router-link>
+                    <router-link to="/movies/" class="navbar-item"><h5 class="has-text-light">Movies</h5></router-link>
+                </div>
+                <div class="navbar-end">
                     <div class="navbar-item">
                         <form method="get" action="/search/">
                             <div class="field has-addons">
@@ -36,8 +37,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
+        <!--</div> -->
     </nav>
 
     <div class="is-loading-bar has-text-centered" v-bind:class="{'is-loading': $store.state.isLoading}">
@@ -48,12 +48,12 @@
         <router-view />
     </section>
     <footer class="footer has-text-centered">
-        <h3 class="is-size-5 mb-5 bg-dark has">
+        <p class="is-size-5 mb-5 bg-dark has">
             This free movies streaming, watch movies online, watch tv-series,
             full hd movies online, free tv-series online, watch hd movies
             free, watch series online, watch the walking dead online,
             watch prison break online, watch family guy online
-        </h3>
+        </p>
         <p class=" mb-1">Copyright (c) 2021 </p>
     </footer>
 </div>
@@ -90,10 +90,6 @@ export default {
     color: rgb(195, 224, 195);
 }
 
-.nav-item {
-    color: rgb(195, 224, 195);
-}
-
 .i {
     color: rgb(195, 224, 195);
 }
@@ -111,6 +107,7 @@ input {
     background-color: rgb(44, 43, 43);
     color: rgb(195, 224, 195);
 }
+
 
 .imageSize {
     width: 500px;
@@ -162,7 +159,7 @@ input {
     }
 
     .input-size {
-        width: 200px;
+        width: 300px;
     }
 
     .dropdown {
