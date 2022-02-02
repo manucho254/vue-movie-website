@@ -1,5 +1,5 @@
 <template>
-<div id="wrapper">
+<div id="wrapper" class="has-background-light">
     <div class="page-loader" v-if="!pageLoaderIsloaded">
         <div class="cube"></div>
         <div class="cube"></div>
@@ -12,7 +12,8 @@
                 <h3 class="h2 is-success"><span>Movie</span>Time</h3>
             </router-link>
         </div>
-        <div class="is-flex">
+        <div class="is-flex is-justify-content-space-between">
+            <hr>
             <router-link to="/" class="navbar-item"><h5 class="has-text-light">Home</h5></router-link>
             <router-link to="/tv-shows/" class="navbar-item"><h5 class="has-text-light">Tv-shows</h5></router-link>
             <router-link to="/movies/" class="navbar-item"><h5 class="has-text-light">Movies</h5></router-link>
@@ -41,7 +42,7 @@
         <router-view />
     </section>
     <footer class="footer has-text-centered">
-        <p class="is-size-5 mb-5 bg-dark has">
+        <p class="mb-5 bg-dark">
             This free movies streaming, watch movies online, watch tv-series,
             full hd movies online, free tv-series online, watch hd movies
             free, watch series online, watch the walking dead online,
@@ -156,7 +157,7 @@ input {
     }
 
     .input-size {
-        width: 300px;
+        width: 250px;
     }
 
     .dropdown {
@@ -232,7 +233,7 @@ $colors: #8CC271, #69BEEB, #F5AA39, #E9643B;
     background-color: #333;
     z-index: 999;
   }
-  // -----------------------------------------------------
+  
   .cube{
     width: 40px;
     height: 40px;
