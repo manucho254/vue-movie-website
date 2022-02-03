@@ -5,7 +5,8 @@
         <div class="columns is-multiline mt-2">
             <Search v-for="movie in movies" :key="movie.id" :movie="movie" />
         </div>
-    </div>300</div>
+    </div>
+</div>
 </template>
 
 <script>
@@ -27,8 +28,9 @@ export default {
     mounted() {
         let uri = window.location.search.substring(1)
         let params = new URLSearchParams(uri)
-
-        if (params.get('query')) {
+        if (params.get('query') == "") {
+           self.$router.push({path: "/"})
+        }else {
             this.query = params.get('query')
             this.performSearch()
         }
@@ -39,7 +41,7 @@ export default {
 
             this.$store.commit('setIsLoading', true)
             await axios
-                .get(`/search/multi?api_key=${env.apikey}&page=1&query=${this.query}&include_adult=false`)
+                .get(`search/multi?api_key=${env.apikey}&page=1&query=${this.query}&include_adult=false`)
                 .then(response => {
                     this.movies = response.data.results
                 })
@@ -47,7 +49,7 @@ export default {
                     console.log(error)
                 })
             this.$store.commit('setIsLoading', false)
-        }
+        },
     }
 }
 </script>

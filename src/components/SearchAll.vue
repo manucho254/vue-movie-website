@@ -49,7 +49,7 @@
             </div>
         </router-link>
     </div>
-    <div v-else>
+    <div v-else-if="movie.media_type == 'people'">
 
     </div>
 </div>

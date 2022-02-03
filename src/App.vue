@@ -23,10 +23,10 @@
                 <form method="get" action="/search/">
                     <div class="field has-addons">
                         <div class="control">
-                            <input type="text" class="input border-none is-rounded input-size" placeholder="what do you want to watch?" name="query" v-model="search">
+                            <input id="search" type="text" class="input border-none is-rounded input-size" placeholder="what do you want to watch?" name="query" v-model="search">
                         </div>
                         <div class="control">
-                            <input class="button has-background-black is-dark is-rounded" type="submit" value="Search">
+                            <input v-on:click="checker()" class="button has-background-black is-dark is-rounded" type="submit" value="Search">
                         </div>
                     </div>
                 </form>
@@ -62,6 +62,14 @@ export default {
         return {
             showMobileMenu: false,
             pageLoaderIsloaded: false,
+        }
+    },
+    methods: {
+        checker () {
+            const Search = document.querySelector("#search")
+            if (Search.value == ''){
+                alert("enter something else")
+            }
         }
     },
     mounted() {
@@ -157,7 +165,7 @@ input {
     }
 
     .input-size {
-        width: 200px;
+        width: auto;
     }
 
     .dropdown {
