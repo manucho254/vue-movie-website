@@ -157,7 +157,7 @@ input {
     }
 
     .input-size {
-        width: 250px;
+        width: 200px;
     }
 
     .dropdown {
