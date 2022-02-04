@@ -20,13 +20,13 @@
         </div>
         <div class="navbar-end">
             <div class="navbar-item">
-                <form method="get" action="/search/">
+                <form @submit.prevent="Search()">
                     <div class="field has-addons">
                         <div class="control">
-                            <input id="search" type="text" class="input border-none is-rounded input-size" placeholder="what do you want to watch?" name="query" v-model="search">
+                            <input id="search" type="text" class="input border-none is-rounded input-size" placeholder="what do you want to watch?" v-model="search">
                         </div>
                         <div class="control">
-                            <input v-on:click="checker()" class="button has-background-black is-dark is-rounded" type="submit" value="Search">
+                            <input class="button has-background-black is-dark is-rounded" type="submit" value="Search">
                         </div>
                     </div>
                 </form>
@@ -62,15 +62,20 @@ export default {
         return {
             showMobileMenu: false,
             pageLoaderIsloaded: false,
+            search: ''
         }
     },
     methods: {
-        checker () {
+        Search(){
             const Search = document.querySelector("#search")
             if (Search.value == ''){
-                alert("enter something else")
+                console.log(Search.value)
+                return alert("Enter movie name!!")
+            }else if (Search.value != ''){
+                let path = `/search/?query=${Search.value}`
+                this.$router.replace({path: path})
             }
-        }
+        },
     },
     mounted() {
       document.onreadystatechange = () => {
@@ -165,7 +170,7 @@ input {
     }
 
     .input-size {
-        width: auto;
+        width: 200px;
     }
 
     .dropdown {

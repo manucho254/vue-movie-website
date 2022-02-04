@@ -12,7 +12,7 @@
             </figure>
         </div>
         <div class="box has-background-dark">
-            <div class="is-flex  p-4">
+            <div class="is-flex p-4 is-flex-mobile">
                 <div v-if="movie.poster_path != null">
                     <img class="imageSize is-hidden-touch" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
                 </div>
@@ -143,5 +143,12 @@ export default {
 <style scoped>
 .star {
     color: rgb(219, 90, 13);
+}
+@media (max-width: 768px) {
+    .box {
+        width: 100%;
+        height: 10%;
+        font-size: 2px;
+    }
 }
 </style>
