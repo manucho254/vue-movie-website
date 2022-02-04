@@ -73,7 +73,7 @@ export default {
                 return alert("Enter movie name!!")
             }else if (Search.value != ''){
                 let path = `/search/?query=${Search.value}`
-                this.$router.replace({path: path})
+                this.$router.push({path: path})
             }
         },
     },
