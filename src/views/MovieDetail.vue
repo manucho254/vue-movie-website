@@ -11,8 +11,8 @@
                 </iframe>
             </figure>
         </div>
-        <div class="box has-background-dark">
-            <div class="is-flex p-4 is-flex-mobile">
+        <div class="card has-background-dark">
+            <div class="is-flex p-3 is-flex-mobile">
                 <div v-if="movie.poster_path != null">
                     <img class="imageSize is-hidden-touch" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
                 </div>

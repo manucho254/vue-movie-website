@@ -17,8 +17,8 @@
             </figure>
         </div>
 
-        <div class="box has-background-dark">
-            <div class="is-flex p-4 is-mobile">
+        <div class="card has-background-dark">
+            <div class="is-flex p-3 is-mobile">
                 <div v-if="series.poster_path != null">
                     <img class="imageSize is-hidden-touch" :src="'https://image.tmdb.org/t/p/w1280' + series.poster_path " alt="movie image">
                 </div>

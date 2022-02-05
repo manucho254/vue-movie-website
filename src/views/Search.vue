@@ -29,8 +29,8 @@ export default {
         let uri = window.location.search.substring(1)
         let params = new URLSearchParams(uri)
         if (params.get('query') == "") {
-            this.$router.push({path: "/"})
-        }else {
+            return alert("error")
+        }else if (params.get('query')) {
             this.query = params.get('query')
             this.performSearch()
         }

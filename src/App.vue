@@ -20,13 +20,13 @@
         </div>
         <div class="navbar-end">
             <div class="navbar-item">
-                <form @submit.prevent="Search()">
+                <form v-on:submit.prevent="Search()">
                     <div class="field has-addons">
                         <div class="control">
-                            <input id="search" type="text" class="input border-none is-rounded input-size" placeholder="what do you want to watch?" v-model="search">
+                            <input id="search" type="text" class="input border-none is-rounded input-size" placeholder="what do you want to watch?" name="query" v-model="search">
                         </div>
                         <div class="control">
-                            <input class="button has-background-black is-dark is-rounded" type="submit" value="Search">
+                            <input id="btnsearch" class="button has-background-black is-dark is-rounded" type="submit" value="Search">
                         </div>
                     </div>
                 </form>
@@ -67,13 +67,18 @@ export default {
     },
     methods: {
         Search(){
-            const Search = document.querySelector("#search")
-            if (Search.value == ''){
-                console.log(Search.value)
+            const Search = document.querySelector("#search");
+            this.search = ''
+            this.search = Search.value;
+            if (this.search == ''){
                 return alert("Enter movie name!!")
-            }else if (Search.value != ''){
-                let path = `/search/?query=${Search.value}`
-                this.$router.push({path: path})
+            }else if (this.search != "" && this.searh != " "){
+                this.$router.push({ path: '/search/', query: { query: `${this.search}` }});
+            }else{
+                const newPath = `/search/?query=${Search.value}`;
+                if (window.location.href.indexOf("search") > -1) {
+                        this.$router.go(newPath);
+                }
             }
         },
     },
