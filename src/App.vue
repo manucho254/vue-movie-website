@@ -19,17 +19,25 @@
             <router-link to="/movies/" class="navbar-item"><h5 class="has-text-light">Movies</h5></router-link>
         </div>
         <div class="navbar-end">
-            <div class="navbar-item">
-                <form v-on:submit.prevent="Search()">
-                    <div class="field has-addons">
-                        <div class="control">
-                            <input id="search" type="text" class="input border-none is-rounded input-size" placeholder="what do you want to watch?" name="query" v-model="search">
+                <div class="dropdown is-active">
+                    <form v-on:submit.prevent>
+                        <div class="field has-addons">
+                            <div class="control">
+                                <input id="search" type="text" v-on:keyup="Search" class="input border-none is-rounded input-size" placeholder="what do you want to watch?" v-model="search">
+                            </div>
+                            <div class="control">
+                                <input id="btnsearch" class="button has-background-black is-dark is-rounded" type="submit" value="Search">
+                            </div>
                         </div>
-                        <div class="control">
-                            <input id="btnsearch" class="button has-background-black is-dark is-rounded" type="submit" value="Search">
+                    </form>
+                    <div class="dropdown-menu" v-if="movies.length > 0 && search !== ''"  id="dropdown-menu" role="menu">
+                        <div class="dropdown-content " v-for="movie in movies" :key="movie.id">
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                {{ movie.title }}
+                            </a>
                         </div>
                     </div>
-                </form>
             </div>
         </div>
     </nav>
@@ -56,31 +64,32 @@
 
 <script>
 
+import axios from "axios"
+import env from '@/env.js'
 
 export default {
     data() {
         return {
             showMobileMenu: false,
             pageLoaderIsloaded: false,
-            search: ''
+            search: '',
+            movies: []
         }
     },
     methods: {
-        Search(){
-            const Search = document.querySelector("#search");
-            this.search = ''
-            this.search = Search.value;
-            if (this.search == ''){
-                return alert("Enter movie name!!")
-            }else if (this.search != "" && this.searh != " "){
-                this.$router.push({ path: '/search/', query: { query: `${this.search}` }});
-            }else{
-                const newPath = `/search/?query=${Search.value}`;
-                if (window.location.href.indexOf("search") > -1) {
-                        this.$router.go(newPath);
-                }
-            }
-        },
+        async Search(){
+          if (this.search !== ''){
+            await axios
+            .get(`search/multi?api_key=${env.apikey}&page=1&query=${this.search}&include_adult=false`)
+            .then(response => {
+                this.movies = response.data.results
+                console.log(this.movies)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        }
+          }
     },
     mounted() {
       document.onreadystatechange = () => {
@@ -144,20 +153,7 @@ input {
     width: 300px;
 }
 
-.dropdown {
-    position: relative;
-    width: 200px;
-    height: 30px;
-    background-color: rgb(58, 61, 58);
-    color: white;
-    border: hidden;
-    border-radius: 20px;
-    font-family: inherit;
-    font-weight: bold;
-    font-weight: 15px;
-    margin: 1rem;
-    text-align: center;
-}
+
 
  .resize-card-phone {
         width: 100%;
@@ -285,4 +281,5 @@ $colors: #8CC271, #69BEEB, #F5AA39, #E9643B;
       transform: translateX(0);
     }
   }
+
 </style>

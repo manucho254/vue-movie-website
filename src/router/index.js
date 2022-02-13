@@ -15,13 +15,13 @@ const routes = [
   },
 
   {
-    path: '/movies/:',
+    path: '/movies/',
     name: 'Movies',
     component: Movies
   },
 
   {
-    path: '/tv-shows/:',
+    path: '/tv-shows/',
     name: 'TvShows',
     component:  TvShows
   },
