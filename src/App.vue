@@ -33,9 +33,52 @@
                     <div class="dropdown-menu" v-if="movies.length > 0 && search !== ''"  id="dropdown-menu" role="menu">
                         <div class="dropdown-content " v-for="movie in movies" :key="movie.id">
                             <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                {{ movie.title }}
-                            </a>
+                               <div class="dropdown-item">
+                                <div v-if="movie.media_type == 'movie'">
+                                    <router-link :to="'/movie/' + movie.id">
+            
+                                        <h3 class="is-capitalized has-text-weight-bold m-2">
+                                            {{ movie.media_type }}
+                                        </h3>
+                                        <h3 class="is-capitalized has-text-weight-bold m-2">
+                                            {{ movie.first_air_date }} {{ movie.release_date }}
+                                        </h3>
+                                        <div class="is-flex is-justify-content-space-between">
+                                            <div v-if="movie.poster_path != null">
+                                                <img width="30" height="20" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
+                                            </div>
+                                            <div v-else>
+                                                <img width="30" height="20" src="@/assets/no-image.jpg" alt="no image found">
+                                            </div>
+                                            <div class="overflow">
+                                                <h5 class="has-text-black-bis has-text-weight-bold">{{ movie.title }}{{ movie.name }}</h5>
+                                                <h3 class="has-text-weight-bold" :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</h3>
+                                            </div>
+                                        </div>
+                                    </router-link>
+                                </div>
+                                <div v-else-if="movie.media_type == 'tv'">
+                                    <router-link :to="'/tv-show/' + movie.id" class="dropdown-item">
+                                        
+                                            <h3 class="is-capitalized is-black has-text-weight-bold m-2">
+                                                {{ movie.media_type }}
+                                            </h3>
+                                            <div class="is-flex is-justify-content-space-between">
+                                                <div v-if="movie.poster_path != null">
+                                                    <img width="30" height="20" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
+                                                </div>
+                                                <div v-else>
+                                                    <img  width="30" height="20" src="@/assets/no-image.jpg" alt="no image found">
+                                                </div>
+                                                <div class="overflow">
+                                                    <h3 class="has-text-black-bis has-text-weight-bold">{{ movie.title }}{{ movie.name }}</h3>
+                                                    <h3 class="has-text-weight-bold" :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</h3>
+                                                </div>
+                                            </div>
+                                    </router-link>
+                                </div>
+                                <div v-else-if="movie.media_type == 'people'"></div>
+                            </div>
                         </div>
                     </div>
             </div>
@@ -88,8 +131,17 @@ export default {
             .catch(error => {
                 console.log(error)
             })
+            }
+        },
+        changeRatingColor(vote) {
+            if (vote >= 8) {
+                return 'green';
+            } else if (vote >= 5) {
+                return 'orange';
+            } else {
+                return 'red';
+            }
         }
-          }
     },
     mounted() {
       document.onreadystatechange = () => {
@@ -122,6 +174,11 @@ export default {
 .img {
     width: 100%;
     height: 50px;
+}
+
+.drop_images{
+    width: 20px;
+    height: 20px;
 }
 
 input {

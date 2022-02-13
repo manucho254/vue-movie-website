@@ -145,8 +145,11 @@ export default {
     color: rgb(219, 90, 13);
 }
 @media (max-width: 768px) {
-    .box {
+    iframe {
         width: 100%;
+    }
+    .box {
+        width: 100vw;
         height: 10%;
         font-size: 2px;
     }

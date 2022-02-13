@@ -84,20 +84,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-.dropdown {
-    position: relative;
-    width: 200px;
-    height: 30px;
-    background-color: rgb(58, 61, 58);
-    color: white;
-    border: hidden;
-    border-radius: 20px;
-    font-family: inherit;
-    font-weight: bold;
-    font-weight: 15px;
-    margin: 1rem;
-    text-align: center;
-}
-</style>
