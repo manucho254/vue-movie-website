@@ -34,51 +34,8 @@
                         <div class="dropdown-content " v-for="movie in movies" :key="movie.id">
                             <hr class="dropdown-divider">
                                <div class="dropdown-item">
-                                <div v-if="movie.media_type == 'movie'">
-                                    <router-link :to="'/movie/' + movie.id">
-            
-                                        <h3 class="is-capitalized has-text-weight-bold m-2">
-                                            {{ movie.media_type }}
-                                        </h3>
-                                        <h3 class="is-capitalized has-text-weight-bold m-2">
-                                            {{ movie.first_air_date }} {{ movie.release_date }}
-                                        </h3>
-                                        <div class="is-flex is-justify-content-space-between">
-                                            <div v-if="movie.poster_path != null">
-                                                <img width="30" height="20" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
-                                            </div>
-                                            <div v-else>
-                                                <img width="30" height="20" src="@/assets/no-image.jpg" alt="no image found">
-                                            </div>
-                                            <div class="overflow">
-                                                <h5 class="has-text-black-bis has-text-weight-bold">{{ movie.title }}{{ movie.name }}</h5>
-                                                <h3 class="has-text-weight-bold" :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</h3>
-                                            </div>
-                                        </div>
-                                    </router-link>
-                                </div>
-                                <div v-else-if="movie.media_type == 'tv'">
-                                    <router-link :to="'/tv-show/' + movie.id" class="dropdown-item">
-                                        
-                                            <h3 class="is-capitalized is-black has-text-weight-bold m-2">
-                                                {{ movie.media_type }}
-                                            </h3>
-                                            <div class="is-flex is-justify-content-space-between">
-                                                <div v-if="movie.poster_path != null">
-                                                    <img width="30" height="20" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
-                                                </div>
-                                                <div v-else>
-                                                    <img  width="30" height="20" src="@/assets/no-image.jpg" alt="no image found">
-                                                </div>
-                                                <div class="overflow">
-                                                    <h3 class="has-text-black-bis has-text-weight-bold">{{ movie.title }}{{ movie.name }}</h3>
-                                                    <h3 class="has-text-weight-bold" :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</h3>
-                                                </div>
-                                            </div>
-                                    </router-link>
-                                </div>
-                                <div v-else-if="movie.media_type == 'people'"></div>
-                            </div>
+                                  <SearchData :movie="movie"/>
+                               </div>
                         </div>
                     </div>
             </div>
@@ -109,6 +66,7 @@
 
 import axios from "axios"
 import env from '@/env.js'
+import SearchData from "@/components/SearchData"
 
 export default {
     data() {
@@ -119,6 +77,9 @@ export default {
             movies: []
         }
     },
+    components: {
+        SearchData
+    },
     methods: {
         async Search(){
           if (this.search !== ''){
@@ -126,7 +87,6 @@ export default {
             .get(`search/multi?api_key=${env.apikey}&page=1&query=${this.search}&include_adult=false`)
             .then(response => {
                 this.movies = response.data.results
-                console.log(this.movies)
             })
             .catch(error => {
                 console.log(error)
