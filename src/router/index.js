@@ -5,49 +5,42 @@ import Movies from '../views/Movies.vue'
 import TvShows from '../views/TvShows.vue'
 import MovieDetail from '../views/MovieDetail.vue'
 import TvShowDetail from '../views/TvShowDetail.vue'
-import Search from '../views/Search.vue'
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
+const routes = [{
+        path: '/',
+        name: 'Home',
+        component: Home
+    },
 
-  {
-    path: '/movies/',
-    name: 'Movies',
-    component: Movies
-  },
+    {
+        path: '/movies/',
+        name: 'Movies',
+        component: Movies
+    },
 
-  {
-    path: '/tv-shows/',
-    name: 'TvShows',
-    component:  TvShows
-  },
+    {
+        path: '/tv-shows/',
+        name: 'TvShows',
+        component: TvShows
+    },
 
-  {
-    path: '/tv-show/:id',
-    name: 'TvShowDetail',
-    component: TvShowDetail
-  },
+    {
+        path: '/tv-show/:id',
+        name: 'TvShowDetail',
+        component: TvShowDetail
+    },
 
-  {
-    path: '/movie/:id',
-    name: 'MovieDetail',
-    component: MovieDetail
-  },
-  {
-    path: '/search/',
-    name: 'Search',
-    component: Search
-  },
+    {
+        path: '/movie/:id',
+        name: 'MovieDetail',
+        component: MovieDetail
+    },
 
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+    history: createWebHistory(process.env.BASE_URL),
+    routes
 })
 
 export default router
