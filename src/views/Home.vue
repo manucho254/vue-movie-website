@@ -1,8 +1,8 @@
 <template>
 <div class="home">
-    <div class="container">
-        <span class="is-uppercase mb-5 is-size-4 has-text-black-bis has-text-weight-bold">Trending</span>
-        <div class="columns is-multiline mt-2">
+    <div class="px-3">
+        <p class="h5 mt-3 mb-4">Trending</p>
+        <div class="row">
             <Trending v-for="movie in movies" :key="movie.id" :movie="movie" />
 
         </div>

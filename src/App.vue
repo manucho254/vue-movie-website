@@ -1,11 +1,5 @@
 <template>
 <div id="wrapper" class="has-background-light">
-    <div class="page-loader" v-if="!pageLoaderIsloaded">
-        <div class="cube"></div>
-        <div class="cube"></div>
-        <div class="cube"></div>
-        <div class="cube"></div>
-    </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="navbar-brand">
             <router-link to="/" class="navbar-item nav-link">
@@ -40,21 +34,18 @@
         </div>
         </div>
         </nav>
-    <div class="is-loading-bar has-text-centered" v-bind:class="{'is-loading': $store.state.isLoading}">
-        <div class="lds-dual-ring"></div>
-    </div>
 
-    <section class="section">
+    <section>
         <router-view />
     </section>
-    <footer class="footer has-text-centered">
+    <footer class="footer text-center">
         <p class="mb-5 bg-dark">
             This free movies streaming, watch movies online, watch tv-series,
             full hd movies online, free tv-series online, watch hd movies
             free, watch series online, watch the walking dead online,
             watch prison break online, watch family guy online
         </p>
-        <p class=" mb-1">Copyright (c) 2021 </p>
+        <p class="text-center mb-1">Copyright (c) 2021 </p>
     </footer>
 </div>
 </template>

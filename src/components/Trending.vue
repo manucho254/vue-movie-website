@@ -1,21 +1,19 @@
 <template>
-<div>
+<div class="col-md-2 col-sm-6">
     <div v-if="movie.media_type == 'movie'">
-        <router-link :to="'/movie/' + movie.id">
+        <router-link :to="'/movie/' + movie.id" class="text-decoration-none">
             <div class="card">
-                <div class="card-image">
-                    <figure class="image is-4by8 is-grey">
-                        <div class="is-flex is-justify-content-space-between">
-                            <h3 class="is-capitalized is-black has-text-weight-bold m-2">
-                                {{ movie.media_type }}
-                            </h3>
-                            <h3 class="is-capitalized has-text-weight-bold m-2">
-                                {{ movie.first_air_date }} {{ movie.release_date }}
-                            </h3>
-                        </div>
-                        <img  class="img" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path" alt="movie image">
-                    </figure>
-                </div>
+                <figure class="figure">
+                    <div class="d-flex justify-content-between">
+                        <p class="text-secondary">
+                            {{ movie.media_type }}
+                        </p>
+                        <p class="text-secondary">
+                            {{ movie.first_air_date }} {{ movie.release_date }}
+                        </p>
+                    </div>
+                    <img  class="figure-img img-fluid rounded" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path" alt="movie image">
+                </figure>
                 <div class="card-content overflow is-flex is-justify-content-space-between">
                     <h5 class="has-text-black-bis has-text-weight-bold">{{ movie.title }}{{ movie.name }}</h5>
                     <h3 class="has-text-weight-bold" :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</h3>
@@ -24,17 +22,18 @@
         </router-link>
     </div>
     <div v-else>
-        <router-link :to="'/tv-show/' + movie.id">
+        <router-link :to="'/tv-show/' + movie.id" class="text-decoration-none">
             <div class="card">
                 <div class="card-image">
-                    <figure class="image is-4by8 is-grey">
-                        <h3 class="is-capitalized is-black has-text-weight-bold m-2">{{ movie.media_type }}</h3>
-                        <img  class="image" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path" alt="movie image">
+                    <figure class="figure">
+                        <h5 class="">{{ movie.media_type }}</h5>
+                        <img  class="figure-img img-fluid rounded" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path" alt="movie image">
                     </figure>
                 </div>
-                <div class="card-content overflow is-flex is-justify-content-space-between">
-                    <h3 class="has-text-black-bis has-text-weight-bold">{{ movie.title }}{{ movie.name }}</h3>
-                    <h3 class="has-text-weight-bold" :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</h3>
+                <div class="card-content d-flex justify-content-between">
+                    <p class="text-dark">{{ movie.title }}{{ movie.name }}</p>
+                    <p class="text-dark" 
+                    :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</p>
                 </div>
             </div>
         </router-link>

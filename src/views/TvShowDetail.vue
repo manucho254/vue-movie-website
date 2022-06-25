@@ -1,6 +1,6 @@
 <template>
 <div class="series-detail">
-    <div class="container ">
+    <div class="px-3">
         <h1 class="has-text-weight-bold has-text-dark is-size-3 has-text-start"> {{ series.name }} </h1>
         <select class="dropdown" v-model="seasons" @change="seasonSelected($event)">
             <option class="dropdown px-2" selected id="seasons" :key="season.id" v-for="season in series.number_of_seasons" :value="season">Season {{ season }} </option>
@@ -10,7 +10,7 @@
             <option class="dropdown px-2" :key="episode.id" v-for="episode in seasonAndepisodes" :episode="episode" :value="episode.episode_number">Episode {{ episode.episode_number }}</option>
         </select>
         <div class="card mb-5">
-            <figure class="image is-16by9">
+            <figure class="figure">
                 <!-- sandbox="allow-scripts allow-same-origin" -->
                 <iframe class="has-ratio" width="640" height="100" sandbox="allow-scripts allow-same-origin" :src='link' frameborder="0" allowfullscreen>
                 </iframe>
@@ -20,7 +20,7 @@
         <div class="card has-background-dark">
             <div class="is-flex p-3 is-mobile">
                 <div v-if="series.poster_path != null">
-                    <img class="imageSize is-hidden-touch" :src="'https://image.tmdb.org/t/p/w1280' + series.poster_path " alt="movie image">
+                    <img class="image-fluid rounded" :src="'https://image.tmdb.org/t/p/w1280' + series.poster_path " alt="movie image">
                 </div>
                 <div v-else>
                     <img class="imageSize" src="@/assets/no-image.jpg" alt="black image">
@@ -72,9 +72,9 @@
         <div class="box is-flex has-background-dark has-text-light is-hidden-touch">
             <div class="columns is-multiline mt-3">
                 <div class="column is-1" :key="cast.id" v-for="cast in credits">
-                    <figure class="image is-12by5">
+                    <figure class="figure">
                         <div v-if="cast.profile_path != null">
-                            <img class="is-mobile cast-images" :src="'https://image.tmdb.org/t/p/w1280' + cast.profile_path" alt="movie image">
+                            <img class="image-fluid-rounded" :src="'https://image.tmdb.org/t/p/w1280' + cast.profile_path" alt="movie image">
                         </div>
                         <div v-else>
                             <img class="is-hidden-touch cast-images" src="@/assets/no-image.jpg" alt="black image">

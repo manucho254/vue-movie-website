@@ -1,9 +1,9 @@
 <template>
 <div class="movie-detail">
-    <div class="container">
-            <h1 class="has-text-weight-bold has-text-dark is-size-3 mb-3"> {{ movie.title }}</h1>
+    <div class="px-3">
+            <h1 class="text-secondary"> {{ movie.title }}</h1>
         <div class="card mb-5">
-            <figure class="image is-16by9">
+            <figure class="figure">
                 <iframe class="has-ratio" width="700" height="100" 
                     :src='"https://www.2embed.ru/embed/tmdb/movie?id=" + $route.params.id' 
                     frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
@@ -11,10 +11,10 @@
                 </iframe>
             </figure>
         </div>
-        <div class="card has-background-dark">
-            <div class="is-flex p-3 is-flex-mobile">
+        <div class="card bg-dark">
+            <div class="d-flex">
                 <div v-if="movie.poster_path != null">
-                    <img class="imageSize is-hidden-touch" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
+                    <img class="imageSize rounded" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
                 </div>
                 <div v-else>
                     <img class="imageSize" src="@/assets/no-image.jpg" alt="black image">
@@ -35,7 +35,7 @@
                     <div class="modal" :class="{'is-active': showModalflag}">
                         <div class="modal-background"></div>
                         <div class="modal-content">
-                            <figure class="image is-16by9">
+                            <figure class="figure">
                                 <iframe class="has-ratio" width="640" height="360" v-for="trailer in trailers" :key="trailer.id" :trailer="trailer" :src='"https://www.youtube.com/embed/" +  trailer.key ' frameborder="0" allowfullscreen>
                                 </iframe>
                             </figure>
@@ -56,12 +56,12 @@
 
             <div class="columns is-multiline mt-3">
                 <div class="column is-1" :key="cast.id" v-for="cast in credits">
-                    <figure class="image is-12by5">
+                    <figure class="figure">
                         <div v-if="cast.profile_path!= null">
-                            <img class="is-mobile cast-images" :src="'https://image.tmdb.org/t/p/w1280' + cast.profile_path" alt="movie image">
+                            <img class="imageSize" :src="'https://image.tmdb.org/t/p/w1280' + cast.profile_path" alt="movie image">
                         </div>
                         <div v-else>
-                            <img class="is-hidden-touch cast-images" src="@/assets/no-image.jpg" alt="black image">
+                            <img class="imageSize" src="@/assets/no-image.jpg" alt="black image">
                         </div>
                     </figure>
                     <p class="has-text-weight-bold has-text-centered"> {{ cast.name }} </p>

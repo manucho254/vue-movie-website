@@ -1,12 +1,12 @@
 <template>
 <div class="Tv-shows">
-    <div class="container">
-        <span class="is-uppercase mb-5 is-size-4 has-text-black-bis has-text-weight-bold">Popular Tv-shows</span>
-        <div class="columns is-multiline mt-2">
+    <div class="px-3">
+        <p class="h5 mb-4 mt-3">Popular Tv shows</p>
+        <div class="row">
             <AllTvShows v-for="series in series" :key="series.id" :series="series" />
         </div>
-        <nav class="pagination is-centered p-2" role="navigation" aria-label="pagination">
-            <ul class="pagination-list">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
                 <li><a class="pagination-previous has-background-black has-text-light" v-on:click="getPreviousPage()">Prev</a></li>
                 <li><a class="pagination-link" aria-label="Goto page 1">{{ currentPage }}</a></li>
                 <li><a class="pagination-next has-background-black has-text-light" v-on:click="getNextPage()">Next</a></li>
