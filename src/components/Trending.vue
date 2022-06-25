@@ -1,5 +1,5 @@
 <template>
-<div class="column is-3">
+<div>
     <div v-if="movie.media_type == 'movie'">
         <router-link :to="'/movie/' + movie.id">
             <div class="card">
@@ -13,7 +13,7 @@
                                 {{ movie.first_air_date }} {{ movie.release_date }}
                             </h3>
                         </div>
-                        <img  class="image" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path" alt="movie image">
+                        <img  class="img" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path" alt="movie image">
                     </figure>
                 </div>
                 <div class="card-content overflow is-flex is-justify-content-space-between">

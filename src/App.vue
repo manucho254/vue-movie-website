@@ -6,42 +6,40 @@
         <div class="cube"></div>
         <div class="cube"></div>
     </div>
-    <nav class="navbar is-dark p-5">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="navbar-brand">
-            <router-link to="/" class="navbar-item hero">
+            <router-link to="/" class="navbar-item nav-link">
                 <h3 class="h2 is-success"><span>Movie</span>Time</h3>
             </router-link>
         </div>
-        <div class="is-flex is-justify-content-space-between">
-            <hr>
-            <router-link to="/" class="navbar-item"><h5 class="has-text-light">Home</h5></router-link>
-            <router-link to="/tv-shows/" class="navbar-item"><h5 class="has-text-light">Tv-shows</h5></router-link>
-            <router-link to="/movies/" class="navbar-item"><h5 class="has-text-light">Movies</h5></router-link>
-        </div>
-        <div class="navbar-end">
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <router-link to="/" class="navbar-item nav-link"><h5 class="has-text-light">Home</h5></router-link>
+            <router-link to="/tv-shows/" class="navbar-item nav-link"><h5 class="has-text-light">Tv-shows</h5></router-link>
+            <router-link to="/movies/" class="navbar-item nav-link"><h5 class="has-text-light">Movies</h5></router-link>
+            <div class="form-inline my-2 my-lg-0">
                 <div class="dropdown is-active">
                     <form v-on:submit.prevent>
-                        <div class="field has-addons">
+                        <div class="d-flex">
                             <div class="control">
-                                <input id="search" type="text" v-on:keyup="Search" class="input border-none is-rounded input-size" placeholder="what do you want to watch?" v-model="search">
-                            </div>
-                            <div class="control">
-                                <input id="btnsearch" class="button has-background-black is-dark is-rounded" type="submit" value="Search">
+                                <input id="search" type="text" @keyup="Search" 
+                                class="form-control border-none rounded-pill input-size" 
+                                placeholder="search movie" v-model="search">
                             </div>
                         </div>
                     </form>
-                    <div class="dropdown-menu" v-if="movies.length > 0 && search !== ''"  id="dropdown-menu" role="menu">
-                        <div class="dropdown-content " v-for="movie in movies" :key="movie.id">
+                    <div class="dropdown-menu w-75" v-if="show == true" id="dropdown-menu" role="menu">
+                        <div class="dropdown-content" v-for="movie in movies" :key="movie.id">
                             <hr class="dropdown-divider">
-                               <div class="dropdown-item">
+                               <div class="dropdown-item" v-if="movie">
                                   <SearchData :movie="movie"/>
                                </div>
                         </div>
                     </div>
             </div>
         </div>
-    </nav>
-
+        </div>
+        </nav>
     <div class="is-loading-bar has-text-centered" v-bind:class="{'is-loading': $store.state.isLoading}">
         <div class="lds-dual-ring"></div>
     </div>
@@ -73,25 +71,38 @@ export default {
         return {
             showMobileMenu: false,
             pageLoaderIsloaded: false,
-            search: '',
-            movies: []
+            search: "",
+            movies: [],
+            show: false
         }
     },
-    components: {
-        SearchData
-    },
+    components: {SearchData},
     methods: {
-        async Search(){
-          if (this.search !== ''){
-            await axios
-            .get(`search/multi?api_key=${env.apikey}&page=1&query=${this.search}&include_adult=false`)
+        checkSearchBox (){
+            if (this.search == ""){
+                show == false
+                this.movies = []
+            }
+        },
+        Search(){
+          this.checkSearchBox()
+          if (this.search == ""){
+            this.movies = []
+          }else{
+           axios.get(`search/multi?api_key=${env.apikey}&page=1&query=${this.search}&include_adult=false`)
             .then(response => {
-                this.movies = response.data.results
+                if(response.data.results.length > 0 && this.search !== ""){
+                    this.show = true
+                    this.movies = response.data.results
+                }else{
+                    this.show = false
+                    this.movies = [] 
+                }
             })
             .catch(error => {
                 console.log(error)
             })
-            }
+          }
         },
         changeRatingColor(vote) {
             if (vote >= 8) {
@@ -113,8 +124,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import '../node_modules/bulma';
+<style>
 
 .h2 {
     color: rgb(49, 216, 49);
@@ -228,75 +238,9 @@ input {
     animation: lds-dual-ring 1.2s linear infinite;
 }
 
-@keyframes lds-dual-ring {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+.dropdown-menu{
+    max-height: 200px;
+    overflow-y: scroll;
 }
-
-.is-loading-bar {
-    height: 0;
-    overflow: hidden;
-
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-
-    &.is-loading {
-        height: 80px;
-    }
-}
-
-$colors: #8CC271, #69BEEB, #F5AA39, #E9643B;
-  // -----------------------------------------------------
-  .page-loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #333;
-    z-index: 999;
-  }
-  
-  .cube{
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-    @for $i from 1 through length($colors) {
-      &:nth-child(#{$i}) {
-        background-color: nth($colors, $i);
-      }
-    }
-    &:first-child {
-      animation: left 1s infinite;
-    }
-    &:last-child {
-      animation: right 1s infinite .5s;
-    }
-  }
-  // -----------------------------------------------------
-  @keyframes left {
-    40% {
-      transform: translateX(-60px);
-    }
-    50% {
-      transform: translateX(0);      
-    }
-  }
-  @keyframes right {
-    40% {
-      transform: translateX(60px);
-    }
-    50% {
-      transform: translateX(0);
-    }
-  }
 
 </style>

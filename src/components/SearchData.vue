@@ -27,7 +27,7 @@
                     <h3 class="is-capitalized has-text-weight-bold mb-2">
                         {{ movie.media_type }}
                     </h3>
-                    <span>{{ series.first_air_date }}</span>
+                    <span>{{ movie.first_air_date }}</span>
                 </div>
                 <div class="is-flex is-justify-content-space-between">
                     <div v-if="movie.poster_path != null">
@@ -48,7 +48,7 @@
 <script>
 export default {
     props: {
-        movie: Object
+        movie: Object,
     },
     data() {
         

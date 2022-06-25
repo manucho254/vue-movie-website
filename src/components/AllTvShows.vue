@@ -33,12 +33,7 @@
 <script>
 export default {
     props: {
-        series: {
-            required: true
-        },
-        genres: {
-            required: true
-        }
+        series: Object,
     },
     mounted() {
         this.changeRatingColor()

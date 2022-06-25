@@ -33,12 +33,7 @@
 <script>
 export default {
     props: {
-        movie: {
-            required: true,
-        },
-        genres: {
-            required: true,
-        }
+        movie: Object,
     },
     methods: {
         changeRatingColor(vote) {
