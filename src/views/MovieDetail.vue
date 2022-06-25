@@ -2,7 +2,7 @@
 <div class="movie-detail">
     <div class="px-3">
             <h1 class="text-secondary"> {{ movie.title }}</h1>
-        <div class="card mb-5">
+        <div class="card">
             <figure class="figure">
                 <iframe class="has-ratio" width="700" height="100" 
                     :src='"https://www.2embed.ru/embed/tmdb/movie?id=" + $route.params.id' 
