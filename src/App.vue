@@ -1,52 +1,37 @@
 <template>
 <div id="wrapper" class="has-background-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar d-flex justify-content-between navbar-expand-lg navbar-dark bg-dark">
         <div class="navbar-brand">
             <router-link to="/" class="navbar-item nav-link">
                 <h3 class="h2 is-success"><span>Movie</span>Time</h3>
             </router-link>
         </div>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <router-link to="/" class="navbar-item nav-link"><h5 class="has-text-light">Home</h5></router-link>
-            <router-link to="/tv-shows/" class="navbar-item nav-link"><h5 class="has-text-light">Tv-shows</h5></router-link>
-            <router-link to="/movies/" class="navbar-item nav-link"><h5 class="has-text-light">Movies</h5></router-link>
-            <div class="form-inline my-2 my-lg-0">
-                <div class="dropdown is-active">
-                    <form v-on:submit.prevent>
-                        <div class="d-flex">
-                            <div class="control">
-                                <input id="search" type="text" @keyup="Search" 
-                                class="form-control border-none rounded-pill input-size" 
-                                placeholder="search movie" v-model="search">
-                            </div>
-                        </div>
-                    </form>
-                    <div class="dropdown-menu w-75" v-if="show == true" id="dropdown-menu" role="menu">
-                        <div class="dropdown-content" v-for="movie in movies" :key="movie.id">
-                            <hr class="dropdown-divider">
-                               <div class="dropdown-item" v-if="movie">
-                                  <SearchData :movie="movie"/>
-                               </div>
-                        </div>
-                    </div>
+        <div>
+            <form v-on:submit.prevent>
+                <input id="search" type="text" @keyup="Search" 
+                    class="form-control border-none rounded-pill input-size" 
+                    placeholder="search movie" v-model="search">
+            </form>
+            <div class="card position-absolute w-25 custom-dropdown" v-if="show == true">
+                <SearchData :movie="movie" v-for="(movie, index) in movies" :key="index" v-if="show == true"/>
             </div>
         </div>
+        <div class="d-flex justify-content-end">
+            <router-link to="/" class="navbar-item nav-link">
+                <h5 class="text-light">Home</h5>
+            </router-link>
+            <router-link to="/tv-shows/" class="navbar-item nav-link">
+                <h5 class="text-light">Tv-shows</h5>
+            </router-link>
+            <router-link to="/movies/" class="navbar-item nav-link">
+                <h5 class="text-light">Movies</h5>
+            </router-link>
         </div>
-        </nav>
+    </nav>
 
     <section>
         <router-view />
     </section>
-    <footer class="footer text-center">
-        <p class="mb-5 bg-dark">
-            This free movies streaming, watch movies online, watch tv-series,
-            full hd movies online, free tv-series online, watch hd movies
-            free, watch series online, watch the walking dead online,
-            watch prison break online, watch family guy online
-        </p>
-        <p class="text-center mb-1">Copyright (c) 2021 </p>
-    </footer>
 </div>
 </template>
 
@@ -64,36 +49,30 @@ export default {
             pageLoaderIsloaded: false,
             search: "",
             movies: [],
-            show: false
+            show: false,
         }
     },
     components: {SearchData},
     methods: {
-        checkSearchBox (){
-            if (this.search == ""){
-                show == false
-                this.movies = []
-            }
-        },
         Search(){
-          this.checkSearchBox()
-          if (this.search == ""){
-            this.movies = []
-          }else{
-           axios.get(`search/multi?api_key=${env.apikey}&page=1&query=${this.search}&include_adult=false`)
-            .then(response => {
-                if(response.data.results.length > 0 && this.search !== ""){
-                    this.show = true
-                    this.movies = response.data.results
-                }else{
-                    this.show = false
-                    this.movies = [] 
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-          }
+            if (this.search == ""){
+                this.show = false
+                this.movies = []
+            }else{
+                axios.get(`search/multi?api_key=${env.apikey}&page=1&query=${this.search}&include_adult=false`)
+                .then(response => {
+                    console.log(response.data.results.length)
+                    if (response.data.results.length > 0) {
+                        this.show = true
+                        this.movies = response.data.results.filter(
+                            (item) => item.media_type == 'tv' || item.media_type == 'movie'
+                        )
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+            }
         },
         changeRatingColor(vote) {
             if (vote >= 8) {
@@ -168,10 +147,9 @@ input {
 }
 
 .input-size {
-    width: 300px;
+    width: 500px;
+    height: 40px;
 }
-
-
 
  .resize-card-phone {
         width: 100%;
@@ -190,12 +168,6 @@ input {
 
     .input-size {
         width: 200px;
-    }
-
-    .dropdown {
-        width: 100px;
-        text-align: center;
-        margin: 1rem;
     }
 }
 
@@ -229,9 +201,9 @@ input {
     animation: lds-dual-ring 1.2s linear infinite;
 }
 
-.dropdown-menu{
-    max-height: 200px;
+.custom-dropdown {
     overflow-y: scroll;
+    max-height: 600px;
 }
 
 </style>

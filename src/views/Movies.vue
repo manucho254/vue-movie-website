@@ -1,15 +1,14 @@
 <template>
 <div class="Movies">
-    <div class="px-3">
-        <p class="h5 mb-4 mt-3">Popular Movies</p>
-        <div class="row">
-            <AllMovies v-for="movie in movies" :key="movie.id" :movie="movie" :genres="genres" />
+    <div class="px-2 pt-5">
+        <div class="d-flex gap-2">
+            <AllMovies v-for="(movie, index) in movies" :key="index" :movie="movie" :genres="genres" />
         </div>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li><a class="pagination-previous has-background-black has-text-light" v-on:click="getPreviousPage()">Prev</a></li>
-                <li><a class="pagination-link" aria-label="Goto page 1">{{ currentPage }}</a></li>
-                <li><a class="pagination-next has-background-black has-text-light" v-on:click="getNextPage()">Next</a></li>
+        <nav>
+            <ul class="pagination d-flex gap-2">
+                <li><a class="btn btn-dark" v-on:click="getPreviousPage()">Prev</a></li>
+                <li><a class="btn btn-light" aria-label="Goto page 1">{{ currentPage }}</a></li>
+                <li><a class="btn btn-dark" v-on:click="getNextPage()">Next</a></li>
             </ul>
         </nav>
     </div>

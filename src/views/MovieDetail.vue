@@ -1,72 +1,52 @@
 <template>
-<div class="movie-detail">
-    <div class="px-3">
-            <h1 class="text-secondary"> {{ movie.title }}</h1>
-        <div class="card">
-            <figure class="figure">
-                <iframe class="has-ratio" width="700" height="100" 
-                    :src='"https://www.2embed.ru/embed/tmdb/movie?id=" + $route.params.id' 
-                    frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin">
-                <!-- sandbox="allow-scripts allow-same-origin" -->
-                </iframe>
-            </figure>
-        </div>
-        <div class="card bg-dark">
-            <div class="d-flex">
-                <div v-if="movie.poster_path != null">
-                    <img class="imageSize rounded" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
-                </div>
-                <div v-else>
-                    <img class="imageSize" src="@/assets/no-image.jpg" alt="black image">
+<div class="movie-detail pt-5">
+    <div class="px-3 d-flex flex-column">
+        <div class="d-flex justify-content-between gap-4">
+            <div class="w-100">
+                <figure class="figure">
+                    <iframe class="has-ratio" width="640" height="450" 
+                        :src='"https://www.youtube.com/embed/" +  trailer.key' frameborder="0" allowfullscreen>
+                    </iframe>
+                </figure>
+            </div>
+            <div class="d-flex flex-column">
+                <div class="d-flex gap-4">
+                    <div v-if="movie.poster_path != null">
+                        <img class="figure-img rounded" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
+                    </div>
+                    <div v-else>
+                        <img class="image-size rounded" src="@/assets/no-image.jpg" alt="black image">
+                    </div>
+                    <div class="d-flex flex-column gap-2">     
+                        <h3 class="font-weight-bold"> {{ movie.title }}</h3>
+                        <span><i class="fa fa-star star"></i> 
+                             Rating: {{ movie.vote_average }}
+                        </span> 
+                        <span>Released: {{ movie.release_date }}</span>
+                        <span> Genres: {{ genres }} </span>
+                    </div>
                 </div>
                 <div class="ml-5 has-text-light ">
 
-                    <h1 class="has-text-weight-bold  is-size-4"> {{ movie.title }}</h1>
-
-                    <span class="is-size-6 has-text-weight-bold"><i class="fa fa-star star"></i>
-                        {{ movie.vote_average }} | Released: {{ movie.release_date }}
-                        <span v-for="genre in movie.genres" :key="genre.id" :genre="genre">
-                            {{ " | " + genre.name }}
-                        </span>
-                    </span>
-                    <p class="mt-5 is-size-5 has-text-light-grey">
+                    <span>Overview:</span>
+                    <p class="mt-3 text-secondary">
                         {{ movie.overview }}
                     </p>
-                    <div class="modal" :class="{'is-active': showModalflag}">
-                        <div class="modal-background"></div>
-                        <div class="modal-content">
-                            <figure class="figure">
-                                <iframe class="has-ratio" width="640" height="360" v-for="trailer in trailers" :key="trailer.id" :trailer="trailer" :src='"https://www.youtube.com/embed/" +  trailer.key ' frameborder="0" allowfullscreen>
-                                </iframe>
-                            </figure>
-                        </div>
-                        <button class="modal-close is-large" aria-label="close" @click="close"></button>
-                    </div>
                     <div>
-                        <button class="button has-background-black-bis has-text-light my-5" @click="showModal">
-                            <i class="fa fa-play-circle"> Trailer</i>
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
+        <div class="card bg-dark">
 
-        <h1 class="has-text-weight-bold is-size-4 is-hidden-touch has-text-black mb-2"> Cast : </h1>
-        <div class="box has-background-dark has-text-light is-hidden-touch">
-
-            <div class="columns is-multiline mt-3">
-                <div class="column is-1" :key="cast.id" v-for="cast in credits">
-                    <figure class="figure">
-                        <div v-if="cast.profile_path!= null">
-                            <img class="imageSize" :src="'https://image.tmdb.org/t/p/w1280' + cast.profile_path" alt="movie image">
-                        </div>
-                        <div v-else>
-                            <img class="imageSize" src="@/assets/no-image.jpg" alt="black image">
-                        </div>
-                    </figure>
-                    <p class="has-text-weight-bold has-text-centered"> {{ cast.name }} </p>
-                </div>
             </div>
+        </div>
+
+        <h3 class="font-weight-bold mb-3"> Cast: </h3>
+            <div class="d-flex rounded flex-wrap gap-2">
+                <div class="cast-card" v-for="(cast, index) in credits" :key="index">
+                    <img class="image-size" :src="'https://image.tmdb.org/t/p/w1280' + cast.profile_path" alt="movie image">
+                    <p class="text-start"> {{ cast.name }} </p>
+                </div>
         </div>
     </div>
 </div>
@@ -82,8 +62,9 @@ export default {
         return {
             showModalflag: false,
             movie: [],
-            trailers: [],
-            credits: []
+            trailer: "",
+            credits: [],
+            genres: {},
         }
     },
     mounted() {
@@ -101,7 +82,12 @@ export default {
             await
             axios.get(`/movie/${movieID}?api_key=${env.apikey}`)
                 .then(response => {
-                    this.movie = response.data
+                    this.movie = response.data;
+                    let genres = [];
+                    this.movie.genres.forEach(
+                        (item) => genres.push(item.name)
+                    )
+                    this.genres = genres.join();
                 })
                 .catch(error => {
                     console.log(error)
@@ -113,7 +99,8 @@ export default {
             await axios
                 .get(`/movie/${movieID}/videos?api_key=${env.apikey}`)
                 .then(response => {
-                    this.trailers = response.data.results
+                    let trailers = response.data.results
+                    this.trailer = trailers[0]
                 })
                 .catch(error => {
                     console.log(error)
@@ -124,7 +111,7 @@ export default {
             await axios
                 .get(`/movie/${movieID}/credits?api_key=${env.apikey}`)
                 .then(response => {
-                    this.credits = response.data.cast
+                    this.credits = response.data.cast.filter((item) => item.profile_path != null)
                 })
                 .catch(error => {
                     console.log(error)
@@ -141,6 +128,17 @@ export default {
 </script>
 
 <style scoped>
+
+.cast-card {
+    width: 100px !important;
+    height: 150px !important;
+}
+
+.image-size {
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 4px;
+}
 .star {
     color: rgb(219, 90, 13);
 }

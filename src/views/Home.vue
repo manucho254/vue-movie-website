@@ -1,11 +1,8 @@
 <template>
-<div class="home">
-    <div class="px-3">
-        <p class="h5 mt-3 mb-4">Trending</p>
-        <div class="row">
-            <Trending v-for="movie in movies" :key="movie.id" :movie="movie" />
-
-        </div>
+<div class="home px-2 pt-2">
+    <span class="h5 mt-3 mb-4">Trending</span>
+    <div class="trending d-flex justify-items-space-beween gap-3">
+        <Trending v-for="(movie, index) in movies" :key="index" :movie="movie" />
     </div>
 </div>
 </template>
@@ -68,3 +65,9 @@ export default {
 
 }
 </script>
+
+<style>
+.trending {
+    overflow-x: scroll;
+}
+</style>

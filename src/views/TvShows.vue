@@ -1,15 +1,14 @@
 <template>
 <div class="Tv-shows">
-    <div class="px-3">
-        <p class="h5 mb-4 mt-3">Popular Tv shows</p>
-        <div class="row">
-            <AllTvShows v-for="series in series" :key="series.id" :series="series" />
+    <div class="px-2 pt-5">
+        <div class="d-flex gap-2">
+            <AllTvShows v-for="(series, index) in series" :key="index" :series="series" />
         </div>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li><a class="pagination-previous has-background-black has-text-light" v-on:click="getPreviousPage()">Prev</a></li>
-                <li><a class="pagination-link" aria-label="Goto page 1">{{ currentPage }}</a></li>
-                <li><a class="pagination-next has-background-black has-text-light" v-on:click="getNextPage()">Next</a></li>
+        <nav>
+            <ul class="pagination d-flex gap-2">
+                <li><a class="btn btn-dark" v-on:click="getPreviousPage()">Prev</a></li>
+                <li><a class="btn btn-light" aria-label="Goto page 1">{{ currentPage }}</a></li>
+                <li><a class="btn btn-dark" v-on:click="getNextPage()">Next</a></li>
             </ul>
         </nav>
     </div>

@@ -1,57 +1,50 @@
 <template>
-<div >
-    <div v-if="movie.media_type == 'movie'">
-        <router-link :to="'/movie/' + movie.id" class="text-decoration-none">
-            
-            <div class="d-flex justify-content-between">
-                <p class="text-secondary">
-                    {{ movie.media_type }}
-                </p>
-                <p class="text-dark">{{ movie.release_date }}</p>
-            </div>
-            <div class="d-flex justify-content-between">
+<div class="p-3 border-bottom">
+    <router-link :to="'/movie/' + movie.id" class="text-decoration-none" v-if="movie.media_type == 'movie'">
+        <div class="d-flex justify-content-between text-capitalize">
+            <div>
+                <span class="text-secondary">{{ movie.media_type }}</span>
                 <div v-if="movie.poster_path != null">
-                    <img class="img-fluid rounded" width="50" height="20" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
+                    <img class="drop-image" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
                 </div>
                 <div v-else>
-                    <img class="img-fluid rounded" width="50" height="20" src="@/assets/no-image.jpg" alt="no image found">
+                    <img class="drop-image" src="@/assets/no-image.jpg" alt="no image found">
                 </div>
-                <p class="text-dark">{{ movie.title }}</p>
             </div>
-        </router-link>
-    </div>
-    <div v-else-if="movie.media_type == 'tv'">
-        <router-link :to="'/tv-show/' + movie.id" class="text-decoration-none">
-            
-                <div class="d-flex justify-content-between">
-                    <p class="text-secondary">
-                        {{ movie.media_type }}
-                    </p>
-                    <p class="text-secondary">{{ movie.first_air_date }}</p>
+            <span class="text-dark">{{ movie.title }}</span>
+        </div>
+    </router-link>
+    <router-link :to="'/tv-show/' + movie.id" 
+        class="text-decoration-none" v-else-if="movie.media_type == 'tv'">
+        <div class="d-flex justify-content-between">
+            <div>
+                <span class="text-secondary">{{ movie.media_type }}</span>
+                <div v-if="movie.poster_path != null">
+                    <img class="drop-image" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
                 </div>
-                <div class="d-flex justify-content-between">
-                    <div v-if="movie.poster_path != null">
-                        <img class="img-fluid rounded" width="30" height="20" :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
-                    </div>
-                    <div v-else>
-                        <img class="img-fluid rounded" width="30" height="20" src="@/assets/no-image.jpg" alt="no image found">
-                    </div>
-                    <p class="text-dark">{{ movie.name }}</p>
+                <div v-else>
+                    <img class="drop-image" src="@/assets/no-image.jpg" alt="no image found">
                 </div>
-        </router-link>
-    </div>
-    <div v-else-if="movie.media_type == 'people'"></div>
+            </div>
+            <span class="text-dark">{{ movie.name }}</span>
+        </div>
+    </router-link>
 </div>
-
 </template>
 
 <script>
 export default {
     props: {
-        movie: Object,
-    },
-    data() {
-        
+        movie: {
+            required: true
+        }
     },
 }
 </script>
+
+<style>
+ .drop-image {
+    width: 50px !important;
+    height: 50px !important;
+ }
+</style>
