@@ -1,88 +1,49 @@
 <template>
-<div class="series-detail">
-    <div class="px-3">
-        <h1 class="has-text-weight-bold has-text-dark is-size-3 has-text-start"> {{ series.name }} </h1>
-        <select class="dropdown" v-model="seasons" @change="seasonSelected($event)">
-            <option class="dropdown px-2" selected id="seasons" :key="season.id" v-for="season in series.number_of_seasons" :value="season">Season {{ season }} </option>
-        </select>
-
-        <select class="dropdown" v-model="episodes" @change="episodeSelected($event)">
-            <option class="dropdown px-2" :key="episode.id" v-for="episode in seasonAndepisodes" :episode="episode" :value="episode.episode_number">Episode {{ episode.episode_number }}</option>
-        </select>
-        <div class="card mb-5">
-            <figure class="figure">
-                <!-- sandbox="allow-scripts allow-same-origin" -->
-                <iframe class="has-ratio" width="640" height="100" sandbox="allow-scripts allow-same-origin" :src='link' frameborder="0" allowfullscreen>
-                </iframe>
-            </figure>
-        </div>
-
-        <div class="card has-background-dark">
-            <div class="is-flex p-3 is-mobile">
-                <div v-if="series.poster_path != null">
-                    <img class="image-fluid rounded" :src="'https://image.tmdb.org/t/p/w1280' + series.poster_path " alt="movie image">
+<div class="pt-5">
+    <div class="px-3 d-flex flex-column">
+        <div class="d-flex gap-5">
+            <div class="">
+                <figure class="figure">
+                    <iframe class="has-ratio" width="640" height="450" 
+                        :src='"https://www.youtube.com/embed/" +  trailer.key' frameborder="0" allowfullscreen>
+                    </iframe>
+                </figure>
+            </div>
+            <div class="d-flex flex-column">
+                <div class="d-flex gap-4">
+                    <div v-if="series.poster_path != null">
+                        <img class="figure-img rounded" :src="'https://image.tmdb.org/t/p/w1280' + series.poster_path " alt="movie image">
+                    </div>
+                    <div v-else>
+                        <img class="image-size rounded" src="@/assets/no-image.jpg" alt="black image">
+                    </div>
+                    <div class="d-flex flex-column gap-2">     
+                        <h3 class="font-weight-bold"> {{ series.name }}</h3>
+                        <span><i class="fa fa-star star"></i> 
+                             Rating: {{ series.vote_average }}
+                        </span> 
+                        <span>Released: {{ series.first_air_date  }}</span>
+                        <span> Genres: {{ genres }} </span>
+                    </div>
                 </div>
-                <div v-else>
-                    <img class="imageSize" src="@/assets/no-image.jpg" alt="black image">
-                </div>
-                <!--  -->
-                <div class="ml-5 has-text-light p-4">
-                    <h1 class="has-text-weight-bold is-size-3"> {{ series.name }}</h1>
+                <div class="ml-5 has-text-light ">
 
-                    <span class="is-size-6 has-text-weight-bold"><i class="fa fa-star star"></i>
-                        {{ series.vote_average }} | Released: {{ series.first_air_date }}
-                        <span v-for="genre in series.genres" :key="genre.id" :genre="genre">
-                            {{ " | " + genre.name }}
-                        </span>
-                    </span>
-
-                    <p class="mt-5 is-size-5 has-text-light-grey is-flex is-justify-content-center">
+                    <span>Overview:</span>
+                    <p class="mt-3 text-secondary">
                         {{ series.overview }}
                     </p>
-
-                    <h1 class="has-text-weight-bold has-text- mt-3 is-size-5">Creators</h1>
-
-                    <div class="is-flex mt-3">
-                        <div class="mr-5">
-                            <h1 :key="creator.id" v-for="creator in series.created_by">
-                                {{ creator.name  }}
-                            </h1>
-                        </div>
-                    </div>
-
-                    <div class="modal" :class="{'is-active': showModalflag}">
-                        <div class="modal-background"></div>
-                        <div class="modal-content">
-                            <figure class="image is-16by9">
-                                <iframe class="has-ratio" width="640" height="360" v-for="trailer in trailers" :key="trailer.id" :trailer="trailer" :src='"https://www.youtube.com/embed/" +  trailer.key ' frameborder="0" allowfullscreen>
-                                </iframe>
-                            </figure>
-                        </div>
-                        <button class="modal-close is-large" aria-label="close" @click="close"></button>
-                    </div>
                     <div>
-                        <button class="button has-background-black-bis has-text-light my-5" @click="showModal">
-                            <i class="fa fa-play-circle "> Trailer</i>
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
-        <h1 class="has-text-weight-bold is-size-4 mb-2 is-hidden-touch has-text-black"> Cast : </h1>
-        <div class="box is-flex has-background-dark has-text-light is-hidden-touch">
-            <div class="columns is-multiline mt-3">
-                <div class="column is-1" :key="cast.id" v-for="cast in credits">
-                    <figure class="figure">
-                        <div v-if="cast.profile_path != null">
-                            <img class="image-fluid-rounded" :src="'https://image.tmdb.org/t/p/w1280' + cast.profile_path" alt="movie image">
-                        </div>
-                        <div v-else>
-                            <img class="is-hidden-touch cast-images" src="@/assets/no-image.jpg" alt="black image">
-                        </div>
-                    </figure>
-                    <p class="has-text-weight-bold has-text-centered"> {{ cast.name }} </p>
+        </div>
+
+        <h3 class="font-weight-bold mb-3"> Cast: </h3>
+            <div class="d-flex rounded flex-wrap gap-2">
+                <div class="cast-card" v-for="(cast, index) in credits" :key="index">
+                    <img class="image-size" :src="'https://image.tmdb.org/t/p/w1280' + cast.profile_path" alt="movie image">
+                    <p class="text-start"> {{ cast.name }} </p>
                 </div>
-            </div>
         </div>
     </div>
 </div>
@@ -98,20 +59,16 @@ export default {
         return {
             showModalflag: false,
             series: [],
-            trailers: [],
             seasonAndepisodes: [],
             credits: [],
-            seasons: 1,
-            episodes: 1,
-            link: '',
+            trailer: "",
+            genres: {},
         }
     },
     mounted() {
         this.fetchSeries(this.$route.params.id)
         this.getSeriesTrailer(this.$route.params.id)
-        this.getSeasonEpisodes(this.$route.params.id, this.seasons)
         this.getCredits(this.$route.params.id)
-        this.getVideoEmbed()
     },
     methods: {
         async fetchSeries(seriesID) {
@@ -121,6 +78,11 @@ export default {
             axios.get(`/tv/${seriesID}?api_key=${env.apikey}`)
                 .then(response => {
                     this.series = response.data
+                    let genres = [];
+                    this.series.genres.forEach(
+                        (item) => genres.push(item.name)
+                    )
+                    this.genres = genres.join();
                 })
                 .catch(error => {
                     console.log(error)
@@ -132,22 +94,13 @@ export default {
             await axios
                 .get(`/tv/${seriesID}/videos?api_key=${env.apikey}`)
                 .then(response => {
-                    this.trailers = response.data.results
+                    let trailers = response.data.results
+                    this.trailer = trailers[0]
                 })
                 .catch(error => {
                     console.log(error)
                 })
             this.$store.commit('setIsLoading', false)
-        },
-        async getSeasonEpisodes(seriesID) {
-            await axios
-                .get(`/tv/${seriesID}/season/${this.seasons}?api_key=${env.apikey}`)
-                .then(response => {
-                    this.seasonAndepisodes = response.data.episodes
-                })
-                .catch(error => {
-                    console.log(error)
-                })
         },
         async getCredits(seriesID) {
             await axios
@@ -158,18 +111,6 @@ export default {
                 .catch(error => {
                     console.log(error)
                 })
-        },
-        getVideoEmbed() {
-            this.link = `https://www.2embed.ru/embed/tmdb/tv?id=${this.$route.params.id}&s=${this.seasons}&e=${this.episodes}`
-        },
-        seasonSelected(event) {
-            this.seasons = event.target.value;
-            this.getSeasonEpisodes(this.$route.params.id, this.seasons)
-            this.link = `https://www.2embed.ru/embed/tmdb/tv?id=${this.$route.params.id}&s=${this.seasons}&e=${this.episodes}`
-        },
-        episodeSelected(event) {
-            this.episodes = event.target.value;
-            this.link = `https://www.2embed.ru/embed/tmdb/tv?id=${this.$route.params.id}&s=${this.seasons}&e=${this.episodes}`
         },
         showModal() {
             this.showModalflag = true;
@@ -182,21 +123,27 @@ export default {
 </script>
 
 <style scoped>
-.dropdown {
-    position: relative;
-    width: 200px;
-    height: 30px;
-    background-color: rgb(58, 61, 58);
-    color: white;
-    border: hidden;
-    border-radius: 20px;
-    font-family: inherit;
-    font-weight: bold;
-    font-weight: 15px;
-    margin: 1rem;
-    text-align: center;
+.cast-card {
+    width: 100px !important;
+    height: 150px !important;
+}
+
+.image-size {
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 4px;
 }
 .star {
-    color: rgb(77, 180, 36);
+    color: rgb(219, 90, 13);
+}
+@media (max-width: 768px) {
+    iframe {
+        width: 100%;
+    }
+    .box {
+        width: 100vw;
+        height: 10%;
+        font-size: 2px;
+    }
 }
 </style>

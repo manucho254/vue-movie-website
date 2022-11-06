@@ -8,9 +8,9 @@
             <img  class="figure-img" src="@/assets/no-image.jpg" alt="no image found">
         </div>
         <div class="d-flex justify-content-between">
-            <div class="text-dark">{{ series.name }}</div>
-            <div class="text-dark" :class='changeRatingColor(series.vote_average)'>★ {{ series.vote_average }}
-            </div>
+            <p>{{ series.name }}</p>
+            <p :class='changeRatingColor(series.vote_average)'>★ {{ series.vote_average }}
+            </p>
         </div>
     </router-link>
 </div>

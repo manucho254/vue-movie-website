@@ -1,5 +1,5 @@
 <template>
-<div class="movie-card has-text-centered">
+<div class="movie-card">
     <router-link :to="'/movie/' + movie.id" class="text-decoration-none">
         <div v-if="movie.poster_path != null">
             <img class="figure-img " :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path " alt="movie image">
@@ -9,9 +9,8 @@
         </div>
 
         <div class="card-content d-flex justify-content-between">
-            <p class="text-dark">{{ movie.title }}</p>
-            <p class="text-dark" 
-            :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</p>
+            <p>{{ movie.title }}</p>
+            <p :class="changeRatingColor(movie.vote_average)">★{{ movie.vote_average }}</p>
         </div>
     </router-link>
 </div>

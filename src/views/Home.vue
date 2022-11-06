@@ -1,8 +1,8 @@
 <template>
-<div class="home px-2 pt-2">
-    <span class="h5 mt-3 mb-4">Trending</span>
-    <div class="trending d-flex justify-items-space-beween gap-3">
-        <Trending v-for="(movie, index) in movies" :key="index" :movie="movie" />
+<div class="home px-2 pt-3">
+    <span class="h3 mt-3 px-4">Trending</span>
+    <div class="d-flex flex-wrap justify-content-space-between">
+        <Trending v-for="(movie, index) in movies.slice(0, -2)" :key="index" :movie="movie" />
     </div>
 </div>
 </template>
@@ -54,12 +54,12 @@ export default {
         },
         async getPopularTvShows() {
             await axios.get(`/discover/movie?sort_by=popularity.desc&api_key=${env.apikey}`)
-                .then(response => {
-                    this.popularTvShows = response.data.results
-                })
-                .catch(error => {
-                    console.log(error)
-                })
+            .then(response => {
+                this.popularTvShows = response.data.results
+            })
+            .catch(error => {
+                console.log(error)
+            })
         },
     },
 
@@ -67,7 +67,5 @@ export default {
 </script>
 
 <style>
-.trending {
-    overflow-x: scroll;
-}
+
 </style>

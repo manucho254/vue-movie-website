@@ -1,5 +1,5 @@
 <template>
-<div class="movie-card text-capitalize">
+<div class="movie-card text-capitalize mx-4">
     <router-link :to="'/movie/' + movie.id" class="text-decoration-none" v-if="movie.media_type == 'movie'">
         <div class="d-flex justify-content-between p-2">
             <div>{{ movie.media_type }}</div> 
@@ -29,8 +29,6 @@
 export default {
     props: {
         movie: Object,
-        popularMovies: Object,
-        popularTvShows: Object,
     },
     mounted() {
         this.changeRatingColor()
@@ -51,14 +49,14 @@ export default {
 
 <style>
 .figure-img {
-    width: 300px !important;
-    height: 300px !important;
+    width: 200px !important;
+    height:250px !important;
 }
 .figure-img:hover {
     transition: 3s ease-in-out linear;
     cursor: pointer;
 }
 .movie-card {
-    width: 400px !important;
+    width: 200px !important;
 }
 </style>

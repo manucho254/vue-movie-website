@@ -1,8 +1,8 @@
 <template>
-<div class="movie-detail pt-5">
+<div class="pt-5">
     <div class="px-3 d-flex flex-column">
-        <div class="d-flex justify-content-between gap-4">
-            <div class="w-100">
+        <div class="d-flex gap-5">
+            <div class="">
                 <figure class="figure">
                     <iframe class="has-ratio" width="640" height="450" 
                         :src='"https://www.youtube.com/embed/" +  trailer.key' frameborder="0" allowfullscreen>
@@ -36,9 +36,6 @@
                 </div>
             </div>
         </div>
-        <div class="card bg-dark">
-
-            </div>
         </div>
 
         <h3 class="font-weight-bold mb-3"> Cast: </h3>
@@ -64,7 +61,7 @@ export default {
             movie: [],
             trailer: "",
             credits: [],
-            genres: {},
+            genres: {}
         }
     },
     mounted() {

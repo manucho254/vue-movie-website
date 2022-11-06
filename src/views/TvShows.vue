@@ -1,7 +1,7 @@
 <template>
 <div class="Tv-shows">
     <div class="px-2 pt-5">
-        <div class="d-flex gap-2">
+        <div class="d-flex flex-wrap justify-content-space-between gap-3">
             <AllTvShows v-for="(series, index) in series" :key="index" :series="series" />
         </div>
         <nav>
